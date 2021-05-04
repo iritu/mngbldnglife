@@ -1,16 +1,34 @@
 import { useState } from "react";
-import { Form ,  Button} from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Form ,  Button, Alert} from "react-bootstrap";
+import { Link, Redirect } from "react-router-dom";
+
  
- 
-function LoginPage(){
+function LoginPage({users, activeUser,  onLogin}){
     const [email, setEmail] = useState("");
     const [pswd, setPswd] = useState("");
+    const [nonUser, setNonUser]= useState(false);
 
-    function login(e){
-         e.preventDefault();
-         console.log(email);
-         console.log(pswd)   ;
+    if (activeUser) {
+        return <Redirect to="/dashboard"/>
+    }
+
+    function login(e) {
+        e.preventDefault();
+
+        let activeUser = null;
+        
+        for (const user of users) {
+            if (user.login(email, pswd)) {
+                activeUser = user;
+                break;
+            }
+        }
+
+        if (activeUser) {
+            onLogin(activeUser);
+        } else {
+            setNonUser(true);
+        }
     }
 
 
@@ -19,8 +37,11 @@ function LoginPage(){
             <h1 className="loginHeader">Login to HOA system </h1>
             <h2 className="loginHeader">  <Link to="/signup">Create a new account</Link>  &nbsp; if you are not registered</h2>
            
-
+               
                 <Form className="loginForm" onSubmit={login}>
+               
+                    {nonUser? <Alert variant="danger">Invalid credentials</Alert> : null}
+
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control type="email" placeholder="Enter email"
                         value={email} onChange={e=> setEmail(e.target.value)} />

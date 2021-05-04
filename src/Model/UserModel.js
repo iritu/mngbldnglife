@@ -11,4 +11,9 @@ export default class UserModel {
         this.buildingId   = SingleUser.buildingId;  //FK   
         this.appNumber      = SingleUser.appNumber; //number
     }
+
+    
+    login(email, pwd) {
+        return email.toLowerCase() === this.email.toLowerCase() && pwd === this.pswrd;
+    }
 }
