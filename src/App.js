@@ -19,8 +19,8 @@ import { useState } from 'react';
 
 function App() {
   //check dummi user:
-  //const dummyUser= {userId:1, isAdmin:true, name:"irit", email:"iritstempler@gmail.com", pswrd:"123", adrs:"Beit Hashmonai", buildingName:"Elazar", buildingId:1, appNumber:5}
-  const [activeUser, setActiveUser] = useState(null);
+  const dummyUser= {userId:1, isAdmin:true, name:"irit", email:"iritstempler@gmail.com", pswrd:"123", adrs:"Beit Hashmonai", buildingName:"Elazar", buildingId:1, appNumber:5}
+  const [activeUser, setActiveUser] = useState(dummyUser);
 
 
 
@@ -35,7 +35,7 @@ function App() {
               <Route exact path="/login"><LoginPage/></Route>
               <Route exact path="/signup"><SignUp/></Route>
               <Route exact path="/tenants"><TenantsPage/></Route>
-              <Route exact path="/messages"><Messages/></Route>
+              <Route exact path="/messages"><Messages activeUser={activeUser}/></Route>
               <Route exact path="/votings"><Votings/></Route>
               <Route exact path="/dashboard"><Dashboard/></Route>
           </Switch>

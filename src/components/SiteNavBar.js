@@ -21,6 +21,7 @@ function SiteNavBar( {activeUser, onLogout} ){
             {!activeUser ? <Nav.Link href="#/login">Login</Nav.Link> : null}
             {!activeUser ? <Nav.Link href="#/signup">Signup</Nav.Link> : null}
             {activeUser ? <Nav.Link href="#" onClick={() => onLogout()}>Logout</Nav.Link> : null}
+            {activeUser?  <Nav.Link href="#">{activeUser.name},  {activeUser.isAdmin ? "Admin" : "Tenant"}</Nav.Link> :null}
         </Nav>
         </Navbar.Collapse>
         </Navbar>
