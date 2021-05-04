@@ -1,6 +1,8 @@
 import React from 'react';
 import {Navbar, Nav} from 'react-bootstrap'; 
 import logo from '../assets/images/logo.jpg';
+
+
 function SiteNavBar(){
     return(
         <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -19,10 +21,11 @@ function SiteNavBar(){
             <Nav.Link href="#/signup">
             Sign Up
             </Nav.Link>
+            <Nav.Link href="#">Logout</Nav.Link>
         </Nav>
         </Navbar.Collapse>
         </Navbar>
-)
+    )
 }
 
 export default SiteNavBar; 

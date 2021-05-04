@@ -1,7 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
 import Dashboard from './pages/Dashboard/Dashboard';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -10,15 +7,18 @@ import Messages from './pages/MessagesPage/Messages';
 import TenantsPage from './pages/TenantsPage/Tenants';
 import Votings from './pages/VotingsPage/Votings';
 import SiteNavBar from './components/SiteNavBar';
+import Footer from './components/Footer';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
+
 
 function App() {
   return (
     <> 
      <SiteNavBar/>
-      <Container>
-       <h1>
-         Building Life management system 
-       </h1>
+      
        <HashRouter>
           <Switch>
               <Route exact path="/"><HomePage/></Route>
@@ -30,7 +30,8 @@ function App() {
               <Route exact path="/dashboard"><Dashboard/></Route>
           </Switch>
        </HashRouter>
-    </Container>
+   
+    <Footer/>
     </>
   );
 }
