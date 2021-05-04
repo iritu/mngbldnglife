@@ -12,12 +12,22 @@ import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import { useState } from 'react';
+
+
 
 
 function App() {
+
+
+  const [activeUser, setActiveUser] = useState(null);
+
+
+
+
   return (
     <> 
-     <SiteNavBar/>
+     <SiteNavBar  activeUser={activeUser} onLogout={() => setActiveUser(null)}/>
       
        <HashRouter>
           <Switch>

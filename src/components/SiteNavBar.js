@@ -3,25 +3,24 @@ import {Navbar, Nav} from 'react-bootstrap';
 import logo from '../assets/images/logo.jpg';
 
 
-function SiteNavBar(){
+function SiteNavBar( {activeUser, onLogout} ){
     return(
         <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#/"><img src={logo} alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-            <Nav.Link href="#/dashboard">DashBoard</Nav.Link>
-            {/* if is admin */}
-            <Nav.Link href="#/tenants">Tenants</Nav.Link> 
-            <Nav.Link href="#/messages">Messages</Nav.Link> 
-            <Nav.Link href="#/votings">Voting</Nav.Link> 
+            {/* show navigaion only for registered users admin/tenant */}
+            {activeUser ? <Nav.Link href="#/dashboard">DashBoard</Nav.Link> : null}
+                {/* if is admin */}
+            {activeUser? <Nav.Link href="#/tenants">Tenants</Nav.Link> : null }
+            {activeUser? <Nav.Link href="#/messages">Messages</Nav.Link> : null}
+            {activeUser? <Nav.Link href="#/votings">Voting</Nav.Link>: null}
         </Nav>
         <Nav>
-            <Nav.Link href="#/login">Login</Nav.Link>
-            <Nav.Link href="#/signup">
-            Sign Up
-            </Nav.Link>
-            <Nav.Link href="#">Logout</Nav.Link>
+            {!activeUser ? <Nav.Link href="#/login">Login</Nav.Link> : null}
+            {!activeUser ? <Nav.Link href="#/signup">Signup</Nav.Link> : null}
+            {activeUser ? <Nav.Link href="#" onClick={() => onLogout()}>Logout</Nav.Link> : null}
         </Nav>
         </Navbar.Collapse>
         </Navbar>
