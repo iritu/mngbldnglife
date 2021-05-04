@@ -18,6 +18,9 @@ import { useState } from 'react';
 
 
 function App() {
+
+  const pathPre = process.env.PUBLIC_URL;
+
   //check dummi user:
   const dummyUser= {userId:1, isAdmin:true, name:"irit", email:"iritstempler@gmail.com", pswrd:"123", adrs:"Beit Hashmonai", buildingName:"Elazar", buildingId:1, appNumber:5}
   const [activeUser, setActiveUser] = useState(dummyUser);

@@ -1,0 +1,26 @@
+[
+    {
+        "userId": 1001,
+        "isAdmin": true,
+        "name": "Irit",
+        "email": "iritstempler@gmail.com",
+        "img": "images/admin-avatar.JPG",
+        "pswrd": "123456",
+        "adrs": "Modiin",
+        "buildingName":"Shikma",
+        "buildingId":5,   
+        "appNumber":12
+    },
+    {
+        "userId": 1002,
+        "isAdmin": false,
+        "name": "Shirley",
+        "email": "Shirley@gmail.com",
+        "img": "images/avatar-woman.JPG",
+        "pswrd": "234567",
+        "adrs": "Raanana",
+        "buildingName":"Akiva",
+        "buildingId":33,   
+        "appNumber":11
+    }
+]

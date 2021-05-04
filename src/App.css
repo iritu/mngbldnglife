@@ -76,3 +76,18 @@ footer{
 .h2red{
   color:#FF5454;
 }
+
+
+/*****Login Form*********/
+.loginForm{
+  width:50%;
+  margin:0 auto;
+  padding-bottom: 10vh;
+}
+.loginHeader{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin:4vh 0 4vh 0;
+}
