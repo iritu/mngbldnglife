@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navbar, Nav} from 'react-bootstrap'; 
-import logo from '../assets/images/logo.jpg';
+import logo from '../assets/images/logo.png';
 
 
 function SiteNavBar( {activeUser, onLogout} ){

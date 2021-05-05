@@ -1,9 +1,18 @@
+import SetCurrentDateTime from '../components/utils';
+
 export default class VoteTicketModel {
     constructor(SingleVoteTicket) {
          this.VoteTicketId  = SingleVoteTicket.VoteTicketId; //PK 
          this.userId        = SingleVoteTicket.userId;      //FK ( UserModel)
          this.buildingId    = SingleVoteTicket.buildingId; //FK (BuildingModel) 
-         this.createdTime   = SingleVoteTicket.createdTime; //current dateTime
+         
+         if (SingleVoteTicket.dateCreated === null){
+            this.dateCreated = SetCurrentDateTime(); //return string - current date/time
+        }
+         else{
+            this.dateCreated   =  SingleVoteTicket.dateCreated;
+        }
+
          this.title         = SingleVoteTicket.title; 
          this.details       = SingleVoteTicket.details; 
          this.options       = SingleVoteTicket.options; //array of strings

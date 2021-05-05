@@ -6,7 +6,9 @@ export default class UserModel {
         this.email      = SingleUser.email;
         this.img        = SingleUser.img;
         this.pswrd      = SingleUser.pswrd;
-        this.adrs       = SingleUser.adrs; //full address ( city + street + st. number )
+        this.city       = SingleUser.city;
+        this.street     = SingleUser.street;
+        this.stNumber   = SingleUser.stNumber;
         this.buildingName = SingleUser.buildingName;
         this.buildingId   = SingleUser.buildingId;  //FK   
         this.appNumber      = SingleUser.appNumber; //number
