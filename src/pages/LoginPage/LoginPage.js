@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Form ,  Button, Alert} from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 
- 
-function LoginPage({users, activeUser,  onLogin}){
+
+//context
+import ActiveUserContext from '../../shared/activeUserContext';
+
+function LoginPage({users, onLogin}){
+
+    const activeUser = useContext(ActiveUserContext);
+
     const [email, setEmail] = useState("");
     const [pswd, setPswd] = useState("");
     const [nonUser, setNonUser]= useState(false);

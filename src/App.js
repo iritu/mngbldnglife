@@ -18,6 +18,8 @@ import usersJSON from './data/users.json';
 //data model
 import UserModel from './Model/UserModel'; 
 
+//context
+import ActiveUserContext from './shared/activeUserContext';
 
 function App() {
 
@@ -31,13 +33,13 @@ function App() {
 
 
   return (
-    <> 
-     <SiteNavBar  activeUser={activeUser} onLogout={() => setActiveUser(null)}/>
+    <ActiveUserContext.Provider value={activeUser}> 
+     <SiteNavBar   onLogout={() => setActiveUser(null)}/>
       
        <HashRouter>
           <Switch>
               <Route exact path="/"><HomePage/></Route>
-              <Route exact path="/login"><LoginPage  users={users} activeUser={activeUser} onLogin={user => setActiveUser(user)}/></Route>
+              <Route exact path="/login"><LoginPage  users={users} onLogin={user => setActiveUser(user)}/></Route>
       
              
               <Route exact path="/signup"><SignUp/></Route>
@@ -49,7 +51,8 @@ function App() {
        </HashRouter>
    
     <Footer/>
-    </>
+
+    </ActiveUserContext.Provider>
   );
 }
 

@@ -1,9 +1,14 @@
-import React from 'react';
+import React , {useContext} from 'react';
 import {Navbar, Nav} from 'react-bootstrap'; 
 import logo from '../assets/images/logo.png';
 
+//context
+import ActiveUserContext from '../shared/activeUserContext';
 
-function SiteNavBar( {activeUser, onLogout} ){
+function SiteNavBar( {onLogout} ){
+
+    const activeUser = useContext(ActiveUserContext);
+
     return(
         <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#/"><img src={logo} alt="logo"/></Navbar.Brand>
