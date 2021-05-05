@@ -24,7 +24,7 @@ function LoginPage({users, onLogin}){
         let activeUser = null;
         
         for (const user of users) {
-            if (user.login(email, pswd)) {
+            if (user.login(email, pswd)) { //if exists
                 activeUser = user;
                 break;
             }

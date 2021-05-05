@@ -36,6 +36,30 @@ function App() {
   const [activeUser, setActiveUser] = useState(null);
 
 
+  //add new user
+  function addUser(isAdmin, name, email, img, pswrd, city, street, stNumber, buildingName, buildingId, appNumber) {
+    const newUser = new UserModel({
+      userId: users[users.length - 1].userId + 1,
+      isAdmin,
+      name,
+      email,
+      img,
+      pswrd, 
+      city, 
+      street,
+      stNumber,
+      buildingName,
+      buildingId,
+      appNumber
+    });
+    
+    setUsers(users.concat(newUser));
+    console.log(users);
+  }
+
+
+
+
   return (
     <ActiveUserContext.Provider value={activeUser}> 
      <SiteNavBar   onLogout={() => setActiveUser(null)}/>
@@ -46,7 +70,7 @@ function App() {
               <Route exact path="/login"><LoginPage  users={users} onLogin={user => setActiveUser(user)}/></Route>
       
              
-              <Route exact path="/signup"><SignUp buildings={buildings} /></Route>
+              <Route exact path="/signup"><SignUp buildings={buildings} onNewUser={addUser} /></Route>
               <Route exact path="/tenants"><TenantsPage/></Route>
               <Route exact path="/messages"><Messages /></Route>
               <Route exact path="/votings"><Votings/></Route>

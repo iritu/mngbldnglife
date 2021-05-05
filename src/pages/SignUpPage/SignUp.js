@@ -6,7 +6,7 @@ import { Link, Redirect } from "react-router-dom";
 import ActiveUserContext from '../../shared/activeUserContext';
 
 
-function SignUp({buildings}){
+function SignUp({buildings, onNewUser}){
 
     const activeUser = useContext(ActiveUserContext);
     
@@ -16,7 +16,22 @@ function SignUp({buildings}){
     const [buildingName, setBuildingName] = useState("");
     const [city, setCity]                 = useState("");
     const [img, setImg] = useState(null);
+    const [street, setStreet]             = useState("");
+    const [streetNu, setStreetNu]         = useState("");
+    const [appNu, setAppNu]               = useState("");
 
+    // this.userId     = SingleUser.userId; //PK
+    // this.isAdmin    = SingleUser.isAdmin //true/false
+    // this.name       = SingleUser.name;
+    // this.email      = SingleUser.email;
+    // this.img        = SingleUser.img;
+    // this.pswrd      = SingleUser.pswrd;
+    // this.city       = SingleUser.city;
+    // this.street     = SingleUser.street;
+    // this.stNumber   = SingleUser.stNumber;
+    // this.buildingName = SingleUser.buildingName;
+    // this.buildingId   = SingleUser.buildingId;  //FK   
+    // this.appNumber      = SingleUser.appNumber; //number
 
     function register(e) {
         e.preventDefault();
@@ -25,7 +40,15 @@ function SignUp({buildings}){
         console.log(pswd);
         console.log(name);
         console.log(img);
+
+        createNewUser();
     }
+
+    function createNewUser() {
+        onNewUser(true, name, email, img ? URL.createObjectURL(img) : "",  pswd, city, street, streetNu, buildingName,"",  appNu );
+      
+    }
+
 
     function handleFileChange(e) {
         if (e.target.files.length === 1) {
@@ -65,6 +88,22 @@ function SignUp({buildings}){
                    value={city} onChange={e=> setCity(e.target.value)} />
                 </Form.Group>
 
+                <Form.Group as={Row} controlId="SignUpstreet">
+                   <Form.Control type="text" placeholder="street:"
+                   value={street} onChange={e=> setStreet(e.target.value)} />
+                </Form.Group>
+
+                <Form.Group as={Row} controlId="SignUpstreetNu">
+                   <Form.Control type="number" placeholder="street Number:"
+                   value={streetNu} onChange={e=> setStreetNu(e.target.value)} />
+                </Form.Group>
+
+                <Form.Group as={Row} controlId="SignUpAppNu">
+                   <Form.Control type="number" placeholder="Appartment Number:"
+                   value={appNu} onChange={e=> setAppNu(e.target.value)} />
+                </Form.Group>
+
+
                 <Form.Group as={Row} controlId="formHorizontalImg">
                         <Form.Label column sm={3}>
                             Your Image
@@ -75,7 +114,7 @@ function SignUp({buildings}){
                     </Form.Group>
                     <Image src={img ? URL.createObjectURL(img) : ""}/>
 
-               <Button variant="success" type="submit" block>
+               <Button variant="success" type="submit" onClick={createNewUser} block>
                    Sign Up
                </Button>
             </Form>
