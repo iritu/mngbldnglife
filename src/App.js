@@ -29,7 +29,7 @@ function App() {
   //const dummyUser= {userId:1, isAdmin:true, name:"irit", email:"iritstempler@gmail.com", pswrd:"123", adrs:"Beit Hashmonai", buildingName:"Elazar", buildingId:1, appNumber:5}
 
   const[users, setUsers] = useState(usersJSON.map(user => new UserModel(user)));
-  const [activeUser, setActiveUser] = useState(users[1]);
+  const [activeUser, setActiveUser] = useState(null);
 
 
   return (

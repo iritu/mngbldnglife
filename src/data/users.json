@@ -16,15 +16,15 @@
     {
         "userId": 1002,
         "isAdmin": false,
-        "name": "Shirley",
-        "email": "Shirley@gmail.com",
+        "name": "Shuly",
+        "email": "Shuly@gmail.com",
         "img": "images/avatar-woman.JPG",
         "pswrd": "234567",
-        "city": "Raanana", 
-        "street": "Hayovel", 
-        "stNumber":10,
-        "buildingName":"Hayovel10",
-        "buildingId":2,   
+        "city": "Holon", 
+        "street": "Shikma", 
+        "stNumber":3,
+        "buildingName":"Shikma3",
+        "buildingId":1,   
         "appNumber":11
     }
 ]

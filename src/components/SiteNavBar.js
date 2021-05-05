@@ -9,16 +9,23 @@ function SiteNavBar( {onLogout} ){
 
     const activeUser = useContext(ActiveUserContext);
 
+    let  checkIfAdmin = false; 
+
+    if (activeUser)
+    {
+        checkIfAdmin = activeUser.isAdmin; 
+    }
+
     return(
         <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#/"><img src={logo} alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-            {/* show navigaion only for registered users admin/tenant */}
+            {/* show navigaion menu only for registered users admin/tenant */}
             {activeUser ? <Nav.Link href="#/dashboard">DashBoard</Nav.Link> : null}
-                {/* if is admin */}
-            {activeUser? <Nav.Link href="#/tenants">Tenants</Nav.Link> : null }
+            {/* Tenants pages is only for admins */}
+            {checkIfAdmin? <Nav.Link href="#/tenants">Tenants</Nav.Link> : null}
             {activeUser? <Nav.Link href="#/messages">Messages</Nav.Link> : null}
             {activeUser? <Nav.Link href="#/votings">Voting</Nav.Link>: null}
         </Nav>
