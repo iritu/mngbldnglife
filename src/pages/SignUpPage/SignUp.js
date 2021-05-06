@@ -1,15 +1,9 @@
-import { useState, useContext } from "react";
-import { Form ,  Button, Alert,  Col, Row, Image } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { useState } from "react";
+import { Form ,  Button, Col, Row, Image } from "react-bootstrap";
+//import { Link, Redirect } from "react-router-dom";
 
-//context
-import ActiveUserContext from '../../shared/activeUserContext';
+function SignUp({onNewUser}){
 
-
-function SignUp({buildings, onNewUser}){
-
-    const activeUser = useContext(ActiveUserContext);
-    
     const [email, setEmail]               = useState("");
     const [name, setName]                 = useState("");
     const [pswd, setPswd]                 = useState("");
@@ -20,33 +14,17 @@ function SignUp({buildings, onNewUser}){
     const [streetNu, setStreetNu]         = useState("");
     const [appNu, setAppNu]               = useState("");
 
-    // this.userId     = SingleUser.userId; //PK
-    // this.isAdmin    = SingleUser.isAdmin //true/false
-    // this.name       = SingleUser.name;
-    // this.email      = SingleUser.email;
-    // this.img        = SingleUser.img;
-    // this.pswrd      = SingleUser.pswrd;
-    // this.city       = SingleUser.city;
-    // this.street     = SingleUser.street;
-    // this.stNumber   = SingleUser.stNumber;
-    // this.buildingName = SingleUser.buildingName;
-    // this.buildingId   = SingleUser.buildingId;  //FK   
-    // this.appNumber      = SingleUser.appNumber; //number
-
+     
     function register(e) {
         e.preventDefault();
     
-        console.log(email);
-        console.log(pswd);
-        console.log(name);
-        console.log(img);
-
+        //console.log("register----"+email );
         createNewUser();
     }
 
     function createNewUser() {
-        onNewUser(true, name, email, img ? URL.createObjectURL(img) : "",  pswd, city, street, streetNu, buildingName,"",  appNu );
-      
+        //console.log("sign up - createNewUser "); 
+        onNewUser(true, name, email, img ? URL.createObjectURL(img) : "",  pswd, city, street, streetNu, buildingName,  appNu );
     }
 
 
@@ -63,6 +41,7 @@ function SignUp({buildings, onNewUser}){
             <h1 className="loginHeader">Create a Committee Member Account</h1>
            
             <Form className="loginForm" onSubmit={register}>
+
                 <Form.Group as={Row} controlId="SignUpName">
                    <Form.Control type="text" placeholder="Full name:"
                    value={name} onChange={e=> setName(e.target.value)} />
@@ -114,7 +93,7 @@ function SignUp({buildings, onNewUser}){
                     </Form.Group>
                     <Image src={img ? URL.createObjectURL(img) : ""}/>
 
-               <Button variant="success" type="submit" onClick={createNewUser} block>
+                <Button variant="success" type="submit" onClick={createNewUser} block>
                    Sign Up
                </Button>
             </Form>

@@ -2,6 +2,7 @@
     {
         "buildingId":1,
         "userId":1001,
+        "userEmail":"irit@gmail.com",
         "buildingName":"Shikma3",
         "city":"Holon",
         "street": "Shikma",

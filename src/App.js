@@ -36,10 +36,57 @@ function App() {
   const [activeUser, setActiveUser] = useState(null);
 
 
-  //add new user
-  function addUser(isAdmin, name, email, img, pswrd, city, street, stNumber, buildingName, buildingId, appNumber) {
+  //Try to find if there is an admin in the building: 
+  function checkUser(email, buildingName) {
+    for (var i in users) {
+        if ((users[i].email === email) && (users[i].buildingName === buildingName) && (users[i].isAdmin)){
+           //alert - is admin in this building name  and break 
+           console.log("building name = " + users[i].buildingName + " email = " + users[i].email + " is admin = " + users[i].isAdmin );
+      
+           return true; 
+                     
+        }
+        else //ok, create new
+        {
+            console.log("user ok");
+            return false; 
+        }
+    }
+}
+
+
+//ADD NEW -  building
+function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
+  //create new building id
+  let buildingId = buildings[buildings.length - 1].buildingId + 1; 
+  
+  const newBuilding = new buildingModel({
+    buildingId,
+    userId,
+    userEmail,
+    buildingName,
+    city,
+    street,
+    stNumber
+  });
+
+  setBuildings(buildings.concat(newBuilding));
+
+  return   buildingId; 
+}
+
+
+  //ADD NEW : admin user
+  function addUser(isAdmin, name, email, img, pswrd, city, street, stNumber, buildingName,  appNumber) {
+   
+    let buildingId =""; 
+    let userId = ""; 
+
+    userId =  users[users.length - 1].userId + 1; 
+    buildingId = addBuilding(userId, email, buildingName, city, street, stNumber); 
+   
     const newUser = new UserModel({
-      userId: users[users.length - 1].userId + 1,
+      userId,
       isAdmin,
       name,
       email,
@@ -53,8 +100,18 @@ function App() {
       appNumber
     });
     
-    setUsers(users.concat(newUser));
-    console.log(users);
+    //check if is in users array with this building name as admin
+    let ifExist = false; 
+
+    ifExist = checkUser(email, buildingName); 
+
+    if (ifExist === false){
+      setUsers(users.concat(newUser));
+      console.log(users); //********NIR - 
+                          //How to update activeUser context to be the current new admin, 
+                          //and where  to send the user to login page
+      console.log(buildings);
+    }
   }
 
 
@@ -70,7 +127,7 @@ function App() {
               <Route exact path="/login"><LoginPage  users={users} onLogin={user => setActiveUser(user)}/></Route>
       
              
-              <Route exact path="/signup"><SignUp buildings={buildings} onNewUser={addUser} /></Route>
+              <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
               <Route exact path="/tenants"><TenantsPage/></Route>
               <Route exact path="/messages"><Messages /></Route>
               <Route exact path="/votings"><Votings/></Route>
