@@ -1,12 +1,15 @@
 import { Redirect } from 'react-router';
 import { useState, useContext } from "react";
+import SingleMessage from '../../components/SingleMessage';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 //context
 import ActiveUserContext from '../../shared/activeUserContext';
 
 
 
-function Messages(){
+
+function Messages({messages}){
     
     const activeUser = useContext(ActiveUserContext);
 
@@ -16,13 +19,18 @@ function Messages(){
 
 
     return(
-        <div>
+       <Container>
             <h1>Messages </h1>
-           
-        </div>
-       
-
-        )
+            <br/>
+            <Row>
+                {messages.map(message => 
+                    <Col key={message.messageId}  >
+                        <SingleMessage message={message}/>
+                    </Col>
+                )}
+            </Row>
+       </Container>
+    )
 }
 
 export default Messages;

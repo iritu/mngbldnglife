@@ -16,9 +16,12 @@ import './App.css';
 //data
 import usersJSON from './data/users.json';
 import buildinsJSON from './data/buildings.json';
+import messagesJSON from './data/messages.json';
+
 //data model
 import UserModel from './Model/UserModel'; 
 import buildingModel from './Model/BuildingModel'; 
+import MessageModel from './Model/MessageModel';
 
 //context
 import ActiveUserContext from './shared/activeUserContext';
@@ -39,7 +42,7 @@ function App() {
   // BUILDINGS
   const[buildings, setBuildings] = useState(buildinsJSON.map (building => new buildingModel(building)) ); 
   //MESSAGES
-   
+  const[messages, setMessages] = useState(messagesJSON.map (message => new  MessageModel(message)) ) 
 
   //State 
   const [activeUser, setActiveUser] = useState(null);
@@ -136,7 +139,7 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
               <Route exact path="/login"><LoginPage  users={users} onLogin={user => setActiveUser(user)}/></Route>
               <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
               <Route exact path="/tenants"><TenantsPage/></Route>
-              <Route exact path="/messages"><Messages /></Route>
+              <Route exact path="/messages"><Messages messages={messages} /></Route>
               <Route exact path="/votings"><Votings/></Route>
               <Route exact path="/dashboard"><Dashboard/></Route>
           </Switch>
