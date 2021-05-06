@@ -1,0 +1,17 @@
+[
+    {
+        "messageId":1,
+        "buildingId":1,
+        "userId": 1001,
+        "dateCreated": "2021-05-06 16:30:00",
+        "title": "First announcement", 
+        "details": "Our new community building message", 
+        "priority":  "Info",
+        "ArrayCommentsId":""
+    }
+]
+
+
+
+ 
+  

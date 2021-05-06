@@ -1,9 +1,18 @@
+import SetCurrentDateTime from '../components/utils';
+
 export default class MessageModel {
     constructor(SingleMessage) {
         this.messageId  = SingleMessage.messageId;  //PK 
         this.buildingId = SingleMessage.buildingId; //FK (BuildingModel)
         this.userId     = SingleMessage.userId;     //FK (UserModel)
-        this.msgCreateTime = SingleMessage.msgCreateTime; 
+        
+        if (SingleMessage.dateCreated === null){
+            this.dateCreated = SetCurrentDateTime(); //return string - current date/time
+        }
+         else{
+            this.dateCreated   =  SingleMessage.dateCreated;
+        }
+
         this.title      = SingleMessage.title; 
         this.details    = SingleMessage.details;
 
@@ -15,7 +24,6 @@ export default class MessageModel {
         }
        
         this.img        = SingleMessage.img; 
-        this.msgStatus  = SingleMessage.msgStatus;   
-        this.commentId  = SingleMessage.commentId; //FK (CommentModel) 
+        this.ArrayCommentsId  = SingleMessage.commentId; //Could be a lot of comments to one message
     }
 }

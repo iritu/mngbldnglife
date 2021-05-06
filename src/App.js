@@ -23,6 +23,9 @@ import buildingModel from './Model/BuildingModel';
 //context
 import ActiveUserContext from './shared/activeUserContext';
 
+
+
+
 function App() {
 
  // const pathPre = process.env.PUBLIC_URL;
@@ -30,9 +33,15 @@ function App() {
   //check dummi user:
   //const dummyUser= {userId:1, isAdmin:true, name:"irit", email:"iritstempler@gmail.com", pswrd:"123", adrs:"Beit Hashmonai", buildingName:"Elazar", buildingId:1, appNumber:5}
 
+  //******** Define local memory arrays to use with JSON local files********
+  // USERS
   const[users, setUsers] = useState(usersJSON.map(user => new UserModel(user)));
+  // BUILDINGS
   const[buildings, setBuildings] = useState(buildinsJSON.map (building => new buildingModel(building)) ); 
+  //MESSAGES
+   
 
+  //State 
   const [activeUser, setActiveUser] = useState(null);
 
 
@@ -125,8 +134,6 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
           <Switch>
               <Route exact path="/"><HomePage/></Route>
               <Route exact path="/login"><LoginPage  users={users} onLogin={user => setActiveUser(user)}/></Route>
-      
-             
               <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
               <Route exact path="/tenants"><TenantsPage/></Route>
               <Route exact path="/messages"><Messages /></Route>
