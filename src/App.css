@@ -108,3 +108,14 @@ footer{
 .btnLineRight{
  float:right;
 }
+
+.msgCards{
+  margin-top:5vh;
+  padding-bottom: 2vh; 
+  border-bottom: 1px solid #FF5454;
+  width:100%;
+}
+
+.msgCardsCol{
+  border-right:1px solid #FF5454;
+}

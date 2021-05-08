@@ -126,7 +126,47 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
     }
   }
 
+ 
+  function addNewMsg(buildingId,userId,  dateCreated, title, details, priority, img){
+    console.log("addNewMsg");
+     
+    let newMsgId = "";
+    let msgPos = 0 ; 
 
+    if (messages.length > 1){
+      msgPos = messages.length-1; 
+      newMsgId =  messages[msgPos].messageId + 1;
+    }
+    else
+    {
+      newMsgId =  messages[0].messageId + 1;
+      if (!newMsgId){
+        newMsgId = 10001; 
+      }
+    }
+
+    console.log(newMsgId+ ","+buildingId + ", "+ userId + ", " +dateCreated+ ", "+  title + ", "+ details + ", "+ 
+     priority+", "+img); 
+  
+
+    const addNewMsg = new MessageModel({
+      newMsgId,
+      buildingId,
+      userId, 
+      dateCreated, 
+      title,
+      details, 
+      priority,
+      img
+      
+    });
+  
+    setMessages(messages.concat(addNewMsg));
+    
+    console.log(messages);
+
+
+  }
 
 
   return (
@@ -139,7 +179,7 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
               <Route exact path="/login"><LoginPage  users={users} onLogin={user => setActiveUser(user)}/></Route>
               <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
               <Route exact path="/tenants"><TenantsPage/></Route>
-              <Route exact path="/messages"><Messages messages={messages} /></Route>
+              <Route exact path="/messages"><Messages messages={messages} onNewMessage={addNewMsg} /></Route>
               <Route exact path="/votings"><Votings/></Route>
               <Route exact path="/dashboard"><Dashboard/></Route>
           </Switch>

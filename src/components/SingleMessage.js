@@ -12,25 +12,28 @@ function SingleMessage({message}){
         img = "images/msgDefault.JPG";
     }
    
-    const imgSrc = pathPre+ "/" + img; 
+    //const imgSrc = pathPre+ "/" + img; 
 
     return(
-        <Container>
-        <Row>
-            <Col><h5>{message.title}</h5></Col>
-        </Row>    
-        
-        <Row>
-            <Col xs={6} md={2}>
-                 <Image src={imgSrc} rounded />
-            </Col>
-            <Col xs={6} md={6}>
-                Details: {message.details}
-                <br/>
-                Priority: {message.priority}
-            </Col>
-        </Row>
-        </Container>
+       <Row>
+           <Col xs={10} md={10}>
+                 <h5>{message.title}</h5>
+           </Col>
+           <Col>
+                <Row>
+                   <Col xs={2} md={2}>
+                        <Image src={img} rounded />
+                   </Col>
+                    <Col xs={10} md={8}>
+                        Details: {message.details}
+                        <br/>
+                        Priority: {message.priority}
+                    </Col>
+                </Row>
+           </Col>
+       </Row>
+
+   
     )
 }
 

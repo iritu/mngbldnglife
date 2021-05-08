@@ -11,3 +11,5 @@ function SetCurrentDateTime(){
 
         return msgCreatedAt;
 }
+
+export default SetCurrentDateTime; 
