@@ -28,6 +28,7 @@
 
 h1{
   color:#343A40;
+  margin: 2vh 0 2vh 0;
 }
  
 .Jumbotron{
@@ -39,6 +40,7 @@ footer{
   background-color: #343A40;
   color: #fff;
   height: 10vh;
+  margin-top:3vh;
   padding-top:3vh;
 }
 
@@ -99,4 +101,10 @@ footer{
   align-items: center;
   justify-content: center;
   margin:4vh 0 4vh 0;
+}
+
+
+/***********MSG*******************/
+.btnLineRight{
+ float:right;
 }
