@@ -17,7 +17,7 @@ function Messages({messages, onNewMessage}){
     const [filterText, setFilterText] = useState("");
     const [sortBy, setSortBy] = useState("dateCreated");
 
-    
+    const [newComment, setNewComment] = useState("");
 
     if (!activeUser) {
         return <Redirect to="/"/>
@@ -66,7 +66,7 @@ function Messages({messages, onNewMessage}){
             <h1>Messages </h1>
             <br/>
             <Row>
-                <Col md={8}>
+                <Col md={8} sm={10}>
                     <form className="d-flex">
                         <input type="text" placeholder="Filter Messages by text in title and details" value={filterText}
                                 onChange={e => setFilterText(e.target.value)}/>
@@ -93,7 +93,36 @@ function Messages({messages, onNewMessage}){
                         <Col  xs={8} md={8} className="msgCardsCol">
                             <SingleMessage message={message}   />
                         </Col>
-                        <Col  xs={4} md={4} >Comments</Col>
+                        <Col  xs={4} md={4} >
+                            <h5>Comments</h5>
+                            {message.messageId}
+                            <br/>
+                            {message.ArrayCommentsId }
+                            <br/>
+                            <Row>
+                                <Col>
+                                    <form>
+                                        <textarea value={newComment}
+                                                onChange={e => setNewComment(e.target.value)}
+                                                rows={2}></textarea>
+                                    </form>
+                                </Col>
+                                <Col>
+                                     {activeUser.isAdmin ? 
+                                            <Button variant="primary"
+                                                    onClick={() => setNewMsgeModal(true)}>Update Message
+                                            </Button> : null
+                                    }
+                                    {activeUser.isAdmin ? 
+                                            <Button variant="danger"
+                                                    onClick={() => setNewMsgeModal(true)}>Delete Message
+                                             </Button> : null
+                                    
+                                    }
+                                </Col>
+                            </Row>
+                            
+                        </Col>
                     </Row>
                 )}
             </Row>
