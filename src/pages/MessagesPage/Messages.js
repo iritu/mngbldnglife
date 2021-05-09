@@ -13,6 +13,12 @@ function Messages({messages, onNewMessage}){
     const activeUser = useContext(ActiveUserContext);
     const [newMsgeModal, setNewMsgeModal] = useState(false);
 
+    
+    const [filterText, setFilterText] = useState("");
+    const [sortBy, setSortBy] = useState("dateCreated");
+
+    
+
     if (!activeUser) {
         return <Redirect to="/"/>
     }
@@ -20,17 +26,69 @@ function Messages({messages, onNewMessage}){
         console.log("is admin ? "+activeUser.isAdmin);
     }
 
+
+    // sort the array of messages by date (default) 
+    // let sortedMessages = messages.slice().sort((a, b) => 
+    //                 Date.parse(new Date(a.dateCreated.split("/").reverse().join("-"))) - 
+    //                 Date.parse(new Date(b.dateCreated.split("/").reverse().join("-"))));
+
+
+
+      
+    // 1) Filter the messages based on the filterText
+  
+    let sortedMessages = messages.filter(msg => 
+        msg.title.toLowerCase().includes(filterText.toLowerCase()) || 
+        msg.details.toLowerCase().includes(filterText.toLowerCase()));
+
+    // console.log("messages js - messages array:")    
+    // console.log (messages);
+
+    // 2) Sort the messages  array
+    sortedMessages = messages.sort(
+            (msg1, msg2) => {
+                if (msg1[sortBy] > msg2[sortBy]) {
+                    return 1;
+                } 
+                else if (msg1[sortBy] < msg2[sortBy]) {
+                    return -1;
+                }    
+                else {
+                    return 0;
+                }
+            }
+            );
+
+
+
     return(
        <Container>
             <h1>Messages </h1>
             <br/>
-            <div className="btnLineRight">
-                {activeUser.isAdmin ? <Button variant="outline-primary"
+            <Row>
+                <Col>
+                    <form className="d-flex">
+                        <input type="text" placeholder="Filter Messages" value={filterText}
+                                onChange={e => setFilterText(e.target.value)}/>
+                        <select value={sortBy} 
+                                onChange={e => setSortBy(e.target.value)}
+                                className="form-control">
+                                <option value="dateCreated">Date Created</option>
+                                <option value="priority">Priority</option>
+                        </select>
+                                    
+                    </form>
+                </Col>
+                <Col>
+                      {activeUser.isAdmin ? <Button variant="outline-primary"
                                         onClick={() => setNewMsgeModal(true)}>New Message
                                         </Button> : null}
-            </div>
+                </Col>
+            </Row>
+
+       
             <Row>
-                {messages.map(message => 
+                {sortedMessages.map(message => 
                     <Row className="msgCards" key={message.messageId}  >
                         <Col  xs={8} md={8} className="msgCardsCol">
                             <SingleMessage message={message}   />

@@ -1,5 +1,5 @@
-import { Container, Row, Col, Image } from "react-bootstrap"; 
-const pathPre = process.env.PUBLIC_URL;
+import {  Row, Col, Image } from "react-bootstrap"; 
+//const pathPre = process.env.PUBLIC_URL;
 
 function SingleMessage({message}){
 

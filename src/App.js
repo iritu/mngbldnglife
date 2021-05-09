@@ -130,27 +130,19 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
   function addNewMsg(buildingId,userId,  dateCreated, title, details, priority, img){
     console.log("addNewMsg");
      
-    let newMsgId = "";
-    let msgPos = 0 ; 
-
-    if (messages.length > 1){
-      msgPos = messages.length-1; 
-      newMsgId =  messages[msgPos].messageId + 1;
-    }
-    else
-    {
-      newMsgId =  messages[0].messageId + 1;
-      if (!newMsgId){
-        newMsgId = 10001; 
-      }
+    let messageId = 10001;
+    
+    if(messages){
+      messageId =  messages[messages.length-1].messageId + 1;
     }
 
-    console.log(newMsgId+ ","+buildingId + ", "+ userId + ", " +dateCreated+ ", "+  title + ", "+ details + ", "+ 
-     priority+", "+img); 
+    // alert (messageId);
+    // console.log("Insert new message - "+ messageId+ ","+buildingId + ", "+ userId + ", " +dateCreated+ ", "+  title + ", "+ details + ", "+ 
+    //  priority+", "+img); 
   
 
     const addNewMsg = new MessageModel({
-      newMsgId,
+      messageId,
       buildingId,
       userId, 
       dateCreated, 
@@ -162,8 +154,8 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
     });
   
     setMessages(messages.concat(addNewMsg));
-    
-    console.log(messages);
+    // console.log("app js messages:")
+    // console.log(messages);
 
 
   }
