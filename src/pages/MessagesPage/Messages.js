@@ -41,11 +41,11 @@ function Messages({messages, onNewMessage}){
         msg.title.toLowerCase().includes(filterText.toLowerCase()) || 
         msg.details.toLowerCase().includes(filterText.toLowerCase()));
 
-    // console.log("messages js - messages array:")    
-    // console.log (messages);
+     console.log("messages js - sortedMessages array:")    
+     console.log (sortedMessages);
 
     // 2) Sort the messages  array
-    sortedMessages = messages.sort(
+    sortedMessages.sort(
             (msg1, msg2) => {
                 if (msg1[sortBy] > msg2[sortBy]) {
                     return 1;
@@ -66,9 +66,9 @@ function Messages({messages, onNewMessage}){
             <h1>Messages </h1>
             <br/>
             <Row>
-                <Col>
+                <Col md={8}>
                     <form className="d-flex">
-                        <input type="text" placeholder="Filter Messages" value={filterText}
+                        <input type="text" placeholder="Filter Messages by text in title and details" value={filterText}
                                 onChange={e => setFilterText(e.target.value)}/>
                         <select value={sortBy} 
                                 onChange={e => setSortBy(e.target.value)}
