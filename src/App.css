@@ -111,7 +111,6 @@ footer{
 
 .msgCards{
   margin-top:5vh;
-  padding-bottom: 2vh; 
   border-bottom: 1px solid #FF5454;
   width:100%;
 }
@@ -119,4 +118,13 @@ footer{
 .msgCardsCol{
   border-right:1px solid #FF5454;
 }
- 
+  
+.msgPageInput{
+  width:80%;
+  padding:3px;
+  margin-right:10px;
+}
+
+.btnUpdateMsg{
+  margin-right:10px;
+}

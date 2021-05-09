@@ -21,7 +21,7 @@ function SingleMessage({message}){
            </Col>
            <Col>
                 <Row>
-                   <Col xs={2} md={2}>
+                   <Col xs={3} md={3}>
                         <Image src={img} rounded />
                    </Col>
                     <Col xs={10} md={8}>

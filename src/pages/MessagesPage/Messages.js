@@ -1,7 +1,7 @@
 import { Redirect } from 'react-router';
 import { useState, useContext } from "react";
 import SingleMessage from '../../components/SingleMessage';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 //context
 import ActiveUserContext from '../../shared/activeUserContext';
@@ -66,20 +66,22 @@ function Messages({messages, onNewMessage}){
             <h1>Messages </h1>
             <br/>
             <Row>
-                <Col md={8} sm={10}>
-                    <form className="d-flex">
-                        <input type="text" placeholder="Filter Messages by text in title and details" value={filterText}
+                <Col md={8}>
+                   <form className="d-flex">
+                        <input type="text" className="msgPageInput"
+                                placeholder="Filter Messages by text in title and details" 
+                                value={filterText}
                                 onChange={e => setFilterText(e.target.value)}/>
                         <select value={sortBy} 
                                 onChange={e => setSortBy(e.target.value)}
                                 className="form-control">
-                                <option value="dateCreated">Date Created</option>
-                                <option value="priority">Priority</option>
+                                <option value="dateCreated">Filter by: Date Created</option>
+                                <option value="priority">Filter by: Priority</option>
                         </select>
                                     
-                    </form>
+                    </form> 
                 </Col>
-                <Col>
+                <Col md={2}>
                       {activeUser.isAdmin ? <Button variant="outline-primary"
                                         onClick={() => setNewMsgeModal(true)}>New Message
                                         </Button> : null}
@@ -90,10 +92,10 @@ function Messages({messages, onNewMessage}){
             <Row>
                 {sortedMessages.map(message => 
                     <Row className="msgCards" key={message.messageId}  >
-                        <Col  xs={8} md={8} className="msgCardsCol">
+                        <Col  xs={6} md={6} className="msgCardsCol">
                             <SingleMessage message={message}   />
                         </Col>
-                        <Col  xs={4} md={4} >
+                        <Col  xs={6} md={6} >
                             <h5>Comments</h5>
                             {message.messageId}
                             <br/>
@@ -101,20 +103,23 @@ function Messages({messages, onNewMessage}){
                             <br/>
                             <Row>
                                 <Col>
-                                    <form>
-                                        <textarea value={newComment}
+                                    <Form>
+                                        <Form.Group controlId="MsgTxt">
+                                            <Form.Control as="textarea" rows={3}
+                                                value={newComment}
                                                 onChange={e => setNewComment(e.target.value)}
-                                                rows={2}></textarea>
-                                    </form>
+                                                />
+                                        </Form.Group>
+                                    </Form>
                                 </Col>
                                 <Col>
                                      {activeUser.isAdmin ? 
-                                            <Button variant="primary"
+                                            <Button className="btnUpdateMsg" variant="primary" size="sm"
                                                     onClick={() => setNewMsgeModal(true)}>Update Message
                                             </Button> : null
                                     }
                                     {activeUser.isAdmin ? 
-                                            <Button variant="danger"
+                                            <Button variant="danger" size="sm"
                                                     onClick={() => setNewMsgeModal(true)}>Delete Message
                                              </Button> : null
                                     
