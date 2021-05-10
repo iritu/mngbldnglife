@@ -160,16 +160,35 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
   }
 
 
+  function updateMessage(messageId, title, details, priority, img){
+    //1. find message id in the array of messages
+    let index = messages.findIndex(msg => msg.messageId === messageId);
+    //console.log("result==> "+ index);
 
+    //2. update existing obj with new form data from user 
+    if (index){
+      messages[index].title = title; 
+      messages[index].details = details; 
+      messages[index].priority = priority; 
+      messages[index].img = img; 
+
+      setMessages(messages); 
+    }
+
+  }
+
+  //add or update a message
   function addNewMsg(messageId, buildingId,userId,  dateCreated, title, details, priority, img){
-   
+    console.log("messageId ===> " + messageId); 
+
       if (!messageId){
         insertNewMessage(buildingId,userId,  dateCreated, title, details, priority, img); 
       }
       else{
-        console.log("update state")
-      }
+        console.log("update message ==> "); 
 
+        updateMessage(messageId, title, details, priority, img); 
+      }
   }
 
 
