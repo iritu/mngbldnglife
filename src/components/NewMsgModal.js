@@ -14,6 +14,8 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
 
     const [objState, setObjState] = useState(null);
 
+    const [objMsgId , setMsgId] = useState(""); 
+
     let modalTitle = "Create New Message "
 
     if (objMsg){
@@ -28,12 +30,15 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
 
     }
 
+
+
     // get the message object data on load 
     useEffect(() => {
         setTitle(objMsg.title); 
         setDetails(objMsg.details); 
         setPriority(objMsg.priority); 
         setImg(objMsg.img); 
+        setMsgId(objMsg.messageId)
          
       }, [objMsg, objState]); 
     
@@ -59,6 +64,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
         setDetails("");
         setPriority("Info")
         setImg(null);
+        setMsgId("");
         setObjState(null); 
     }
 
@@ -68,7 +74,9 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
         let buildingId = activeUserBuildingid; // get building id
         let userId = activeUserId;             // get current user id ( isAdmin)
  
-        onCreate(buildingId,userId,  dateCreated, title, details, priority, img , "");
+        let messageId = objMsgId;  //if messageId != null -> update, else -> insert 
+
+        onCreate(messageId, buildingId,userId,  dateCreated, title, details, priority, img , "");
         onBeforeClose();
     }
 
@@ -84,7 +92,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
     }
 
 
-    
+
     return (
         <Modal show={show} onHide={onBeforeClose} size="lg">
             <Modal.Header closeButton>
@@ -141,9 +149,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
                         </Col>
                     </Form.Group>
 
-                    {/* still an issue with the presenting of the image correctly - not working */}
-                                        
-                    {/* {objMsg.img !== "" ?  <Image src={objMsg.img}/>  :  <Image src={img ? URL.createObjectURL(img) : ""}/>  }                        
+                      {/* {objMsg.img !== "" ?  <Image src={objMsg.img}/>  :  <Image src={img ? URL.createObjectURL(img) : ""}/>  }                        
                     */}
                     <Image src ={img} />                        
                               

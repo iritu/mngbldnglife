@@ -127,36 +127,48 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
   }
 
  
-  function addNewMsg(buildingId,userId,  dateCreated, title, details, priority, img){
-    console.log("addNewMsg");
-     
-    let messageId = 10001;
-    
-    if(messages){
-      messageId =  messages[messages.length-1].messageId + 1;
-    }
-
-    // alert (messageId);
-    // console.log("Insert new message - "+ messageId+ ","+buildingId + ", "+ userId + ", " +dateCreated+ ", "+  title + ", "+ details + ", "+ 
-    //  priority+", "+img); 
-  
-
-    const addNewMsg = new MessageModel({
-      messageId,
-      buildingId,
-      userId, 
-      dateCreated, 
-      title,
-      details, 
-      priority,
-      img
+  function insertNewMessage(buildingId,userId,  dateCreated, title, details, priority, img){
+      console.log("addNewMsg");
       
-    });
-  
-    setMessages(messages.concat(addNewMsg));
-    // console.log("app js messages:")
-    // console.log(messages);
+      let messageId = 10001;
+      
+      if(messages){
+        messageId =  messages[messages.length-1].messageId + 1;
+      }
 
+      // alert (messageId);
+      // console.log("Insert new message - "+ messageId+ ","+buildingId + ", "+ userId + ", " +dateCreated+ ", "+  title + ", "+ details + ", "+ 
+      //  priority+", "+img); 
+    
+
+      const addNewMsg = new MessageModel({
+        messageId,
+        buildingId,
+        userId, 
+        dateCreated, 
+        title,
+        details, 
+        priority,
+        img
+        
+      });
+    
+      setMessages(messages.concat(addNewMsg));
+      // console.log("app js messages:")
+      // console.log(messages);
+
+  }
+
+
+
+  function addNewMsg(messageId, buildingId,userId,  dateCreated, title, details, priority, img){
+   
+      if (!messageId){
+        insertNewMessage(buildingId,userId,  dateCreated, title, details, priority, img); 
+      }
+      else{
+        console.log("update state")
+      }
 
   }
 
