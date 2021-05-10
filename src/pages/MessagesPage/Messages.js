@@ -19,6 +19,8 @@ function Messages({messages, onNewMessage}){
 
     const [newComment, setNewComment] = useState("");
 
+    const [msgIndex, setMsgIndex] = useState(0);
+
     if (!activeUser) {
         return <Redirect to="/"/>
     }
@@ -59,6 +61,12 @@ function Messages({messages, onNewMessage}){
             }
             );
 
+    
+            
+    function setUpdate(index){
+        setNewMsgeModal(true);
+        setMsgIndex(index); 
+    }        
 
 
     return(
@@ -82,15 +90,16 @@ function Messages({messages, onNewMessage}){
                     </form> 
                 </Col>
                 <Col md={2}>
+                    {/* new msg btn */}
                       {activeUser.isAdmin ? <Button variant="outline-primary"
-                                        onClick={() => setNewMsgeModal(true)}>New Message
+                                        onClick={() => setUpdate("")}>New Message
                                         </Button> : null}
                 </Col>
             </Row>
 
        
             <Row>
-                {sortedMessages.map(message => 
+                {sortedMessages.map((message , index)  => 
                     <Row className="msgCards" key={message.messageId}  >
                         <Col  xs={6} md={6} className="msgCardsCol">
                             <SingleMessage message={message}   />
@@ -115,7 +124,7 @@ function Messages({messages, onNewMessage}){
                                 <Col>
                                      {activeUser.isAdmin ? 
                                             <Button className="btnUpdateMsg" variant="primary" size="sm"
-                                                    onClick={() => setNewMsgeModal(true)}>Update Message
+                                                    onClick={() => setUpdate(index) }>Update Message
                                             </Button> : null
                                     }
                                     {activeUser.isAdmin ? 
@@ -139,6 +148,7 @@ function Messages({messages, onNewMessage}){
                 onCreate={onNewMessage}
                 activeUserBuildingid={activeUser.buildingId}
                 activeUserId = {activeUser.userId}
+                messageIndex = {msgIndex}                    
                 
                 />
 

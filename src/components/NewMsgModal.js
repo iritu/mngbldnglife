@@ -3,7 +3,9 @@ import { Button, Modal, Form, Col, Row, Image } from 'react-bootstrap';
 
 import SetCurrentDateTime from './utils';
 
-function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId}) {
+// if messageIndex is passed the it is an update process else it is an insert process
+
+function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId, messageIndex}) {
     const [title, setTitle] = useState("");
     const [details, setDetails] = useState("");
     const [priority, setPriority] = useState("Info");
@@ -33,9 +35,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
         //messageId; create new message id from last item of msg array
         let buildingId = activeUserBuildingid; // get building id
         let userId = activeUserId;             // get current user id ( isAdmin)
-       
-       
-
+ 
         onCreate(buildingId,userId,  dateCreated, title, details, priority, img ? URL.createObjectURL(img) : "", "");
         clearForm();
         onClose();
@@ -52,7 +52,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
     return (
         <Modal show={show} onHide={onClose} size="lg">
             <Modal.Header closeButton>
-                <Modal.Title>New Message</Modal.Title>
+                <Modal.Title> {messageIndex}  {messageIndex !=="" ? "Update Message" : "New Message"}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -112,7 +112,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
                     Cancel
                 </Button>
                 <Button variant="primary" onClick={createMsg}>
-                    Create new message
+                   Submit
                 </Button>
             </Modal.Footer>
         </Modal>
