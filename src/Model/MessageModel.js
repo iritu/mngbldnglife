@@ -22,6 +22,6 @@ export default class MessageModel {
         else{
             this.img  = "images/msgDefault.JPG";
         }
-        this.ArrayCommentsId = singleMessage.ArrayCommentsId;
+        this.ArrayCommentsId = singleMessage.ArrayCommentsId; //array 
     }
 }

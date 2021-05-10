@@ -2,19 +2,20 @@ import SetCurrentDateTime from '../components/utils';
 
 export default class CommentModel {
 
-    constructor(SingleComment) {
+    constructor(singleComment) {
         
-        if (SingleComment.dateCreated === null){
+        if (singleComment.dateCreated === null){
             this.dateCreated = SetCurrentDateTime(); //return string - current date/time
         }
         else{
-            this.dateCreated   =  SingleComment.dateCreated;
+            this.dateCreated   =  singleComment.dateCreated;
         }
 
-         this.commentId     =  SingleComment.commentId;     //PK
-         this.userId        =  SingleComment.userId;        //FK (UserModel)
-         this.buildingId    =  SingleComment.buildingId     //FK. (BuildingModel)
+         this.commentId     =  singleComment.commentId;     //PK
+         this.userId        =  singleComment.userId;        //FK (UserModel)
+         this.buildingId    =  singleComment.buildingId;    //FK. (BuildingModel)
+         this.messageId     =  singleComment.messageId;     //FK. (MessageModel) 
          
-         this.commentText   =  SingleComment.commentText; 
+         this.commentText   =  singleComment.commentText; 
     }
 }

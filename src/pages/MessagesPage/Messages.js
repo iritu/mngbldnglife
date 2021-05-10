@@ -24,18 +24,7 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
     if (!activeUser) {
         return <Redirect to="/"/>
     }
-    else{
-        console.log("is admin ? "+activeUser.isAdmin);
-    }
-
-
-    // sort the array of messages by date (default) 
-    // let sortedMessages = messages.slice().sort((a, b) => 
-    //                 Date.parse(new Date(a.dateCreated.split("/").reverse().join("-"))) - 
-    //                 Date.parse(new Date(b.dateCreated.split("/").reverse().join("-"))));
-
-
-
+   
       
     // 1) Filter the messages based on the filterText
   
@@ -78,6 +67,9 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
         onDeleteMsg(msgID); 
     }
 
+ 
+
+
 
     return(
        <Container>
@@ -111,22 +103,33 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
             <Row>
                 {sortedMessages.map((message)  => 
                     <Row className="msgCards" key={message.messageId}  >
+                        
                         <Col  xs={6} md={6} className="msgCardsCol">
                             <SingleMessage message={message}   />
                         </Col>
+
                         <Col  xs={6} md={6} >
                             <h5>Comments</h5>
-                            {message.messageId}
-                            <br/>
-                            {message.ArrayCommentsId }
+                            Message ID: {message.messageId}
+                          
+                          {/* get comments id's fr this message 
+                          and extract their data by the id */}
+                            <ul>
+                                {message.ArrayCommentsId? 
+                                    message.ArrayCommentsId.map((comment, index) => (
+                                    <li key={index}> {comment} </li>
+                                )): ""}
+                             </ul>
+
                             <br/>
                             <Row>
                                 <Col>
                                     <Form>
-                                        <Form.Group controlId="MsgTxt">
+                                        <Form.Group controlId={`commentMsg${message.messageId}`}>
                                             <Form.Control as="textarea" rows={3}
                                                 value={newComment}
                                                 onChange={e => setNewComment(e.target.value)}
+                                                placeholder= "Add new comment"
                                                 />
                                         </Form.Group>
                                     </Form>
