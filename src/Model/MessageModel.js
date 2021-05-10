@@ -1,22 +1,27 @@
 export default class MessageModel {
-    constructor(SingleMessage) {
-        this.messageId  = SingleMessage.messageId;  //PK 
-        this.buildingId = SingleMessage.buildingId; //FK (BuildingModel)
-        this.userId     = SingleMessage.userId;     //FK (UserModel)
+    constructor(singleMessage) {
+        this.messageId  = singleMessage.messageId;  //PK 
+        this.buildingId = singleMessage.buildingId; //FK (BuildingModel)
+        this.userId     = singleMessage.userId;     //FK (UserModel)
       
-        this.dateCreated   =  SingleMessage.dateCreated;
+        this.dateCreated   =  singleMessage.dateCreated;
       
-        this.title      = SingleMessage.title; 
-        this.details    = SingleMessage.details;
+        this.title      = singleMessage.title; 
+        this.details    = singleMessage.details;
 
-        if (SingleMessage.priority === null){
+        if (singleMessage.priority === null){
             this.priority  = "Info";
         }
         else{
-            this.priority   = SingleMessage.priority;   // Important / Info ( default) 
+            this.priority   = singleMessage.priority;   // Important / Info ( default) 
         }
        
-        this.img        = SingleMessage.img; 
-        this.ArrayCommentsId = SingleMessage.ArrayCommentsId;
+        if  (singleMessage.img ){ //we have img 
+            this.img        = singleMessage.img; 
+        }
+        else{
+            this.img  = "images/msgDefault.JPG";
+        }
+        this.ArrayCommentsId = singleMessage.ArrayCommentsId;
     }
 }

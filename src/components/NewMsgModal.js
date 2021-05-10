@@ -1,18 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form, Col, Row, Image } from 'react-bootstrap';
 
 import SetCurrentDateTime from './utils';
 
 // if messageIndex is passed the it is an update process else it is an insert process
 
-function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId, messageIndex}) {
+function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId, objMsg}) {
+ 
     const [title, setTitle] = useState("");
     const [details, setDetails] = useState("");
     const [priority, setPriority] = useState("Info");
-    const [img, setImg] = useState(null);
+    const [img, setImg] = useState("");
 
+    const [objState, setObjState] = useState(null);
+
+    let modalTitle = "Create New Message "
+
+    if (objMsg){
+        modalTitle= "Update Message"
+    }
+     
+
+    function onBeforeClose()
+    {
+        clearForm(); 
+        onClose(); 
+
+    }
+
+    // get the message object data on load 
+    useEffect(() => {
+        setTitle(objMsg.title); 
+        setDetails(objMsg.details); 
+        setPriority(objMsg.priority); 
+        setImg(objMsg.img); 
+         
+      }, [objMsg, objState]); 
+    
+  
     let  dateCreated = SetCurrentDateTime();
 
+    // define select box options of priority
     const selectPriorityOptions = [
         {
           name: "Info",
@@ -24,35 +52,43 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
         }
       ];
 
+
+    //clear form data   
     function clearForm() {
         setTitle("");
         setDetails("");
         setPriority("Info")
         setImg(null);
+        setObjState(null); 
     }
+
 
     function createMsg() {
         //messageId; create new message id from last item of msg array
         let buildingId = activeUserBuildingid; // get building id
         let userId = activeUserId;             // get current user id ( isAdmin)
  
-        onCreate(buildingId,userId,  dateCreated, title, details, priority, img ? URL.createObjectURL(img) : "", "");
-        clearForm();
-        onClose();
+        onCreate(buildingId,userId,  dateCreated, title, details, priority, img , "");
+        onBeforeClose();
     }
 
+
+    //image file upload , handles the insert and the update 
     function handleFileChange(e) {
         if (e.target.files.length === 1) {
-            setImg(e.target.files[0]);
+            // setImg(e.target.files[0]);
+            setImg(URL.createObjectURL(e.target.files[0]) ); 
         } else {
             setImg(null);
         }
     }
 
+
+    
     return (
-        <Modal show={show} onHide={onClose} size="lg">
+        <Modal show={show} onHide={onBeforeClose} size="lg">
             <Modal.Header closeButton>
-                <Modal.Title> {messageIndex}  {messageIndex !=="" ? "Update Message" : "New Message"}</Modal.Title>
+                <Modal.Title> {modalTitle} </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -104,11 +140,17 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
                             <Form.Control type="file" accept="image/*" onChange={handleFileChange}/>
                         </Col>
                     </Form.Group>
-                    <Image src={img ? URL.createObjectURL(img) : ""}/>
+
+                    {/* still an issue with the presenting of the image correctly - not working */}
+                                        
+                    {/* {objMsg.img !== "" ?  <Image src={objMsg.img}/>  :  <Image src={img ? URL.createObjectURL(img) : ""}/>  }                        
+                    */}
+                    <Image src ={img} />                        
+                              
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={onClose}>
+                <Button variant="secondary" onClick={onBeforeClose}>
                     Cancel
                 </Button>
                 <Button variant="primary" onClick={createMsg}>

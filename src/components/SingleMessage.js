@@ -8,9 +8,9 @@ function SingleMessage({message}){
 
     img = message.img; 
 
-    if (!img){
-        img = "images/msgDefault.JPG";
-    }
+    // if (!img){
+    //     img = "images/msgDefault.JPG";
+    // }
    
     //const imgSrc = pathPre+ "/" + img; 
 

@@ -19,7 +19,7 @@ function Messages({messages, onNewMessage}){
 
     const [newComment, setNewComment] = useState("");
 
-    const [msgIndex, setMsgIndex] = useState(0);
+    const [message, setMsgModal] = useState("");
 
     if (!activeUser) {
         return <Redirect to="/"/>
@@ -63,9 +63,9 @@ function Messages({messages, onNewMessage}){
 
     
             
-    function setUpdate(index){
+    function setUpdate(message){
         setNewMsgeModal(true);
-        setMsgIndex(index); 
+        setMsgModal(message); 
     }        
 
 
@@ -99,7 +99,7 @@ function Messages({messages, onNewMessage}){
 
        
             <Row>
-                {sortedMessages.map((message , index)  => 
+                {sortedMessages.map((message)  => 
                     <Row className="msgCards" key={message.messageId}  >
                         <Col  xs={6} md={6} className="msgCardsCol">
                             <SingleMessage message={message}   />
@@ -122,9 +122,10 @@ function Messages({messages, onNewMessage}){
                                     </Form>
                                 </Col>
                                 <Col>
+                                    {/* update msg btn  */}
                                      {activeUser.isAdmin ? 
                                             <Button className="btnUpdateMsg" variant="primary" size="sm"
-                                                    onClick={() => setUpdate(index) }>Update Message
+                                                    onClick={() => setUpdate(message) }>Update Message
                                             </Button> : null
                                     }
                                     {activeUser.isAdmin ? 
@@ -148,7 +149,7 @@ function Messages({messages, onNewMessage}){
                 onCreate={onNewMessage}
                 activeUserBuildingid={activeUser.buildingId}
                 activeUserId = {activeUser.userId}
-                messageIndex = {msgIndex}                    
+                objMsg = {message}                    
                 
                 />
 
