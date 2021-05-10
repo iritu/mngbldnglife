@@ -127,6 +127,10 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
   }
 
  
+
+  /**************MESSAGES SECTION : INSERT, UPDATE, DELETE ***************** */
+
+  //INSERT
   function insertNewMessage(buildingId,userId,  dateCreated, title, details, priority, img){
       console.log("addNewMsg");
       
@@ -160,6 +164,7 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
   }
 
 
+  //UPDATE
   function updateMessage(messageId, title, details, priority, img){
     //1. find message id in the array of messages
     let index = messages.findIndex(msg => msg.messageId === messageId);
@@ -177,6 +182,8 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
 
   }
 
+
+
   //add or update a message
   function addNewMsg(messageId, buildingId,userId,  dateCreated, title, details, priority, img){
     console.log("messageId ===> " + messageId); 
@@ -191,6 +198,28 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
       }
   }
 
+  //DELETE message by message id
+  function deleteMsg(msgID){
+    let userAnswer = false; 
+
+    //confirm doesnt work, window.confirm - works
+    userAnswer = window.confirm("Delete message No. " + msgID + "?");
+   
+    if (userAnswer === true){ //clicked yes 
+       //get position in array 
+       let msgToDeletePos = messages.findIndex(msg => msg.messageId === msgID);
+
+       //if we have position 
+      if (msgToDeletePos){
+          const msgAfterDel = messages.filter(msg => msg.messageId !== msgID);
+          setMessages(msgAfterDel); 
+      }
+    }
+
+  }
+
+
+/********************END MESSAGES SECTION*********************** */
 
   return (
     <ActiveUserContext.Provider value={activeUser}> 
@@ -202,7 +231,7 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
               <Route exact path="/login"><LoginPage  users={users} onLogin={user => setActiveUser(user)}/></Route>
               <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
               <Route exact path="/tenants"><TenantsPage/></Route>
-              <Route exact path="/messages"><Messages messages={messages} onNewMessage={addNewMsg} /></Route>
+              <Route exact path="/messages"><Messages messages={messages} onNewMessage={addNewMsg}  onDeleteMsg={deleteMsg} /></Route>
               <Route exact path="/votings"><Votings/></Route>
               <Route exact path="/dashboard"><Dashboard/></Route>
           </Switch>

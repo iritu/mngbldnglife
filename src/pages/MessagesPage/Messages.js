@@ -8,7 +8,7 @@ import ActiveUserContext from '../../shared/activeUserContext';
 import NewMsgModal from '../../components/NewMsgModal';
 
 
-function Messages({messages, onNewMessage}){
+function Messages({messages, onNewMessage, onDeleteMsg}){
     
     const activeUser = useContext(ActiveUserContext);
     const [newMsgeModal, setNewMsgeModal] = useState(false);
@@ -67,6 +67,16 @@ function Messages({messages, onNewMessage}){
         setNewMsgeModal(true);
         setMsgModal(message); 
     }        
+
+
+    /*  send the message id to app.js to delete it as the array is 
+        held with state handeling in app.js
+        onDeleteMsg - is sent as a prop from app.js and this func pointer receives 
+        back the index sent to it
+    */
+    function onDeleteClick (msgID){
+        onDeleteMsg(msgID); 
+    }
 
 
     return(
@@ -130,7 +140,7 @@ function Messages({messages, onNewMessage}){
                                     }
                                     {activeUser.isAdmin ? 
                                             <Button variant="danger" size="sm"
-                                                    onClick={() => setNewMsgeModal(true)}>Delete Message
+                                                    onClick={() => onDeleteClick(message.messageId)}>Delete Message
                                              </Button> : null
                                     
                                     }
