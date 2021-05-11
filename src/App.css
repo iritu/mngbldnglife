@@ -21,6 +21,10 @@ body{
   color: #61dafb;
 }
 
+.imgAvatar{
+  width:100px;
+}
+
 .HomePageHeader{
   display: flex;
   flex-direction: column;

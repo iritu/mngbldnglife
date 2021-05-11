@@ -1,7 +1,14 @@
-import {  Row, Col, Image } from "react-bootstrap"; 
+import { useState  } from "react";
+import {  Row, Col, Image , Form} from "react-bootstrap"; 
 //const pathPre = process.env.PUBLIC_URL;
 
-function SingleMessage({message}){
+
+import CommentModel from '../Model/CommentModel';
+
+
+function SingleMessage({message, commentsArray}){
+
+    const [newComment, setNewComment] = useState("");
 
    
     let img = ""; 
@@ -22,12 +29,23 @@ function SingleMessage({message}){
            <Col>
                 <Row>
                    <Col xs={3} md={3}>
-                        <Image src={img} rounded />
+                        <Image src={img} rounded className="imgAvatar"/>
                    </Col>
                     <Col xs={10} md={8}>
                         Details: {message.details}
                         <br/>
                         Priority: {message.priority}
+
+                        <Form>
+                            <Form.Group controlId={`commentMsg${message.messageId}`}>
+                               <Form.Control as="textarea" rows={3}
+                                    value={newComment}
+                                    onChange={e => setNewComment(e.target.value)}
+                                    placeholder= "Add new comment"
+                                   />
+                            </Form.Group>
+                        </Form>
+
                     </Col>
                 </Row>
            </Col>

@@ -25,7 +25,7 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
     const [filterText, setFilterText] = useState("");
     const [sortBy, setSortBy] = useState("dateCreated");
 
-    const [newComment, setNewComment] = useState("");
+    // const [newComment, setNewComment] = useState("");
 
     const [message, setMsgModal] = useState("");
 
@@ -140,7 +140,8 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
                     <Row className="msgCards" key={message.messageId}  >
                         
                         <Col  xs={6} md={6} className="msgCardsCol">
-                            <SingleMessage message={message}   />
+                            {/* show single message */}
+                            <SingleMessage message={message}  commentsArray={comments} />
                         </Col>
 
                         <Col  xs={6} md={6} >
@@ -157,7 +158,7 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
                             <br/>
                             <Row>
                                 <Col>
-                                    <Form>
+                                    {/* <Form>
                                         <Form.Group controlId={`commentMsg${message.messageId}`}>
                                             <Form.Control as="textarea" rows={3}
                                                 value={newComment}
@@ -165,7 +166,7 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
                                                 placeholder= "Add new comment"
                                                 />
                                         </Form.Group>
-                                    </Form>
+                                    </Form> */}
                                 </Col>
                                 <Col>
                                     {/* update msg btn  */}
