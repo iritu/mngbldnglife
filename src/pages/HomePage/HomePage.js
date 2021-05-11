@@ -1,20 +1,18 @@
-import {Jumbotron, Container, Row, Col} from 'react-bootstrap';
+import {Jumbotron, Container, Row, Col, Image} from 'react-bootstrap';
 
 function HomePage(){
     return(
         <>
             <Jumbotron fluid className="Jumbotron">
-            <Container>
                 <h1 className="HomePageHeader">
                 Homeowner Association Management System
                 </h1>
-            </Container>
             </Jumbotron>
+           
             <div className="homePageMain">
-               <Container>
-                   <h2 className="secondPHomePage">
+                   <h1 className="secondPHomePage">
                        Who we are
-                   </h2>
+                   </h1>
                    <section className="homePageSectionText">
                         Communication between tenants and homeowner committee can be chalenging task.
                         <br/>
@@ -26,38 +24,36 @@ function HomePage(){
                          to maintain 
                         and visualize the issues. 
                    </section>
+            </div>
 
-                    <h2 className="HomePageBenefits">
-                        The Benefits
-                    </h2>
 
-                    <Row className="homePageRow justify-content-md-center">
-                        <Col md lg="4">
-                            <h2 className="h2red">Comitee member</h2>
+            <Container>
+                    <Row className="homePageRow">
+                        <Col xs={12} md={4}>
+                            <h2>Comitee member</h2>
                             <br/>
-                            <strong>Manage:</strong>
-                            <ul>
-                                <li>Voting</li>
-                                <li>Messages</li>
-                                <li>Issues</li>
-                                <li>Tenants</li>
-                            </ul>
+                            Manage: Voting, Messages, Issues, Tenants
                         </Col>
-                        <Col md lg="4">
-                            <h2 className="h2red">
-                                Tenants
-                            </h2>
-                            <br/>
-                            <strong>View and participate:</strong>
-                            <ul>
-                                <li>Participate in voting - Vote on issues you care</li>
-                                <li>View messages of your building</li>
-                                <li>Report, manage and view issues</li>
-                            </ul>
+                        <Col xs={12} md={4}>
+                            <Image src="images/city-homepage-project.png"  fluid  alt=""></Image>
                         </Col>
                     </Row>
-               </Container>
-            </div> 
+
+                    <Row className="homePageRow2">
+                        <Col xs={12} md={4}>
+                           <Image src="images/city-homepage-2.png" fluid  alt=""></Image>
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <h2>
+                               Tenants
+                            </h2>
+                            <br/>
+                            View and participate: Vote on issues you care, View messages of your building, 
+                            Report, manage and view issues.
+                        </Col>
+                    </Row>
+          </Container>
+         
         </>
     )
 }
