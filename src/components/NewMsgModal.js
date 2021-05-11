@@ -151,7 +151,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
 
                       {/* {objMsg.img !== "" ?  <Image src={objMsg.img}/>  :  <Image src={img ? URL.createObjectURL(img) : ""}/>  }                        
                     */}
-                    <Image src ={img} />                        
+                    <Image src ={img} alt="" />                        
                               
                 </Form>
             </Modal.Body>
