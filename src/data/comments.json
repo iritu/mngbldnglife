@@ -5,16 +5,25 @@
         "userId": 1001,
         "buildingId":1,
         "messageId": 1, 
-        "commentText": "This is comment no 1 form msg no 1 "
+        "commentText": "This is comment no 1 for msg no 1 "
     },
     {
         "dateCreated": "2021-05-10 17:39:00",
-        "commentId":1,
+        "commentId":2,
         "userId": 1001,
         "buildingId":1,
-        "messageId": 2, 
-        "commentText": "This is comment no 2 form msg no 1 "
+        "messageId": 1, 
+        "commentText": "This is comment no 2 for msg no 1 "
+    },
+    {
+        "dateCreated": "2021-05-11 15:10:00",
+        "commentId":3,
+        "userId": 1001,
+        "buildingId":1,
+        "messageId": 1, 
+        "commentText": "This is comment no 3 for msg no 1 "
     }
+
 
 ]
 

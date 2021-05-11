@@ -1,11 +1,19 @@
 import { Redirect } from 'react-router';
-import { useState, useContext } from "react";
+import { useState, useContext  } from "react";
 import SingleMessage from '../../components/SingleMessage';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 //context
 import ActiveUserContext from '../../shared/activeUserContext';
 import NewMsgModal from '../../components/NewMsgModal';
+
+//coments
+import commentsJSON from '../../data/comments.json';
+import CommentModel from '../../Model/CommentModel';
+
+//string to html react parser (npm install)
+import parse from 'html-react-parser';
+
 
 
 function Messages({messages, onNewMessage, onDeleteMsg}){
@@ -21,9 +29,15 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
 
     const [message, setMsgModal] = useState("");
 
+
+    //comments
+    const[comments, setComments] = useState(commentsJSON.map(comment => new CommentModel(comment)));
+
+     
     if (!activeUser) {
         return <Redirect to="/"/>
     }
+    
    
       
     // 1) Filter the messages based on the filterText
@@ -68,6 +82,27 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
     }
 
  
+    //get array of comments id's and return string combined from 
+    //<ul> text (comments) items 
+    //caller uses parse() to extract returned string to html
+    function showCommentsForMessage(commentsIdsArray){
+      
+        let index =0; 
+        let returnStr = "<ul>"; 
+       
+            commentsIdsArray.forEach(commentId => {
+            //1. find comment id in comments array 
+            index = comments.findIndex(cmnt => cmnt.commentId === commentId);
+            //2. get comment data for this index position
+            
+            returnStr += "<li>" +comments[index].commentText+ "</li>" ; 
+         }) ;  
+         
+        returnStr += "</ul>";
+       
+       return   returnStr;
+
+    }
 
 
 
@@ -112,14 +147,12 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
                             <h5>Comments</h5>
                             Message ID: {message.messageId}
                           
-                          {/* get comments id's fr this message 
-                          and extract their data by the id */}
-                            <ul>
-                                {message.ArrayCommentsId? 
-                                    message.ArrayCommentsId.map((comment, index) => (
-                                    <li key={index}> {comment} </li>
-                                )): ""}
-                             </ul>
+                          {/* 
+                            get comments id's for this message 
+                            send to function showCommentsForMessage else it is a messy code
+                          */}
+                            
+                           {message.ArrayCommentsId?  parse(showCommentsForMessage(message.ArrayCommentsId))   : ""}
 
                             <br/>
                             <Row>
