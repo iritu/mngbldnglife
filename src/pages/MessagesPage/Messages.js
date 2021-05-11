@@ -139,9 +139,9 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
                 {sortedMessages.map((message)  => 
                     <Row className="msgCards" key={message.messageId}  >
                         
+                        {/* show single message */}
                         <Col  xs={6} md={6} className="msgCardsCol">
-                            {/* show single message */}
-                            <SingleMessage message={message}  commentsArray={comments} />
+                            <SingleMessage message={message}  comments={comments} />
                         </Col>
 
                         <Col  xs={6} md={6} >
