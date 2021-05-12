@@ -11,11 +11,19 @@ import SetCurrentDateTime from '../components/utils';
 import parse from 'html-react-parser';
 
 
-function SingleMessage({message, comments}){
+//coments
+import commentsJSON from '../data/comments.json';
+
+
+function SingleMessage({message, updateMessage}){
 
     //form, get new comment
     const [newComment, setNewComment] = useState("");
-     
+    
+    //comments
+    const[comments, setComments] = useState(commentsJSON.map(comment => new CommentModel(comment)));
+
+  
     let img = ""; 
 
     img = message.img; 
@@ -47,24 +55,13 @@ function SingleMessage({message, comments}){
         });
 
         //Insert into comments array 
-        let x = comments.concat(newCommentObj);
+        setComments( comments.concat(newCommentObj));
 
-        //update message obj with the new comment
-        if (message.ArrayCommentsId){ //existing array of comments per message
-            message.ArrayCommentsId.concat(commentId); 
-        }
-        else{ //there is no such array of comments yet
-            message.ArrayCommentsId = [commentId];
-        }
+      
+        //re - render message obj
 
-        console.log(comments); //comment is added to array
-        console.log (message.ArrayCommentsId); // new id is added ok 
+        updateMessage(commentId , message); 
 
-
-        // 1.  HOW TO MAKE THE MESSAGES.JS PRESENT THE NEW COMMENT RIGHT 
-        // AFTER THE ADD COMMENT CLICK BUTTON
-        // 2. concat doesnt work, push works ok but mess the arrays, what to do....
-        // 3. how to notify user which messages of his are read / not read???
    }
 
 
@@ -73,23 +70,31 @@ function SingleMessage({message, comments}){
     //<ul> text (comments) items 
     //caller uses parse() to extract returned string to html
     function showCommentsForMessage(commentsIdsArray){
-      
-        let index =0; 
-        let returnStr = "<ul>"; 
-       
-            commentsIdsArray.forEach(commentId => {
-            //1. find comment id in comments array 
-            index = comments.findIndex(cmnt => cmnt.commentId === commentId);
-            //2. get comment data for this index position
-            
-            returnStr += "<li>" +comments[index].commentText+ "</li>" ; 
-         }) ;  
-         
-        returnStr += "</ul>";
-       
-       return   returnStr;
+        let returnStr = ""; 
 
+        if(commentsIdsArray){
+            let index =0; 
+            returnStr = "<ul>"; 
+        
+            commentsIdsArray.forEach(commentId => {
+                //1. find comment id in comments array 
+                index = comments.findIndex(cmnt => cmnt.commentId === commentId);
+                if (index >= 0 )
+                {
+                    //2. get comment data for this index position
+                    returnStr += "<li>" +comments[index].commentText+ "</li>" ; 
+                }
+            }) ;  
+            
+            returnStr += "</ul>";
+        }
+        return   returnStr;
     }
+
+
+
+
+
 
 
 
@@ -122,8 +127,8 @@ function SingleMessage({message, comments}){
              <h5>Comments</h5>
               Message ID: {message.messageId}
                        
-             {message.ArrayCommentsId?  parse(showCommentsForMessage(message.ArrayCommentsId))   : ""}
-
+              {message.ArrayCommentsId?  parse(showCommentsForMessage(message.ArrayCommentsId))   : ""} 
+ 
             </Col>
 
 

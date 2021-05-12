@@ -7,30 +7,15 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import ActiveUserContext from '../../shared/activeUserContext';
 import NewMsgModal from '../../components/NewMsgModal';
 
-//coments
-import commentsJSON from '../../data/comments.json';
-import CommentModel from '../../Model/CommentModel';
-
-
-
 function Messages({messages, onNewMessage, onDeleteMsg}){
     
     const activeUser = useContext(ActiveUserContext);
     const [newMsgeModal, setNewMsgeModal] = useState(false);
-
-    
+    const [message, setMsgModal] = useState("");
     const [filterText, setFilterText] = useState("");
     const [sortBy, setSortBy] = useState("dateCreated");
 
-    // const [newComment, setNewComment] = useState("");
-
-    const [message, setMsgModal] = useState("");
-
-
-    //comments
-    const[comments, setComments] = useState(commentsJSON.map(comment => new CommentModel(comment)));
-
-     
+   
     if (!activeUser) {
         return <Redirect to="/"/>
     }
@@ -79,7 +64,20 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
     }
 
  
+    function funcUpdateMessage(commentId, message){
+        //alert (commentId);
+        //update message obj with the new comment
+        if (message.ArrayCommentsId){ //existing array of comments per message
+            message.ArrayCommentsId.push(commentId); 
+        }
+        else{ //there is no such array of comments yet
+            message.ArrayCommentsId = [commentId];
+        }
 
+        console.log(message); 
+
+    
+    }
 
     return(
        <Container>
@@ -138,7 +136,7 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
                             </Row>
 
                             {/* show single message with its comments */}           
-                            <SingleMessage message={message}  comments={comments} />
+                            <SingleMessage message={message} updateMessage={funcUpdateMessage} />
 
 
                         </Col>
