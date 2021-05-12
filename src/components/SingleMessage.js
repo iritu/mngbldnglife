@@ -6,6 +6,11 @@ import { Button, Row, Col, Image , Form} from "react-bootstrap";
 import CommentModel from '../Model/CommentModel';
 import SetCurrentDateTime from '../components/utils';
 
+
+//string to html react parser (npm install)
+import parse from 'html-react-parser';
+
+
 function SingleMessage({message, comments}){
 
     //form, get new comment
@@ -42,7 +47,7 @@ function SingleMessage({message, comments}){
         });
 
         //Insert into comments array 
-        comments.concat(newCommentObj);
+        let x = comments.concat(newCommentObj);
 
         //update message obj with the new comment
         if (message.ArrayCommentsId){ //existing array of comments per message
@@ -63,40 +68,65 @@ function SingleMessage({message, comments}){
    }
 
 
+   
+    //get array of comments id's and return string combined from 
+    //<ul> text (comments) items 
+    //caller uses parse() to extract returned string to html
+    function showCommentsForMessage(commentsIdsArray){
+      
+        let index =0; 
+        let returnStr = "<ul>"; 
+       
+            commentsIdsArray.forEach(commentId => {
+            //1. find comment id in comments array 
+            index = comments.findIndex(cmnt => cmnt.commentId === commentId);
+            //2. get comment data for this index position
+            
+            returnStr += "<li>" +comments[index].commentText+ "</li>" ; 
+         }) ;  
+         
+        returnStr += "</ul>";
+       
+       return   returnStr;
+
+    }
+
 
 
     return(
        <Row>
-           <Col xs={10} md={10}>
+           <Col xs={6} md={6} className="msgCardsCol">
                  <h5>{message.title}</h5>
-           </Col>
-           <Col>
-                <Row>
-                   <Col xs={3} md={3}>
-                        <Image src={img} rounded className="imgAvatar"/>
-                   </Col>
-                    <Col xs={10} md={8}>
-                        Details: {message.details}
-                        <br/>
-                        Priority: {message.priority}
+      
+                <Image src={img} rounded className="imgAvatar"/>
+      
+                 Details: {message.details}
+                 <br/>
+                Priority: {message.priority}
  
- 
-                        <Form onSubmit={saveComment}>
-                            <Form.Group controlId={`commentMsg${message.messageId}`}>
-                               <Form.Control as="textarea" rows={3}
-                                    value={newComment}
-                                    onChange={e => setNewComment(e.target.value)}
-                                    placeholder= "Add new comment"
-                                   />
-                            </Form.Group>
+                <Form onSubmit={saveComment}>
+                   <Form.Group controlId={`commentMsg${message.messageId}`}>
+                       <Form.Control as="textarea" rows={3}
+                            value={newComment}
+                            onChange={e => setNewComment(e.target.value)}
+                            placeholder= "Add new comment"
+                        />
+                    </Form.Group>
                            
-                            <Button variant="secondary" size="sm" type="submit">Add Comment</Button>
-                         
-                        </Form>  
+                   <Button variant="secondary" size="sm" type="submit">Add Comment</Button>
+                </Form>  
 
-                    </Col>
-                </Row>
-           </Col>
+            </Col>
+
+           <Col xs={6} md={6}>
+             <h5>Comments</h5>
+              Message ID: {message.messageId}
+                       
+             {message.ArrayCommentsId?  parse(showCommentsForMessage(message.ArrayCommentsId))   : ""}
+
+            </Col>
+
+
        </Row>
 
    

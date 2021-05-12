@@ -1,7 +1,7 @@
 import { Redirect } from 'react-router';
 import { useState, useContext  } from "react";
 import SingleMessage from '../../components/SingleMessage';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 //context
 import ActiveUserContext from '../../shared/activeUserContext';
@@ -10,9 +10,6 @@ import NewMsgModal from '../../components/NewMsgModal';
 //coments
 import commentsJSON from '../../data/comments.json';
 import CommentModel from '../../Model/CommentModel';
-
-//string to html react parser (npm install)
-import parse from 'html-react-parser';
 
 
 
@@ -82,28 +79,6 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
     }
 
  
-    //get array of comments id's and return string combined from 
-    //<ul> text (comments) items 
-    //caller uses parse() to extract returned string to html
-    function showCommentsForMessage(commentsIdsArray){
-      
-        let index =0; 
-        let returnStr = "<ul>"; 
-       
-            commentsIdsArray.forEach(commentId => {
-            //1. find comment id in comments array 
-            index = comments.findIndex(cmnt => cmnt.commentId === commentId);
-            //2. get comment data for this index position
-            
-            returnStr += "<li>" +comments[index].commentText+ "</li>" ; 
-         }) ;  
-         
-        returnStr += "</ul>";
-       
-       return   returnStr;
-
-    }
-
 
 
     return(
@@ -135,59 +110,44 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
             </Row>
 
        
-            <Row>
-                {sortedMessages.map((message)  => 
+           
+            {sortedMessages.map((message)  => 
+                <>
                     <Row className="msgCards" key={message.messageId}  >
-                        
-                        {/* show single message */}
-                        <Col  xs={6} md={6} className="msgCardsCol">
-                            <SingleMessage message={message}  comments={comments} />
-                        </Col>
-
-                        <Col  xs={6} md={6} >
-                            <h5>Comments</h5>
-                            Message ID: {message.messageId}
-                          
-                          {/* 
-                            get comments id's for this message 
-                            send to function showCommentsForMessage else it is a messy code
-                          */}
-                            
-                           {message.ArrayCommentsId?  parse(showCommentsForMessage(message.ArrayCommentsId))   : ""}
-
-                            <br/>
+                        <Col>
+                           
+                           {/* Update & delete message buttons */}
                             <Row>
-                                <Col>
-                                    {/* <Form>
-                                        <Form.Group controlId={`commentMsg${message.messageId}`}>
-                                            <Form.Control as="textarea" rows={3}
-                                                value={newComment}
-                                                onChange={e => setNewComment(e.target.value)}
-                                                placeholder= "Add new comment"
-                                                />
-                                        </Form.Group>
-                                    </Form> */}
-                                </Col>
-                                <Col>
+                                    <Col xs={6} md={2}>
                                     {/* update msg btn  */}
-                                     {activeUser.isAdmin ? 
-                                            <Button className="btnUpdateMsg" variant="primary" size="sm"
-                                                    onClick={() => setUpdate(message) }>Update Message
-                                            </Button> : null
-                                    }
                                     {activeUser.isAdmin ? 
-                                            <Button variant="danger" size="sm"
-                                                    onClick={() => onDeleteClick(message.messageId)}>Delete Message
-                                             </Button> : null
-                                    
-                                    }
-                                </Col>
-                            </Row>
+                                        <Button className="btnUpdateMsg" variant="primary" size="sm"
+                                            onClick={() => setUpdate(message) }>Update Message
+                                        </Button> : null
+                                        }
+                                    </Col>
                             
+                                    <Col xs={6} md={2}>
+                                        {activeUser.isAdmin ? 
+                                            <Button variant="danger" size="sm"
+                                                onClick={() => onDeleteClick(message.messageId)}>Delete Message
+                                            </Button> : null
+                                            
+                                        }
+                                    </Col>
+                            </Row>
+
+                            {/* show single message with its comments */}           
+                            <SingleMessage message={message}  comments={comments} />
+
+
                         </Col>
                     </Row>
+                    
+                   
+                    </>
                 )}
-            </Row>
+           
 
             {/* activate message modal      */}
             <NewMsgModal 
