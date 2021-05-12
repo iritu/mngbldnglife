@@ -4,26 +4,17 @@
         "userId": 1001,
         "buildingId":1,
         "dateCreated": "2021-05-06 16:30:00",
-        "title": "First Vote Ticket", 
-        "details": "Our new community building Vote ticket: How to clean the stairs:", 
+        "title": "Prepare the roof for winter - ZIPUT ", 
+        "details": "explain the vote issue - ziput", 
       
-        "options":{
-            "Clean the stairs by one of the tenants":{
-                "VoteId":1,
-                "userId":1001,
-                "vote":"yes"
-            },
-            "Clean the stairs by hired pay":{
-                "VoteId":2,
-                "userId":1001,
-                "vote":"no"
-            }
-        },
-        
+        "options": ["yes" , "no"], 
+
         "endDate": "2021-05-19 16:30:00",
        
         "status":"open",
-        "voteSummary":0
+        "voteSummary":0, 
+
+        "votes":[{"userid":1001, "result":0  },{"userid":1002, "result":1  } ]
     }
 ]
 
