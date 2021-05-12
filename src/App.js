@@ -17,11 +17,13 @@ import './App.css';
 import usersJSON from './data/users.json';
 import buildinsJSON from './data/buildings.json';
 import messagesJSON from './data/messages.json';
+import voteTicketsJSON from './data/votesTickets.json'
 
 //data model
 import UserModel from './Model/UserModel'; 
 import buildingModel from './Model/BuildingModel'; 
 import MessageModel from './Model/MessageModel';
+import VoteTicketModel from './Model/VoteTicketModel'
 
 //context
 import ActiveUserContext from './shared/activeUserContext';
@@ -42,7 +44,9 @@ function App() {
   // BUILDINGS
   const[buildings, setBuildings] = useState(buildinsJSON.map (building => new buildingModel(building)) ); 
   //MESSAGES
-  const[messages, setMessages] = useState(messagesJSON.map (message => new  MessageModel(message)) ) 
+  const[messages, setMessages] = useState(messagesJSON.map (message => new  MessageModel(message)) ) ;
+  //VOTE TICKETS JSON
+  const[voteTickets, setVoteTickets]  = useState(voteTicketsJSON.map (voteTicket => new  VoteTicketModel(voteTicket)) ) ;
 
   //State 
   const [activeUser, setActiveUser] = useState(null);

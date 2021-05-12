@@ -58,7 +58,8 @@ function SingleMessage({message, comments}){
 
         // 1.  HOW TO MAKE THE MESSAGES.JS PRESENT THE NEW COMMENT RIGHT 
         // AFTER THE ADD COMMENT CLICK BUTTON
-        // 2, concat doesnt work, push works ok but mess the arrays, what to do....
+        // 2. concat doesnt work, push works ok but mess the arrays, what to do....
+        // 3. how to notify user which messages of his are read / not read???
    }
 
 
