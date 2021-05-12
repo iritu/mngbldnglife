@@ -236,7 +236,7 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
               <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
               <Route exact path="/tenants"><TenantsPage/></Route>
               <Route exact path="/messages"><Messages messages={messages} onNewMessage={addNewMsg}  onDeleteMsg={deleteMsg} /></Route>
-              <Route exact path="/votings"><Votings/></Route>
+              <Route exact path="/votings"><Votings voteTickets={voteTickets} /></Route>
               <Route exact path="/dashboard"><Dashboard/></Route>
           </Switch>
        </HashRouter>

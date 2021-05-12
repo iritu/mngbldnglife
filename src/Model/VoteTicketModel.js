@@ -15,9 +15,14 @@ export default class VoteTicketModel {
 
          this.title         = singleVoteTicket.title; 
          this.details       = singleVoteTicket.details; 
-         this.options       = singleVoteTicket.options; //array of strings
+         
+         this.options       = singleVoteTicket.options; //array of strings OR OBJECT???
+
          this.endDate       = singleVoteTicket.endate; //the vote is no longer active after this date
+         
+         
          this.votes         = singleVoteTicket.votes;  
+         
          this.status        = singleVoteTicket.status; //open/close 
          this.voteSummary   = singleVoteTicket.voteSummary; 
     }
