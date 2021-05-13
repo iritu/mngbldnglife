@@ -18,7 +18,7 @@ export default class VoteTicketModel {
          
          this.options       = singleVoteTicket.options; //array of strings 
 
-         this.endDate       = singleVoteTicket.endate; //the vote is no longer active after this date
+         this.endDate       = singleVoteTicket.endDate; //the vote is no longer active after this date
   
          this.votes         = singleVoteTicket.votes;  //votes are related to options, see json for the example
          
