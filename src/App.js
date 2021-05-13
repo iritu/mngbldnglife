@@ -224,17 +224,24 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
 
   //update single message with new comment 
   function updateCommentsForMessage(comment, message){
-
-    //console.log(comment); 
-
+  
     let msgId = message.messageId; //msg id
 
     let msgPos = messages.findIndex(msg => msg.messageId === msgId); //index in array 
    
-    messages[msgPos].ArrayCommentsId.push(comment); 
     
-    console.log (messages); 
-
+    if (messages[msgPos].ArrayCommentsId){ //push new obj to exiting array 
+      messages[msgPos].ArrayCommentsId.push(comment); 
+    }
+    else{ //create new object , there is no array 
+      messages[msgPos].ArrayCommentsId = [{
+                                              "dateCreated":comment.dateCreated, 
+                                              "userId": comment.userId,
+                                              "buildingId": comment.buildingId,
+                                              "commentText": comment.commentText
+                                           }] ; 
+    }
+  
     setMessages(messages);
 
   }

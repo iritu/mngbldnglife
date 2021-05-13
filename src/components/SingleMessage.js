@@ -53,33 +53,19 @@ function SingleMessage({message, updateMessage}){
     function showCommentsForMessage(commentsArray){
         let returnStr = ""; 
 
+        console.log (commentsArray); 
+        
         if(commentsArray){
             returnStr = "<ul>"; 
         
             commentsArray.forEach(cmnt => {
                 returnStr += "<li>" + cmnt.commentText + "</li>" ; 
-                
             });
 
-            // commentsIdsArray.forEach(commentId => {
-            //     //1. find comment id in comments array 
-            //     index = comments.findIndex(cmnt => cmnt.commentId === commentId);
-            //     if (index >= 0 )
-            //     {
-            //         //2. get comment data for this index position
-            //         returnStr += "<li>" +comments[index].commentText+ "</li>" ; 
-            //     }
-            // }) ;  
-  
             returnStr += "</ul>";
         }
         return   returnStr;
     }
-
-
-
-
-
 
 
 
