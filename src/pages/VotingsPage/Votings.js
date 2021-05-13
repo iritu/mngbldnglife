@@ -6,6 +6,7 @@ import ActiveUserContext from '../../shared/activeUserContext';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import VoteTicketModel from '../../Model/VoteTicketModel'; 
+import SingleVoteTicket from '../../components/SingleVoteTicket'; 
 
 
 function Votings({voteTickets}){
@@ -18,10 +19,17 @@ function Votings({voteTickets}){
         return <Redirect to="/"/>
     }
 
-    let sortedTickets = voteTickets.filter(vote => 
-        vote.buildingId === activeUser.buildingId && (
-        vote.title.toLowerCase().includes(filterText.toLowerCase()) || 
-        vote.details.toLowerCase().includes(filterText.toLowerCase())));
+    let closedSortedTickets = voteTickets.filter(vote => 
+        (vote.buildingId === activeUser.buildingId && vote.status === "close") &&
+            (
+                vote.title.toLowerCase().includes(filterText.toLowerCase()) || 
+                vote.details.toLowerCase().includes(filterText.toLowerCase())
+            )
+        );
+
+
+    let openTickets = voteTickets.filter(vote => 
+            (vote.buildingId === activeUser.buildingId && vote.status === "open") );
 
 
     function openNewVote(){
@@ -43,41 +51,42 @@ function Votings({voteTickets}){
               </Row>
 
 
-              {sortedTickets? sortedTickets.map((VoteTicketModel)  => 
+            
                <Row>
-                   
                    <Col>
                 
                     <h1>Active Votings</h1>  
-                  
-                      {/* Loop over voteTickets array and each time present -  Single */}
 
-                        <Row>
-                            <Col>
-                            single vote
-                            </Col>
-                        </Row>
-                       
-                   
-                    
+                      {/* Loop over OPEN voteTickets array and each time present -  Single */}
+
+                      {openTickets? openTickets.map((openVoteTicket)  => 
+                            <SingleVoteTicket openVoteTicket={openVoteTicket} ></SingleVoteTicket>
+                         
+                         ) : "There are no open votes" }
                    </Col>
 
+              
+              
                    <Col>
                         <h1>Votings Results</h1>
-                        {/* filer box */}
 
+                        {/* filer box */}
+                        
+                        {closedSortedTickets? closedSortedTickets.map((closedVoteTicket)  => 
                         <form className="d-flex">
                             <input type="text" className="msgPageInput"
                                 placeholder="Filter by text in title and details" 
                                 value={filterText}
                                 onChange={e => setFilterText(e.target.value)}/>
                         </form> 
-                        New votings
+                         
+                         ) : "There are no closed votes" }
+                         
                    </Col> 
 
                </Row>
 
-              ) : null }
+           
 
 
             {/* activate new vote ticket  modal  */}   
