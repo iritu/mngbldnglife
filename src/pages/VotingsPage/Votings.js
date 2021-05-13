@@ -53,7 +53,7 @@ function Votings({voteTickets}){
 
             
                <Row>
-                   <Col>
+                   <Col sm={6} md={6}>
                 
                     <h1>Active Votings</h1>  
 

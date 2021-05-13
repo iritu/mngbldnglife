@@ -151,6 +151,26 @@ footer{
   margin-right:10px;
 }
 
+/**********VOTING*********************/
+.singleVoteTicket{
+  border:1px solid #343A40;
+}
+
+.singleVoteTicketHeader{
+  background-color: #343A40;
+  color:#fff;
+  width:100%;
+}
+.singleVoteTicketHeader h3{
+  font-size:2vh;
+  padding: 1vh 0 1vh 0 ; 
+}
+.singleVoteTicketDetails col{
+   padding: 2vh 0 2vh 0 ; 
+}
+
+
+
 
 @media only screen and (max-device-width: 480px){
    

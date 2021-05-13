@@ -3,6 +3,7 @@ import { Button, Row, Col, Form, Container} from "react-bootstrap";
 
 import VoteTicketModel from '../Model/VoteTicketModel'; 
 
+import DateTimePicker from 'react-datetime-picker';
 
 //context
 import ActiveUserContext from '../shared/activeUserContext';
@@ -11,6 +12,10 @@ import ActiveUserContext from '../shared/activeUserContext';
 function SingleVoteTicket({openVoteTicket}){
     
     const activeUser = useContext(ActiveUserContext);
+    const [endDatevalue, endDateonChange] = useState(new Date());
+     
+    
+   
 
     function updateEndDate(endDate){
         var newDate = prompt("Enter new date, the current end date is : " + endDate);
@@ -33,7 +38,6 @@ function SingleVoteTicket({openVoteTicket}){
         if (dateToPresent){
              date = new Date(dateToPresent).toLocaleString();
         }
-       
         return date;
     }
 
@@ -41,19 +45,34 @@ function SingleVoteTicket({openVoteTicket}){
     console.log(openVoteTicket);
 
     return (
-        <>
-        <h3>{openVoteTicket.title}</h3>
-        <Row>
-            <Col>
+        <Container className="singleVoteTicket">
+         <Row >
+            <Col className="singleVoteTicketHeader">
+                <h3>{openVoteTicket.title}</h3>
+            </Col>
+         </Row> 
+
+
+        <Row >
+           <Col className="singleVoteTicketDetails">
                 <strong>details:</strong> {openVoteTicket.details}
                 <br/>
                 <strong>End date:</strong> {presentDate(openVoteTicket.endDate)}
 
                 {activeUser.isAdmin ? 
-                        <Button variant="primary" size="sm"
-                                onClick={() => updateEndDate(openVoteTicket.endDate)}>
-                                    Update end date
-                        </Button>
+                        // <Button variant="primary" size="sm"
+                        //         onClick={() => updateEndDate(openVoteTicket.endDate)}>
+                        //             Update end date
+                        // </Button>
+                      <>
+                      <br/>
+                      <span>Update end date:</span>
+                        <DateTimePicker
+                            onChange={endDateonChange}
+                            value={endDatevalue}
+                            minDate= {new Date(openVoteTicket.endDate)}
+                         />
+                      </>  
                         : null} 
 
                         
@@ -62,7 +81,7 @@ function SingleVoteTicket({openVoteTicket}){
                 charts
             </Col>
         </Row>
-        </>
+        </Container>
     )
 }
 
