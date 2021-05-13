@@ -11,10 +11,11 @@
 
         "endDate": "2021-05-19 16:30:00",
        
-        "status":"open",
-        "voteSummary":0, 
+        "votes":[{"userid":1001, "result":0  },{"userid":1002, "result":1  } ], 
 
-        "votes":[{"userid":1001, "result":0  },{"userid":1002, "result":1  } ]
+        "status":"open",
+        
+        "voteSummary":0
     }
 ]
 

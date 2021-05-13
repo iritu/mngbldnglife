@@ -19,14 +19,17 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
     if (!activeUser) {
         return <Redirect to="/"/>
     }
-    
+   else{
+       console.log(activeUser); 
+   } 
    
       
     // 1) Filter the messages based on the filterText
-  
+    //    make sure that the messages presenter are for the building id of the active user  
     let sortedMessages = messages.filter(msg => 
+        msg.buildingId === activeUser.buildingId && (
         msg.title.toLowerCase().includes(filterText.toLowerCase()) || 
-        msg.details.toLowerCase().includes(filterText.toLowerCase()));
+        msg.details.toLowerCase().includes(filterText.toLowerCase())));
 
      console.log("messages js - sortedMessages array:")    
      console.log (sortedMessages);

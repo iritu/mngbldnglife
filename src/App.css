@@ -26,6 +26,8 @@ button{
 
 .imgAvatar{
   width:100px;
+  margin-right:10px; 
+  display: inline-block; 
 }
 
 .HomePageHeader{

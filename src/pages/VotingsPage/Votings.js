@@ -7,18 +7,22 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import VoteTicketModel from '../../Model/VoteTicketModel'; 
 
+
 function Votings({voteTickets}){
 
     const activeUser = useContext(ActiveUserContext);
     const [filterText, setFilterText] = useState("");
 
-    let sortedTickets = voteTickets.filter(vote => 
-        vote.title.toLowerCase().includes(filterText.toLowerCase()) || 
-        vote.details.toLowerCase().includes(filterText.toLowerCase()));
-
+  
     if (!activeUser) {
         return <Redirect to="/"/>
     }
+
+    let sortedTickets = voteTickets.filter(vote => 
+        vote.buildingId === activeUser.buildingId && (
+        vote.title.toLowerCase().includes(filterText.toLowerCase()) || 
+        vote.details.toLowerCase().includes(filterText.toLowerCase())));
+
 
     function openNewVote(){
         //open modal window
@@ -29,7 +33,7 @@ function Votings({voteTickets}){
               <Row>
                   <Col className="secondPHomePage">
                     
-                      {/* new msg btn */}
+                      {/* Add new vote ticket btn */}
                       {activeUser.isAdmin ? 
                             <Button variant="outline-primary"
                                     onClick={() => openNewVote("")}>New Voting
@@ -46,7 +50,7 @@ function Votings({voteTickets}){
                 
                     <h1>Active Votings</h1>  
                   
-                      {/* Loop over voteTickets array and eacg time present -  Single */}
+                      {/* Loop over voteTickets array and each time present -  Single */}
 
                         <Row>
                             <Col>
@@ -55,7 +59,7 @@ function Votings({voteTickets}){
                         </Row>
                        
                    
-                     <Button>Update and vote</Button>
+                    
                    </Col>
 
                    <Col>

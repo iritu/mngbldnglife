@@ -2,14 +2,11 @@ import { useState  } from "react";
 import { Button, Row, Col, Image , Form} from "react-bootstrap"; 
 //const pathPre = process.env.PUBLIC_URL;
 
-
 import CommentModel from '../Model/CommentModel';
 import SetCurrentDateTime from '../components/utils';
 
-
 //string to html react parser (npm install)
 import parse from 'html-react-parser';
-
 
 //coments
 import commentsJSON from '../data/comments.json';
@@ -103,24 +100,11 @@ function SingleMessage({message, updateMessage}){
            <Col xs={6} md={6} className="msgCardsCol">
                  <h5>{message.title}</h5>
       
-                <Image src={img} rounded className="imgAvatar"/>
+                <Image src={img} rounded className="imgAvatar" />
       
-                 Details: {message.details}
+                 <strong>Details: </strong> {message.details}
                  <br/>
-                Priority: {message.priority}
- 
-                <Form onSubmit={saveComment}>
-                   <Form.Group controlId={`commentMsg${message.messageId}`}>
-                       <Form.Control as="textarea" rows={3}
-                            value={newComment}
-                            onChange={e => setNewComment(e.target.value)}
-                            placeholder= "Add new comment"
-                        />
-                    </Form.Group>
-                           
-                   <Button variant="secondary" size="sm" type="submit">Add Comment</Button>
-                </Form>  
-
+                 <strong>Priority: </strong> {message.priority}
             </Col>
 
            <Col xs={6} md={6}>
@@ -129,6 +113,20 @@ function SingleMessage({message, updateMessage}){
                        
               {message.ArrayCommentsId?  parse(showCommentsForMessage(message.ArrayCommentsId))   : ""} 
  
+            
+            <Form onSubmit={saveComment}>
+                <Form.Group controlId={`commentMsg${message.messageId}`}>
+                   <Form.Control as="textarea" rows={3}
+                        value={newComment}
+                        onChange={e => setNewComment(e.target.value)}
+                        placeholder= "Add new comment"
+                      />
+                </Form.Group>
+           
+                <Button variant="secondary" size="sm" type="submit">Add Comment</Button>
+            </Form>  
+
+
             </Col>
 
 
