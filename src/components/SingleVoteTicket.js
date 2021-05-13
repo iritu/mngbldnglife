@@ -3,6 +3,7 @@ import { Button, Row, Col, Form, Container} from "react-bootstrap";
 
 import VoteTicketModel from '../Model/VoteTicketModel'; 
 
+//https://www.npmjs.com/package/react-datetime-picker
 import DateTimePicker from 'react-datetime-picker';
 
 //context
@@ -16,8 +17,9 @@ function SingleVoteTicket({openVoteTicket}){
      
     
     //endDateOnChange send caller
-
     
+    console.log(endDateValue); 
+
 
     // function updateEndDate(endDate){
     //     var newDate = prompt("Enter new date, the current end date is : " + endDate);
@@ -73,6 +75,7 @@ function SingleVoteTicket({openVoteTicket}){
                             onChange={endDateOnChange}
                             value={endDateValue}
                             minDate= {new Date(openVoteTicket.endDate)}
+                            
                          />
                       </>  
                         : null} 
