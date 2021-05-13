@@ -7,7 +7,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import ActiveUserContext from '../../shared/activeUserContext';
 import NewMsgModal from '../../components/NewMsgModal';
 
-function Messages({messages, onNewMessage, onDeleteMsg}){
+function Messages({messages, onNewMessage, onDeleteMsg, onUpdateComment}){
     
     const activeUser = useContext(ActiveUserContext);
     const [newMsgeModal, setNewMsgeModal] = useState(false);
@@ -67,19 +67,11 @@ function Messages({messages, onNewMessage, onDeleteMsg}){
     }
 
  
-    function funcUpdateMessage(commentId, message){
-        //alert (commentId);
-        //update message obj with the new comment
-        if (message.ArrayCommentsId){ //existing array of comments per message
-            message.ArrayCommentsId.push(commentId); 
-        }
-        else{ //there is no such array of comments yet
-            message.ArrayCommentsId = [commentId];
-        }
-
-        console.log(message); 
-
-    
+    //pass cller (app.js ) by local func 
+    function funcUpdateMessage(comment, message){
+   
+        onUpdateComment(comment, message); 
+        
     }
 
     return(

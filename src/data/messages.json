@@ -8,7 +8,24 @@
         "details": "Our new community building message", 
         "priority":  "Info",
         "ArrayCommentsId":[
-           1,2,3
+            {
+                "dateCreated": "2021-05-06 16:30:00",
+                "userId": 1001,
+                "buildingId":1,
+                "commentText": "This is comment no 1 for msg no 1 "
+            },
+            {
+                "dateCreated": "2021-05-10 17:39:00",
+                "userId": 1001,
+                "buildingId":1,
+                "commentText": "This is comment no 2 for msg no 1 "
+            },
+            {
+                "dateCreated": "2021-05-10 17:39:00",
+                "userId": 1002,
+                "buildingId":1,
+                "commentText": "This is comment no 3 for msg no 1 "
+            }
         
         ]
 

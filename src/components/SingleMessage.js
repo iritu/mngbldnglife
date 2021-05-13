@@ -8,19 +8,12 @@ import SetCurrentDateTime from '../components/utils';
 //string to html react parser (npm install)
 import parse from 'html-react-parser';
 
-//coments
-import commentsJSON from '../data/comments.json';
-
-
 function SingleMessage({message, updateMessage}){
 
     //form, get new comment
     const [newComment, setNewComment] = useState("");
     
-    //comments
-    const[comments, setComments] = useState(commentsJSON.map(comment => new CommentModel(comment)));
-
-  
+   
     let img = ""; 
 
     img = message.img; 
@@ -36,53 +29,48 @@ function SingleMessage({message, updateMessage}){
         //alert(newComment);
 
         let dateCreated = SetCurrentDateTime(); 
-        let commentId =  comments[comments.length-1].commentId + 1; 
         let userId = message.userId; 
         let buildingId = message.buildingId; 
-        let messageId = message.messageId; 
         let commentText = newComment; 
 
         const  newCommentObj = new CommentModel({
             dateCreated,
-            commentId,
             userId,
             buildingId,
-            messageId,
             commentText
         });
 
-        //Insert into comments array 
-        setComments( comments.concat(newCommentObj));
-
-      
         //re - render message obj
-
-        updateMessage(commentId , message); 
+        updateMessage(newCommentObj , message);
 
    }
 
 
    
-    //get array of comments id's and return string combined from 
+    //get array of comments and return string combined from 
     //<ul> text (comments) items 
     //caller uses parse() to extract returned string to html
-    function showCommentsForMessage(commentsIdsArray){
+    function showCommentsForMessage(commentsArray){
         let returnStr = ""; 
 
-        if(commentsIdsArray){
-            let index =0; 
+        if(commentsArray){
             returnStr = "<ul>"; 
         
-            commentsIdsArray.forEach(commentId => {
-                //1. find comment id in comments array 
-                index = comments.findIndex(cmnt => cmnt.commentId === commentId);
-                if (index >= 0 )
-                {
-                    //2. get comment data for this index position
-                    returnStr += "<li>" +comments[index].commentText+ "</li>" ; 
-                }
-            }) ;  
-            
+            commentsArray.forEach(cmnt => {
+                returnStr += "<li>" + cmnt.commentText + "</li>" ; 
+                
+            });
+
+            // commentsIdsArray.forEach(commentId => {
+            //     //1. find comment id in comments array 
+            //     index = comments.findIndex(cmnt => cmnt.commentId === commentId);
+            //     if (index >= 0 )
+            //     {
+            //         //2. get comment data for this index position
+            //         returnStr += "<li>" +comments[index].commentText+ "</li>" ; 
+            //     }
+            // }) ;  
+  
             returnStr += "</ul>";
         }
         return   returnStr;

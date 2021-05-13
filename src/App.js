@@ -222,6 +222,22 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
 
   }
 
+  //update single message with new comment 
+  function updateCommentsForMessage(comment, message){
+
+    //console.log(comment); 
+
+    let msgId = message.messageId; //msg id
+
+    let msgPos = messages.findIndex(msg => msg.messageId === msgId); //index in array 
+   
+    messages[msgPos].ArrayCommentsId.push(comment); 
+    
+    console.log (messages); 
+
+    setMessages(messages);
+
+  }
 
 /********************END MESSAGES SECTION*********************** */
 
@@ -235,7 +251,14 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
               <Route exact path="/login"><LoginPage  users={users} onLogin={user => setActiveUser(user)}/></Route>
               <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
               <Route exact path="/tenants"><TenantsPage/></Route>
-              <Route exact path="/messages"><Messages messages={messages} onNewMessage={addNewMsg}  onDeleteMsg={deleteMsg} /></Route>
+              <Route exact path="/messages">
+                  <Messages 
+                    messages={messages} 
+                    onNewMessage={addNewMsg}  
+                    onDeleteMsg={deleteMsg} 
+                    onUpdateComment={updateCommentsForMessage}
+                  />
+              </Route>
               <Route exact path="/votings"><Votings voteTickets={voteTickets} /></Route>
               <Route exact path="/dashboard"><Dashboard/></Route>
           </Switch>

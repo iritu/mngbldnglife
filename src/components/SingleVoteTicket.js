@@ -12,24 +12,26 @@ import ActiveUserContext from '../shared/activeUserContext';
 function SingleVoteTicket({openVoteTicket}){
     
     const activeUser = useContext(ActiveUserContext);
-    const [endDatevalue, endDateonChange] = useState(new Date());
+    const [endDateValue, endDateOnChange] = useState(new Date());
      
     
-   
+    //endDateOnChange send caller
 
-    function updateEndDate(endDate){
-        var newDate = prompt("Enter new date, the current end date is : " + endDate);
-        var returnedDate ="";
+    
 
-        if (newDate == null || newDate === "") {
-                //canceled
-        } else {
-             returnedDate = newDate;
-        }
+    // function updateEndDate(endDate){
+    //     var newDate = prompt("Enter new date, the current end date is : " + endDate);
+    //     var returnedDate ="";
 
-        alert (returnedDate);
+    //     if (newDate == null || newDate === "") {
+    //             //canceled
+    //     } else {
+    //          returnedDate = newDate;
+    //     }
 
-    }
+    //     alert (returnedDate);
+
+    // }
 
 
     function presentDate(dateToPresent){
@@ -68,8 +70,8 @@ function SingleVoteTicket({openVoteTicket}){
                       <br/>
                       <span>Update end date:</span>
                         <DateTimePicker
-                            onChange={endDateonChange}
-                            value={endDatevalue}
+                            onChange={endDateOnChange}
+                            value={endDateValue}
                             minDate= {new Date(openVoteTicket.endDate)}
                          />
                       </>  

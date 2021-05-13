@@ -10,12 +10,9 @@ export default class CommentModel {
         else{
             this.dateCreated   =  singleComment.dateCreated;
         }
-
-         this.commentId     =  singleComment.commentId;     //PK
-         this.userId        =  singleComment.userId;        //FK (UserModel)
-         this.buildingId    =  singleComment.buildingId;    //FK. (BuildingModel)
-         this.messageId     =  singleComment.messageId;     //FK. (MessageModel) 
-         
-         this.commentText   =  singleComment.commentText; 
+        
+        this.userId        =  singleComment.userId;        //FK (UserModel)
+        this.buildingId    =  singleComment.buildingId;    //FK. (BuildingModel)
+        this.commentText   =  singleComment.commentText; 
     }
 }

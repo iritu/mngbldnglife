@@ -71,14 +71,14 @@ function Votings({voteTickets}){
                         <h1>Votings Results</h1>
 
                         {/* filer box */}
-                        
-                        {closedSortedTickets? closedSortedTickets.map((closedVoteTicket)  => 
                         <form className="d-flex">
                             <input type="text" className="msgPageInput"
                                 placeholder="Filter by text in title and details" 
                                 value={filterText}
                                 onChange={e => setFilterText(e.target.value)}/>
-                        </form> 
+                        </form>
+                        {closedSortedTickets? closedSortedTickets.map((closedVoteTicket)  => 
+                            <SingleVoteTicket openVoteTicket={closedVoteTicket} ></SingleVoteTicket>
                          
                          ) : "There are no closed votes" }
                          
