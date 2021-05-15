@@ -32,12 +32,14 @@ function Votings({voteTickets}){
             (vote.buildingId === activeUser.buildingId && vote.status === "open") );
 
 
+
+            
     function openNewVote(){
         //open modal window
     }
 
 
-    function funcUpdateDate(updateDate){
+    function updateDate(updateDate){
         console.log(updateDate); 
 
     }
@@ -67,7 +69,7 @@ function Votings({voteTickets}){
                       {/* Loop over OPEN voteTickets array and each time present -  Single */}
 
                       {openTickets? openTickets.map((openVoteTicket)  => 
-                            <SingleVoteTicket openVoteTicket={openVoteTicket} funcUpdateDate={funcUpdateDate} >
+                            <SingleVoteTicket openVoteTicket={openVoteTicket} funcUpdateDate={updateDate} >
 
                             </SingleVoteTicket>
                          

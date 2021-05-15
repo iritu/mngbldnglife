@@ -15,7 +15,7 @@ function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
     
     const activeUser = useContext(ActiveUserContext);
     const [endDateValue, endDateOnChange] = useState(new Date());
-    // const [voteFor, setVoteFor] = useState("Select Options"); 
+
     
     // function updateEndDate(endDate){
     //     var newDate = prompt("Enter new date, the current end date is : " + endDate);
@@ -33,14 +33,19 @@ function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
 
    
 
+    //get selected vote from "SelectOptionsForVote" component
     function funcGetVote(voteFor){
         console.log(voteFor); 
-
+        //call upper level code to update the value
     }
+
+
 
     //every time the date changes, call uper level code to update the value
     useEffect(() => {
-        funcUpdateDate(endDateValue); 
+        if (funcUpdateDate){
+            funcUpdateDate(endDateValue); 
+        }
  
       }, [endDateValue , funcUpdateDate]);
  
@@ -87,21 +92,7 @@ function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
                       <SelectOptionsForVote selectOptions={ openVoteTicket.options} 
                                             funcSetVoteFor= {funcGetVote}    
                         />
-                      {/* <form >
-                            <span>Options for this Vote Ticket: </span>
-                            
-                               <select value={voteFor} 
-                                onChange={e => setVoteFor(e.target.value)}
-                                className="form-control">
-                                {
-                                    openVoteTicket.options ? 
-                                         openVoteTicket.options.map((option) => (
-                                             <option value={option}>{option}</option>
-                                            ))
-                                    :null
-                                }        
-                               </select>
-                    </form>   */}
+                   
                         
             </Col>
             <Col>
