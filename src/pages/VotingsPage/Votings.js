@@ -36,6 +36,13 @@ function Votings({voteTickets}){
         //open modal window
     }
 
+
+    function funcUpdateDate(updateDate){
+        console.log(updateDate); 
+
+    }
+
+
     return(
         <Container>
               <Row>
@@ -60,7 +67,9 @@ function Votings({voteTickets}){
                       {/* Loop over OPEN voteTickets array and each time present -  Single */}
 
                       {openTickets? openTickets.map((openVoteTicket)  => 
-                            <SingleVoteTicket openVoteTicket={openVoteTicket} ></SingleVoteTicket>
+                            <SingleVoteTicket openVoteTicket={openVoteTicket} funcUpdateDate={funcUpdateDate} >
+
+                            </SingleVoteTicket>
                          
                          ) : "There are no open votes" }
                    </Col>

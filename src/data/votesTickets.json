@@ -11,6 +11,19 @@
         "votes":[{"userid":1001, "result":0  },{"userid":1002, "result":1  } ], 
         "status":"open",
         "voteSummary":0
+    }, 
+    {
+        "VoteTicketId":2,
+        "userId": 1001,
+        "buildingId":1,
+        "dateCreated": "2021-05-14 16:30:00",
+        "title": "New 'vaadat tarbut' members ", 
+        "details": "Since Maayan is leaving this role we need to choose someone to replace her: ", 
+        "options": ["Shula" , "Yackov", "Hana", "Vered"], 
+        "endDate": "2021-05-20 16:30:00",
+        "votes":[  {"userid":1001, "result":"Shula"  }, {"userid":1002, "result":"Shula"  }  ], 
+        "status":"open",
+        "voteSummary":0
     }
 ]
 
