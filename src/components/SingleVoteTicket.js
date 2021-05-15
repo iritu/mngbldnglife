@@ -11,6 +11,8 @@ import ActiveUserContext from '../shared/activeUserContext';
 
 import SelectOptionsForVote from '../components/SelectOptionsForVote'; 
 
+import PieChartData from '../components/PieChartData'; 
+
 function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
     
     const activeUser = useContext(ActiveUserContext);
@@ -96,7 +98,7 @@ function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
                         
             </Col>
             <Col>
-                charts
+                <PieChartData/>
             </Col>
         </Row>
         </Container>
