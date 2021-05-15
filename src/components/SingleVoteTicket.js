@@ -98,7 +98,7 @@ function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
                         
             </Col>
             <Col>
-                <PieChartData/>
+                <PieChartData entity={openVoteTicket} />
             </Col>
         </Row>
         </Container>

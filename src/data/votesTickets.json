@@ -8,7 +8,7 @@
         "details": "explain the vote issue - ziput", 
         "options": ["yes" , "no"], 
         "endDate": "2021-05-20 16:30:00",
-        "votes":[{"userid":1001, "result":0  },{"userid":1002, "result":1  } ], 
+        "votes":[{"userid":1001, "result":"yes"  },{"userid":1002, "result":"no"  } ], 
         "status":"open",
         "voteSummary":0
     }, 
@@ -21,7 +21,7 @@
         "details": "Since Maayan is leaving this role we need to choose someone to replace her: ", 
         "options": ["Shula" , "Yackov", "Hana", "Vered"], 
         "endDate": "2021-05-20 16:30:00",
-        "votes":[  {"userid":1001, "result":"Shula"  }, {"userid":1002, "result":"Shula"  }  ], 
+        "votes":[  {"userid":1001, "result":"Shula"  }, {"userid":1002, "result":"Yackov" }  ], 
         "status":"open",
         "voteSummary":0
     }
