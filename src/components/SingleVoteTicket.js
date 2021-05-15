@@ -61,32 +61,32 @@ function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
 
 
         <Row >
-           <Col className="singleVoteTicketDetails">
-                <strong>details:</strong> {openVoteTicket.details}
-                <br/>
-                <strong>End date:</strong> {  
-                    endDateValue.toLocaleString() >  new Date(openVoteTicket.endDate).toLocaleString() ? 
-                    endDateValue.toLocaleString() : 
-                    new Date(openVoteTicket.endDate).toLocaleString()  }
+           <Col>
+                    <strong>details:</strong> {openVoteTicket.details}
+                    <br/>
+                    <strong>End date:</strong> {  
+                        endDateValue.toLocaleString() >  new Date(openVoteTicket.endDate).toLocaleString() ? 
+                        endDateValue.toLocaleString() : 
+                        new Date(openVoteTicket.endDate).toLocaleString()  }
 
-                {activeUser.isAdmin ? 
-                        // <Button variant="primary" size="sm"
-                        //         onClick={() => updateEndDate(openVoteTicket.endDate)}>
-                        //             Update end date
-                        // </Button>
-                      <>
-                      <br/>
-                      <span>Update end date:</span>
-                        <DateTimePicker
-                            onChange={endDateOnChange}
-                            value={endDateValue}
-                            minDate= {new Date(openVoteTicket.endDate)}
-                            
-                         />
-                      </>  
-                        : null} 
+                    {activeUser.isAdmin ? 
+                            // <Button variant="primary" size="sm"
+                            //         onClick={() => updateEndDate(openVoteTicket.endDate)}>
+                            //             Update end date
+                            // </Button>
+                        <>
+                        <br/>
+                        <strong>Update end date:</strong>
+                            <DateTimePicker
+                                onChange={endDateOnChange}
+                                value={endDateValue}
+                                minDate= {new Date(openVoteTicket.endDate)}
+                                
+                            />
+                        </>  
+                            : null} 
 
-
+                    
                       {/* present options to vote - for tenant   */}
 
                       <SelectOptionsForVote selectOptions={ openVoteTicket.options} 
