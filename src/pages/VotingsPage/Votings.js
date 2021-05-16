@@ -5,7 +5,6 @@ import { useState, useContext  } from "react";
 import ActiveUserContext from '../../shared/activeUserContext';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
-import VoteTicketModel from '../../Model/VoteTicketModel'; 
 import SingleVoteTicket from '../../components/SingleVoteTicket'; 
 
 import NewTicketModal from '../../components/NewVoteTicketModal';

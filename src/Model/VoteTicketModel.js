@@ -16,13 +16,33 @@ export default class VoteTicketModel {
          this.title         = singleVoteTicket.title; 
          this.details       = singleVoteTicket.details; 
          
-         this.options       = singleVoteTicket.options; //array of strings 
+        this.options       = singleVoteTicket.options; //array of strings 
 
          this.endDate       = singleVoteTicket.endDate; //the vote is no longer active after this date
   
-         this.votes         = singleVoteTicket.votes;  //votes are related to options, see json for the example
-         
-         this.status        = singleVoteTicket.status; //open/close 
-         this.voteSummary   = singleVoteTicket.voteSummary; 
+        if (singleVoteTicket.votes === null){
+            this.votes  = []; 
+        }
+        else{
+            this.votes         = singleVoteTicket.votes;  //votes are related to options, see json for the example
+        }
+      
+        if ( singleVoteTicket.status === null)
+        {
+            this.status= "open"; 
+        }
+        else
+        {         
+            this.status        = singleVoteTicket.status; //open/close 
+        }
+
+        if (singleVoteTicket.voteSummary === null )
+        {
+            this.voteSummary = 0 ; 
+        }
+        else{
+            this.voteSummary   = singleVoteTicket.voteSummary; 
+        }
+        
     }
 }

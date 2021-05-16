@@ -251,8 +251,9 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
 
 /********************VOTING SECTION ***************************** */
 
-function addNewVoteTicket(){
-  console.log("Insert new vote ticket")
+function addNewVoteTicket(userId, buildingId, dateCreated, title, details , arrOptions , endDate ){
+  console.log("Insert new vote ticket"); 
+  console.log (arrOptions); 
 }
 
 /*******************END VOTING SECTION*************************** */
