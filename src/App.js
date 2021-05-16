@@ -248,6 +248,16 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
 
 /********************END MESSAGES SECTION*********************** */
 
+
+/********************VOTING SECTION ***************************** */
+
+function addNewVoteTicket(){
+  console.log("Insert new vote ticket")
+}
+
+/*******************END VOTING SECTION*************************** */
+
+
   return (
     <ActiveUserContext.Provider value={activeUser}> 
      <SiteNavBar   onLogout={() => setActiveUser(null)}/>
@@ -266,7 +276,12 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
                     onUpdateComment={updateCommentsForMessage}
                   />
               </Route>
-              <Route exact path="/votings"><Votings voteTickets={voteTickets} /></Route>
+              <Route exact path="/votings">
+                <Votings 
+                  voteTickets={voteTickets} 
+                  onNewTicket={addNewVoteTicket}
+                  />
+              </Route>
               <Route exact path="/dashboard"><Dashboard/></Route>
           </Switch>
        </HashRouter>

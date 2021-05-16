@@ -8,12 +8,15 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import VoteTicketModel from '../../Model/VoteTicketModel'; 
 import SingleVoteTicket from '../../components/SingleVoteTicket'; 
 
+import NewTicketModal from '../../components/NewVoteTicketModal';
 
-function Votings({voteTickets}){
+function Votings({voteTickets , onNewTicket}){
 
     const activeUser = useContext(ActiveUserContext);
     const [filterText, setFilterText] = useState("");
 
+    //modal
+    const [newTicketModal, setNewTicketModal] = useState(false);
   
     if (!activeUser) {
         return <Redirect to="/"/>
@@ -36,6 +39,7 @@ function Votings({voteTickets}){
             
     function openNewVote(){
         //open modal window
+        setNewTicketModal(true);
     }
 
 
@@ -56,7 +60,7 @@ function Votings({voteTickets}){
                      {/* Add new vote ticket btn */}
                      {activeUser.isAdmin ? 
                             <Button variant="outline-primary" style={{"margin-bottom": "2vh"}}
-                                    onClick={() => openNewVote("")}>New Voting
+                                    onClick={() => openNewVote()}>New Voting
                             </Button> : null}
 
                       {/* Loop over OPEN voteTickets array and each time present -  Single */}
@@ -97,6 +101,14 @@ function Votings({voteTickets}){
 
 
             {/* activate new vote ticket  modal  */}   
+            <NewTicketModal 
+                show={newTicketModal} 
+                onClose={() => setNewTicketModal(false)} 
+                onCreate={onNewTicket}
+                activeUserBuildingid={activeUser.buildingId}
+                activeUserId = {activeUser.userId}
+            />
+
 
         </Container>
          
