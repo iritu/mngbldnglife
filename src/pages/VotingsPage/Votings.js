@@ -47,29 +47,22 @@ function Votings({voteTickets}){
 
     return(
         <Container>
-              <Row>
-                  <Col className="secondPHomePage">
-                    
-                      {/* Add new vote ticket btn */}
-                      {activeUser.isAdmin ? 
-                            <Button variant="outline-primary"
-                                    onClick={() => openNewVote("")}>New Voting
-                            </Button> : null}
-                  </Col>
-
-              </Row>
-
-
-            
+           
                <Row>
                    <Col sm={6} md={6}>
                 
                     <h1>Active Votings</h1>  
 
+                     {/* Add new vote ticket btn */}
+                     {activeUser.isAdmin ? 
+                            <Button variant="outline-primary" style={{"margin-bottom": "2vh"}}
+                                    onClick={() => openNewVote("")}>New Voting
+                            </Button> : null}
+
                       {/* Loop over OPEN voteTickets array and each time present -  Single */}
 
                       {openTickets? openTickets.map((openVoteTicket)  => 
-                            <SingleVoteTicket openVoteTicket={openVoteTicket} funcUpdateDate={updateDate} >
+                            <SingleVoteTicket voteTicket={openVoteTicket} funcUpdateDate={updateDate} >
 
                             </SingleVoteTicket>
                          
@@ -88,8 +81,11 @@ function Votings({voteTickets}){
                                 value={filterText}
                                 onChange={e => setFilterText(e.target.value)}/>
                         </form>
+
+                        {/* Loop over CLOSED  voteTickets array and each time present -  Single */}
+
                         {closedSortedTickets? closedSortedTickets.map((closedVoteTicket)  => 
-                            <SingleVoteTicket openVoteTicket={closedVoteTicket} ></SingleVoteTicket>
+                            <SingleVoteTicket voteTicket={closedVoteTicket} ></SingleVoteTicket>
                          
                          ) : "There are no closed votes" }
                          

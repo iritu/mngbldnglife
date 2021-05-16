@@ -13,7 +13,7 @@ import SelectOptionsForVote from '../components/SelectOptionsForVote';
 
 import PieChartData from '../components/PieChartData'; 
 
-function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
+function SingleVoteTicket({voteTicket, funcUpdateDate}){
     
     const activeUser = useContext(ActiveUserContext);
     const [endDateValue, endDateOnChange] = useState(new Date());
@@ -57,21 +57,21 @@ function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
         <Container className="singleVoteTicket">
          <Row >
             <Col className="singleVoteTicketHeader">
-                <h3>{openVoteTicket.title}</h3>
+                <h3>{voteTicket.title}</h3>
             </Col>
          </Row> 
 
 
         <Row >
-           <Col>
-                    <strong>details:</strong> {openVoteTicket.details}
+           <Col md={7} sm={12}>
+                    <strong>details:</strong> {voteTicket.details}
                     <br/>
                     <strong>End date:</strong> {  
-                        endDateValue.toLocaleString() >  new Date(openVoteTicket.endDate).toLocaleString() ? 
+                        endDateValue.toLocaleString() >  new Date(voteTicket.endDate).toLocaleString() ? 
                         endDateValue.toLocaleString() : 
-                        new Date(openVoteTicket.endDate).toLocaleString()  }
+                        new Date(voteTicket.endDate).toLocaleString()  }
 
-                    {activeUser.isAdmin ? 
+                    {activeUser.isAdmin && voteTicket.status === "open" ? 
                             // <Button variant="primary" size="sm"
                             //         onClick={() => updateEndDate(openVoteTicket.endDate)}>
                             //             Update end date
@@ -82,7 +82,7 @@ function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
                             <DateTimePicker
                                 onChange={endDateOnChange}
                                 value={endDateValue}
-                                minDate= {new Date(openVoteTicket.endDate)}
+                                minDate= {new Date(voteTicket.endDate)}
                                 
                             />
                         </>  
@@ -91,14 +91,18 @@ function SingleVoteTicket({openVoteTicket, funcUpdateDate}){
                     
                       {/* present options to vote - for tenant   */}
 
-                      <SelectOptionsForVote selectOptions={ openVoteTicket.options} 
+                      { voteTicket.status === "open" ?   
+                            <SelectOptionsForVote selectOptions={ voteTicket.options} 
                                             funcSetVoteFor= {funcGetVote}    
-                        />
+                             />
+                            :
+                            null
+                    }       
                    
                         
             </Col>
-            <Col>
-                <PieChartData entity={openVoteTicket} />
+            <Col  md={5} sm={12}>
+                <PieChartData entity={voteTicket} />
             </Col>
         </Row>
         </Container>

@@ -145,6 +145,7 @@ footer{
   width:80%;
   padding:3px;
   margin-right:10px;
+  margin-bottom: 2vh; 
 }
 
 .btnUpdateMsg{
@@ -156,6 +157,7 @@ footer{
   border:1px solid #343A40;
   margin-bottom: 4vh;
   padding-bottom: 4vh;
+  min-height:350px; 
 }
 
 .singleVoteTicketHeader{
@@ -211,4 +213,8 @@ footer{
     flex-direction: column-reverse;
   }
 
+  .singleVoteTicketHeader h3
+  {
+    font-size:4vh; 
+  }
 }

@@ -22,7 +22,7 @@
         "options": ["Shula" , "Yackov", "Hana", "Vered"], 
         "endDate": "2021-05-20 16:30:00",
         "votes":[  {"userid":1001, "result":"Shula"  }, {"userid":1002, "result":"Yackov" } , {"userid":1003, "result":"Yackov" } ], 
-        "status":"open",
+        "status":"close",
         "voteSummary":0
     }
 ]
