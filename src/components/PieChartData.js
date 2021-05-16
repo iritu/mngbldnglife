@@ -52,7 +52,7 @@ function PieChartData({entity}){
      */
     function countResults(label, arrVotes){
       const count = arrVotes.reduce((counter, obj) => obj.result === label ? counter += 1 : counter, 0); // 6
-      console.log(count);
+      //console.log(count);
       return count; 
     }
 

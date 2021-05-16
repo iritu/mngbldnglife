@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form, Col, Row } from 'react-bootstrap';
 
 import SetCurrentDateTime from './utils';
 
 import DateTimePicker from 'react-datetime-picker';
-// if messageIndex is passed the it is an update process else it is an insert process
+
+//string to html react parser (npm install)
+import parse from 'html-react-parser';
 
 function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId}) {
  
     const [title, setTitle] = useState("");
     const [details, setDetails] = useState("");
-    const [arrOptions, serArrOptions] = useState();
+    const [arrOptions, setArrOptions] = useState(); //array of options
     const [endDate, setEndDate] = useState(new Date());
-
+    const [option, setOption] = useState(""); //single inserted option 
 
  
     let modalTitle = "Create New Voting "
 
-    var  createArrOpt = [];
-
+  
     function onBeforeClose()
     {
         clearForm(); 
@@ -29,19 +30,13 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
   
     let  dateCreated = SetCurrentDateTime();
  
-
-    //create array of options
-    function setArrOptions(option){
-            if (!createArrOpt){
-                createArrOpt = option; 
-            }
-            else{
-                createArrOpt.push(option); 
-            }
-
-            serArrOptions(createArrOpt); 
-
-    }
+ 
+    // if (arrOptions){
+    //     setArrOptions(arrOptions.push(option)); 
+    // }
+    // else{
+    //    setArrOptions(option); 
+    // }
 
 
     //clear form data   
@@ -56,14 +51,34 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
     function createVote() {
         let buildingId = activeUserBuildingid; // get building id
         let userId = activeUserId;             // get current user id ( isAdmin)
- 
+        //let options = arrOptions; 
+        let options = option; 
+
+        //extract correct date
+        //endDate
+        
       //VoteTicketId, userId, buildingId, dateCreated, title, details, options, endDate, votes, "open", 0
-        onCreate(userId, buildingId, dateCreated, title, details , arrOptions , endDate );
+        onCreate(userId, buildingId, dateCreated, title, details , options , endDate );
         onBeforeClose();
     }
 
  
+    function addOptionRow(){
+        let OptionRow=""; 
+    //    OptionRow += "<input type='text' placeholder='Enter new option' value={details} onChange={e => setArrOptions(e.target.value)}/>"
 
+        OptionRow += "  <Form.Control type='text' placeholder='Enter new option' "; 
+        OptionRow+= "  value={details} onChange={e => setArrOptions(e.target.value)}/>"
+      
+        console.log(OptionRow); 
+
+        return OptionRow; 
+    }
+
+
+    function addOption (){
+        parse(addOptionRow()); 
+    }
 
     return (
         <Modal show={show} onHide={onBeforeClose} size="lg">
@@ -100,7 +115,10 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
                         </Form.Label>
                         <Col sm={9}>
                             <Form.Control type="text" placeholder="Enter new option" 
-                                value={details} onChange={e => setArrOptions(e.target.value)}/>
+                                value={option} onChange={e => setOption(e.target.value)}/>
+ 
+                            <br/> 
+                             {/* <Button onClick={addOption}>+</Button> */}
                         </Col>
                     </Form.Group>
 
