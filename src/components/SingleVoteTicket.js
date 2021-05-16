@@ -46,10 +46,10 @@ function SingleVoteTicket({voteTicket, funcUpdateDate}){
     //every time the date changes, call uper level code to update the value
     useEffect(() => {
         if (funcUpdateDate){
-            funcUpdateDate(endDateValue); 
+            funcUpdateDate(endDateValue,voteTicket ); 
         }
  
-      }, [endDateValue , funcUpdateDate]);
+      }, [endDateValue , funcUpdateDate, voteTicket]);
  
 
    

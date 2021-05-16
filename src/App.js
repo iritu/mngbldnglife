@@ -279,6 +279,18 @@ function addNewVoteTicket(userId, buildingId, dateCreated, title, details , opti
 
 }
 
+
+function updateEndDate (voteTicket){
+  let ticketId  = voteTicket.VoteTicketId; //vote ticket id
+
+  let ticketPos = voteTickets.findIndex(vote => vote.VoteTicketId === ticketId); //index in array 
+
+  voteTickets[ticketPos].endDate = voteTicket.endDate; 
+
+  setVoteTickets(voteTickets);
+}
+
+
 /*******************END VOTING SECTION*************************** */
 
 
@@ -304,6 +316,7 @@ function addNewVoteTicket(userId, buildingId, dateCreated, title, details , opti
                 <Votings 
                   voteTickets={voteTickets} 
                   onNewTicket={addNewVoteTicket}
+                  onUpdateDate={updateEndDate}
                   />
               </Route>
               <Route exact path="/dashboard"><Dashboard/></Route>

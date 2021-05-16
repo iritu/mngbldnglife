@@ -9,7 +9,9 @@ import SingleVoteTicket from '../../components/SingleVoteTicket';
 
 import NewTicketModal from '../../components/NewVoteTicketModal';
 
-function Votings({voteTickets , onNewTicket}){
+
+
+function Votings({voteTickets , onNewTicket, onUpdateDate}){
 
     const activeUser = useContext(ActiveUserContext);
     const [filterText, setFilterText] = useState("");
@@ -42,10 +44,29 @@ function Votings({voteTickets , onNewTicket}){
     }
 
 
-    function updateDate(updateDate){
-        console.log(updateDate); 
+    //UPDATE end date 
+    function updateDate(updateDate , voteTicket){
+      //  console.log(updateDate); 
+
+        
+        let datePart =""; 
+        let timePart = ""; 
+
+        datePart = updateDate.getFullYear() + '-' + (updateDate.getMonth() + 1) + '-' + updateDate.getDate();
+        timePart = updateDate.getHours() + ':' + updateDate.getMinutes() + ':' + updateDate.getSeconds();
+
+        let endDate = datePart + " " + timePart; 
+   
+      //  console.log(endDate);
+
+        voteTicket.endDate = endDate; 
+
+        //call app.js to update
+        onUpdateDate(voteTicket); 
 
     }
+
+
 
 
     return(
