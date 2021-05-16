@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, Form, Col, Row } from 'react-bootstrap';
 
 import SetCurrentDateTime from './utils';
@@ -13,7 +13,7 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
     const [title, setTitle] = useState("");
     const [details, setDetails] = useState("");
     const [arrOptions, setArrOptions] = useState(); //array of options
-    const [endDate, setEndDate] = useState(new Date());
+    const [endDateState, setEndDateState] = useState(new Date());
     const [option, setOption] = useState(""); //single inserted option 
 
  
@@ -54,8 +54,15 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
         //let options = arrOptions; 
         let options = option; 
 
-        //extract correct date
-        //endDate
+        //2021-5-16 14:58:46
+
+        let datePart =""; 
+        let timePart = ""; 
+
+        datePart = endDateState.getFullYear() + '-' + (endDateState.getMonth() + 1) + '-' + endDateState.getDate();
+        timePart = endDateState.getHours() + ':' + endDateState.getMinutes() + ':' + endDateState.getSeconds();
+
+        let endDate = datePart + " " + timePart; 
         
       //VoteTicketId, userId, buildingId, dateCreated, title, details, options, endDate, votes, "open", 0
         onCreate(userId, buildingId, dateCreated, title, details , options , endDate );
@@ -130,8 +137,8 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
                         </Form.Label>
                         <Col sm={9}>
                              <DateTimePicker
-                                onChange={setEndDate}
-                                value={endDate}
+                                onChange={setEndDateState}
+                                value={endDateState}
                                 minDate= {new Date()}
                                 
                             />

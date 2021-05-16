@@ -20,14 +20,14 @@ export default class VoteTicketModel {
 
          this.endDate       = singleVoteTicket.endDate; //the vote is no longer active after this date
   
-        if (singleVoteTicket.votes === null){
+        if (!singleVoteTicket.votes){
             this.votes  = []; 
         }
         else{
             this.votes         = singleVoteTicket.votes;  //votes are related to options, see json for the example
         }
       
-        if ( singleVoteTicket.status === null)
+        if ( !singleVoteTicket.status )
         {
             this.status= "open"; 
         }
@@ -36,7 +36,7 @@ export default class VoteTicketModel {
             this.status        = singleVoteTicket.status; //open/close 
         }
 
-        if (singleVoteTicket.voteSummary === null )
+        if ( !singleVoteTicket.voteSummary )
         {
             this.voteSummary = 0 ; 
         }

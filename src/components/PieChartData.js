@@ -67,8 +67,9 @@ function PieChartData({entity}){
      * which is the data for the pie.
      * 
      */
-    let i=0; 
-    arrLabels.forEach(label => {
+    if ( Array.isArray(arrLabels)  )  {
+      let i=0; 
+      arrLabels.forEach(label => {
       let result=0; 
       result = countResults(label, arrVotes); 
       if (result > 0 )
@@ -77,7 +78,7 @@ function PieChartData({entity}){
         i++; 
       }
     });
-
+  } 
 
     const data = {
         labels: arrLabels,  //['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],

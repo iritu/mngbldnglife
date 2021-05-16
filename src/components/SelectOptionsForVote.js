@@ -28,7 +28,7 @@ function SelectOptionsForVote({selectOptions, funcSetVoteFor}){
                 onChange={e => setVoteFor(e.target.value)}
                 className="form-control">
                 {
-                    selectOptions ? 
+                    Array.isArray(selectOptions)  ? 
                             selectOptions.map((option) => (
                             <option value={option}>{option}</option>
                             ))

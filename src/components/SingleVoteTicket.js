@@ -91,7 +91,7 @@ function SingleVoteTicket({voteTicket, funcUpdateDate}){
                     
                       {/* present options to vote - for tenant   */}
 
-                      { voteTicket.status === "open" ?   
+                      { voteTicket.status === "open" &&  Array.isArray(voteTicket.options)?   
                             <SelectOptionsForVote selectOptions={ voteTicket.options} 
                                             funcSetVoteFor= {funcGetVote}    
                              />
@@ -102,7 +102,8 @@ function SingleVoteTicket({voteTicket, funcUpdateDate}){
                         
             </Col>
             <Col  md={5} sm={12}>
-                <PieChartData entity={voteTicket} />
+                {Array.isArray(voteTicket.options) ? 
+                <PieChartData entity={voteTicket} /> : null } 
             </Col>
         </Row>
         </Container>

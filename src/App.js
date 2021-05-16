@@ -254,6 +254,29 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
 function addNewVoteTicket(userId, buildingId, dateCreated, title, details , options , endDate ){
   console.log("Insert new vote ticket"); 
   console.log (userId +","+ buildingId +","+ dateCreated +","+ title +","+ details +","+ options +","+ endDate); 
+
+
+  let VoteTicketId = 10001;
+      
+  if(voteTickets){
+    VoteTicketId =  voteTickets[voteTickets.length-1].VoteTicketId + 1;
+  }
+
+  const addNewVote = new VoteTicketModel({
+    VoteTicketId,
+    userId, 
+    buildingId,
+    dateCreated, 
+    title,
+    details, 
+    options,
+    endDate
+    
+  });
+
+  setVoteTickets(voteTickets.concat(addNewVote));
+  console.log(voteTickets); 
+
 }
 
 /*******************END VOTING SECTION*************************** */
