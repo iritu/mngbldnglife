@@ -7,7 +7,7 @@ function PieChartData({entity}){
     //get labels : "options": ["yes" , "no"]
     let arrLabels = entity.options; 
     let arrVotes = entity.votes; 
-    let arrDataPie = [0];
+    let arrDataPie = [];
 
     let noOfVotes = arrVotes.length; 
 
@@ -43,41 +43,58 @@ function PieChartData({entity}){
 
     //get data from votes:
     // "votes":[  {"userid":1001, "result":0  }, {"userid":1002, "result":0 }  ]
-
-    for (const vote of entity.votes) {
-        if (vote.result === 0 ){
-            
-        }
+    
+    /**
+     * 
+     * @param {*} label 
+     * @param {*} arrVotes 
+     * @returns : count (int) 
+     */
+    function countResults(label, arrVotes){
+      const count = arrVotes.reduce((counter, obj) => obj.result === label ? counter += 1 : counter, 0); // 6
+      console.log(count);
+      return count; 
     }
 
+ 
+    /**
+     * 
+     * for each label ( like: yes/no etc)
+     * count ( func countResults() ) how many occurance are found in votes array.
+     * arrVotes is obj array and use reduce to preserve the orige array.
+     * each time the counting come back with result > 0 
+     * it is placed in the new created dynamically array - arrDataPie and it's index is incremented-
+     * which is the data for the pie.
+     * 
+     */
+    let i=0; 
+    arrLabels.forEach(label => {
+      let result=0; 
+      result = countResults(label, arrVotes); 
+      if (result > 0 )
+      {
+        arrDataPie[i] = result; 
+        i++; 
+      }
+    });
 
-    //how to build the data dynamically??
-    for (let index = 0; index < arrLabels.length; index++) {
-        
-        for (let Innerindex = 0; Innerindex < arrVotes.length; Innerindex++) {
-            
-                if (arrLabels[index++] === arrVotes[Innerindex].result )
-                {
-                    arrDataPie[index] =+ 1;       
-                }
-        }
-        
-    }
-
-    console.log("arrDataPie"); 
-    console.log(arrDataPie); 
 
     const data = {
         labels: arrLabels,  //['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [
           {
             label: noOfVotes + '# of Votes', //not showing
-            data: [12, 19, 3, 5, 2, 3], //arrDataPie
+            data: arrDataPie, //[12, 19, 3, 5, 2, 3], //arrDataPie
             backgroundColor:setBgColor,
             borderColor: setBorderColor,
-            borderWidth: 1,
+            borderWidth: 1
           },
         ],
+        options: {
+          //Customize chart options
+          responsive: true,
+        }
+      
       };
 
      return  (
@@ -86,10 +103,6 @@ function PieChartData({entity}){
           <Pie data={data} />
         </>
       );
-
-
-
-
 
 }
 
