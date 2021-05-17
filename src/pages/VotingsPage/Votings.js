@@ -11,7 +11,7 @@ import NewTicketModal from '../../components/NewVoteTicketModal';
 
 
 
-function Votings({voteTickets , onNewTicket, onUpdateDate, onUpdateVote}){
+function Votings({voteTickets , onNewTicket, onUpdateDate, onUpdateVote , funcCloseTicket}){
 
     const activeUser = useContext(ActiveUserContext);
     const [filterText, setFilterText] = useState("");
@@ -73,6 +73,10 @@ function Votings({voteTickets , onNewTicket, onUpdateDate, onUpdateVote}){
     }
 
 
+    function closeTicket(voteTicket){
+        funcCloseTicket(voteTicket); 
+    }
+
     return(
         <Container>
            
@@ -94,6 +98,7 @@ function Votings({voteTickets , onNewTicket, onUpdateDate, onUpdateVote}){
                                 voteTicket={openVoteTicket} 
                                 funcUpdateDate={updateDate} 
                                 funcUpdateVote={updateVote}
+                                funcCloseTicket={closeTicket}
                                 >
 
                             </SingleVoteTicket>

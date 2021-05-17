@@ -310,6 +310,17 @@ function updateVoteOptionsArray (voteFor, voteTicket){
   setVoteTickets(voteTickets);
 }
 
+
+function closeVoteTicket (voteTicket){
+  let ticketId  = voteTicket.VoteTicketId; //vote ticket id
+
+  let ticketPos = voteTickets.findIndex(vote => vote.VoteTicketId === ticketId); //index in array 
+
+  voteTickets[ticketPos].status="close";
+
+  setVoteTickets(voteTickets);
+}
+
 /*******************END VOTING SECTION*************************** */
 
 
@@ -337,6 +348,7 @@ function updateVoteOptionsArray (voteFor, voteTicket){
                   onNewTicket={addNewVoteTicket}
                   onUpdateDate={updateEndDate}
                   onUpdateVote={updateVoteOptionsArray}
+                  funcCloseTicket={closeVoteTicket}
                   />
               </Route>
               <Route exact path="/dashboard"><Dashboard/></Route>

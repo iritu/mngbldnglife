@@ -13,7 +13,7 @@ import SelectOptionsForVote from '../components/SelectOptionsForVote';
 
 import PieChartData from '../components/PieChartData'; 
 
-function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote}){
+function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote, funcCloseTicket}){
     
     const activeUser = useContext(ActiveUserContext);
     const [endDateValue, endDateOnChange] = useState(new Date());
@@ -33,6 +33,11 @@ function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote}){
 
     // }
 
+
+    //send app.js notice to close the ticket by admin's click
+    function closeTicket(voteTicket){
+        funcCloseTicket(voteTicket); 
+    }
    
 
     //get selected vote from "SelectOptionsForVote" component
@@ -57,9 +62,21 @@ function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote}){
     return (
         <Container className="singleVoteTicket">
          <Row >
-            <Col className="singleVoteTicketHeader">
+            <Col md={8} className="singleVoteTicketHeader">
                 <h3>{voteTicket.title}</h3>
             </Col>
+            
+            <Col  className="singleVoteTicketHeader">
+                {activeUser.isAdmin && voteTicket.status === "open" ? 
+                    <Button variant="danger" size="sm"
+                            onClick={() => closeTicket(voteTicket)}>
+                            Close Ticket
+                    </Button>
+                  :
+                  null
+              }    
+            </Col>
+              
          </Row> 
 
 
@@ -73,10 +90,6 @@ function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote}){
                         new Date(voteTicket.endDate).toLocaleString()  }
 
                     {activeUser.isAdmin && voteTicket.status === "open" ? 
-                            // <Button variant="primary" size="sm"
-                            //         onClick={() => updateEndDate(openVoteTicket.endDate)}>
-                            //             Update end date
-                            // </Button>
                         <>
                         <br/>
                         <strong>Update end date:</strong>
