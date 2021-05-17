@@ -3,12 +3,17 @@ import { Redirect } from 'react-router';
 import ActiveUserContext from '../../shared/activeUserContext';
 import { useState, useContext  } from "react";
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import NewUserModal from '../../components/NewUserModal';
 
-
-function TenantsPage({users}){
+function TenantsPage({users , onNewUser , onDeleteUser}){
 
     const activeUser = useContext(ActiveUserContext);
     const [filterText, setFilterText] = useState("");
+
+    const [newUserModal, setNewUserModal] = useState(false);
+    const [user, setUserModal] = useState("");
+  
+
 
     if (!activeUser) {
         return <Redirect to="/"/>
@@ -32,8 +37,8 @@ function TenantsPage({users}){
 
 
     function setUpdate(user){
-        // setNewMsgeModal(true);
-        // setMsgModal(message); 
+         setNewUserModal(true);
+         setUserModal(user); 
     }        
 
 
@@ -43,7 +48,7 @@ function TenantsPage({users}){
         back the index sent to it
     */
     function onDeleteClick (userId){
-        // onDeleteMsg(msgID); 
+         onDeleteUser(userId); 
     }
 
     
@@ -108,7 +113,18 @@ function TenantsPage({users}){
                   
                 ) : null}
 
-
+          
+            {/* activate message modal      */}
+            <NewUserModal 
+                show={newUserModal} 
+                onClose={() => setNewUserModal(false)} 
+                onCreate={onNewUser}
+                activeUserBuildingid={activeUser.buildingId}
+                activeUserId = {activeUser.userId}
+                objUser = {user}                    
+                
+                />
+                              
 
         </Container>
     )

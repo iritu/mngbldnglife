@@ -131,6 +131,15 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
   }
 
  
+  /*********************USERS********************************* */
+  function createNewUser(){
+
+  }
+
+  function deleteUser(userId){
+
+  }
+
 
   /**************MESSAGES SECTION : INSERT, UPDATE, DELETE ***************** */
 
@@ -339,7 +348,10 @@ function closeVoteTicket (voteTicket){
               <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
               <Route exact path="/tenants">
                   <TenantsPage 
-                    users={users} />
+                    users={users}
+                    onNewUser={createNewUser}
+                    onDeleteUser = {deleteUser}
+                    />
               </Route>
               <Route exact path="/messages">
                   <Messages 
