@@ -2,7 +2,7 @@
 import { Redirect } from 'react-router';
 import ActiveUserContext from '../../shared/activeUserContext';
 import { useState, useContext  } from "react";
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row , Image} from 'react-bootstrap';
 import NewUserModal from '../../components/NewUserModal';
 
 function TenantsPage({users , onNewUser , onDeleteUser}){
@@ -84,27 +84,35 @@ function TenantsPage({users , onNewUser , onDeleteUser}){
                            
                            {/* Update & delete message buttons */}
                             <Row>
-                                    <Col xs={6} md={2}>
-                                    {/* update  btn  */}
+                                {/* user details */}
+                                <Col xs={6} md={2}>
+                                        <h3>  {user.name} </h3>
+                                        <br/>
+                                        <Image src={user.img} rounded className="imgAvatar" />
+                                </Col>
+                                <Col  xs={6} md={4}>
+                                        Email: <a href={`mailto:${user.email}`}>{user.email}</a> 
+                                        <br/>
+                                        Appartment Number: {user.appNumber}
+                                </Col>
+
+                                {/* update & delete  btn  */}
+                                <Col xs={6} md={2}>
                                     {activeUser.isAdmin ? 
                                         <Button className="btnUpdateMsg" variant="primary" size="sm"
                                             onClick={() => setUpdate(user) }>Update User
                                         </Button> : null
                                         }
-                                    </Col>
+                                </Col>
                             
-                                    <Col xs={6} md={2}>
+                                <Col xs={6} md={2}>
                                         {activeUser.isAdmin ? 
                                             <Button variant="danger" size="sm"
                                                 onClick={() => onDeleteClick(user.userId)}>Delete User
                                             </Button> : null
                                         }
-                                    </Col>
+                                </Col>
                             </Row>
-
-                            {/* show single message with its comments */}           
-                            {/* <SingleMessage message={message} updateMessage={funcUpdateMessage} /> */}
-                            {user.name}
 
                         </Col>
                     </Row>
