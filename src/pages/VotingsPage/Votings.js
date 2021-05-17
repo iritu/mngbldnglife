@@ -11,7 +11,7 @@ import NewTicketModal from '../../components/NewVoteTicketModal';
 
 
 
-function Votings({voteTickets , onNewTicket, onUpdateDate}){
+function Votings({voteTickets , onNewTicket, onUpdateDate, onUpdateVote}){
 
     const activeUser = useContext(ActiveUserContext);
     const [filterText, setFilterText] = useState("");
@@ -67,6 +67,10 @@ function Votings({voteTickets , onNewTicket, onUpdateDate}){
     }
 
 
+    //get vote option for ticket and pass it to app.js 
+    function updateVote(voteFor, voteTicket){
+        onUpdateVote(voteFor, voteTicket); 
+    }
 
 
     return(
@@ -86,7 +90,11 @@ function Votings({voteTickets , onNewTicket, onUpdateDate}){
                       {/* Loop over OPEN voteTickets array and each time present -  Single */}
 
                       {openTickets? openTickets.map((openVoteTicket)  => 
-                            <SingleVoteTicket voteTicket={openVoteTicket} funcUpdateDate={updateDate} >
+                            <SingleVoteTicket 
+                                voteTicket={openVoteTicket} 
+                                funcUpdateDate={updateDate} 
+                                funcUpdateVote={updateVote}
+                                >
 
                             </SingleVoteTicket>
                          

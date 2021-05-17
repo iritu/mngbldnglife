@@ -279,7 +279,7 @@ function addNewVoteTicket(userId, buildingId, dateCreated, title, details , opti
 
 }
 
-
+//UPDATE ticket end date
 function updateEndDate (voteTicket){
   let ticketId  = voteTicket.VoteTicketId; //vote ticket id
 
@@ -290,6 +290,25 @@ function updateEndDate (voteTicket){
   setVoteTickets(voteTickets);
 }
 
+
+//UPDATE ticket - new user's VOTE option
+function updateVoteOptionsArray (voteFor, voteTicket){
+  let ticketId  = voteTicket.VoteTicketId; //vote ticket id
+
+  let ticketPos = voteTickets.findIndex(vote => vote.VoteTicketId === ticketId); //index in array 
+
+  if (Array.isArray(voteTickets[ticketPos].votes)){
+    voteTickets[ticketPos].votes.push({"userid": activeUser.userId, "result":voteFor });
+  }
+  else{
+    voteTickets[ticketPos].votes = [ {"userid": activeUser.userId, "result":voteFor } ]; 
+  }
+
+  console.log ("update vote options")
+  console.log (voteTickets[ticketPos].votes); 
+
+  setVoteTickets(voteTickets);
+}
 
 /*******************END VOTING SECTION*************************** */
 
@@ -317,6 +336,7 @@ function updateEndDate (voteTicket){
                   voteTickets={voteTickets} 
                   onNewTicket={addNewVoteTicket}
                   onUpdateDate={updateEndDate}
+                  onUpdateVote={updateVoteOptionsArray}
                   />
               </Route>
               <Route exact path="/dashboard"><Dashboard/></Route>

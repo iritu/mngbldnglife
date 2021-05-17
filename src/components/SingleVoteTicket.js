@@ -13,7 +13,7 @@ import SelectOptionsForVote from '../components/SelectOptionsForVote';
 
 import PieChartData from '../components/PieChartData'; 
 
-function SingleVoteTicket({voteTicket, funcUpdateDate}){
+function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote}){
     
     const activeUser = useContext(ActiveUserContext);
     const [endDateValue, endDateOnChange] = useState(new Date());
@@ -39,6 +39,7 @@ function SingleVoteTicket({voteTicket, funcUpdateDate}){
     function funcGetVote(voteFor){
         console.log(voteFor); 
         //call upper level code to update the value
+        funcUpdateVote(voteFor, voteTicket)
     }
 
 

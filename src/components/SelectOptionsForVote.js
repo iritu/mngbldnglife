@@ -3,7 +3,7 @@ import { useState } from "react";
 function SelectOptionsForVote({selectOptions, funcSetVoteFor}){
     
   
-    const [voteFor, setVoteFor] = useState("Select Options"); 
+    const [voteFor, setVoteFor] = useState(""); 
 
  
     // useEffect(() => {  //without button
@@ -27,6 +27,7 @@ function SelectOptionsForVote({selectOptions, funcSetVoteFor}){
             <select value={voteFor} 
                 onChange={e => setVoteFor(e.target.value)}
                 className="form-control">
+                <option>Select Options: </option>
                 {
                     Array.isArray(selectOptions)  ? 
                             selectOptions.map((option) => (
@@ -39,9 +40,6 @@ function SelectOptionsForVote({selectOptions, funcSetVoteFor}){
             <button onClick={sendVote}>Update Vote</button>    
 
         </form>  
-
-
-
     )
 
 }
