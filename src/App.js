@@ -331,9 +331,16 @@ function closeVoteTicket (voteTicket){
        <HashRouter>
           <Switch>
               <Route exact path="/"><HomePage/></Route>
-              <Route exact path="/login"><LoginPage  users={users} onLogin={user => setActiveUser(user)}/></Route>
+              <Route exact path="/login">
+                  <LoginPage  
+                    users={users} 
+                    onLogin={user => setActiveUser(user)}/>
+              </Route>
               <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
-              <Route exact path="/tenants"><TenantsPage/></Route>
+              <Route exact path="/tenants">
+                  <TenantsPage 
+                    users={users} />
+              </Route>
               <Route exact path="/messages">
                   <Messages 
                     messages={messages} 

@@ -19,9 +19,7 @@ function Messages({messages, onNewMessage, onDeleteMsg, onUpdateComment}){
     if (!activeUser) {
         return <Redirect to="/"/>
     }
-   else{
-       console.log(activeUser); 
-   } 
+    
    
       
     // 1) Filter the messages based on the filterText
@@ -31,8 +29,8 @@ function Messages({messages, onNewMessage, onDeleteMsg, onUpdateComment}){
         msg.title.toLowerCase().includes(filterText.toLowerCase()) || 
         msg.details.toLowerCase().includes(filterText.toLowerCase())));
 
-     console.log("messages js - sortedMessages array:")    
-     console.log (sortedMessages);
+    //  console.log("messages js - sortedMessages array:")    
+    //  console.log (sortedMessages);
 
     // 2) Sort the messages  array
     sortedMessages.sort(
