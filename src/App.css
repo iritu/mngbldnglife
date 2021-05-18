@@ -56,6 +56,12 @@ footer{
   height: 10vh;
   margin-top:3vh;
   padding-top:3vh;
+  display: flex;
+  width:100%;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: relative;
 }
 
 .homePageMain{

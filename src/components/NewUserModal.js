@@ -9,7 +9,7 @@ import ActiveUserContext from '../shared/activeUserContext';
     taken from the activeUser object
 */ 
 
-function NewUserModal({ show, onClose, onCreate , objUser}) {
+function NewUserModal({ show, onClose, onCreate , objUser , onUpdateUser}) {
  
     const activeUser = useContext(ActiveUserContext);
 
@@ -65,11 +65,7 @@ function NewUserModal({ show, onClose, onCreate , objUser}) {
     function createUser() {
       
         let userId = 0;
-
-        if (objUser){
-            userId = objUser.userId; 
-        }
-       
+        let pswrd = pswd; 
         let isAdmin="false"; 
         let city = activeUser.city; 
         let street = activeUser.street; 
@@ -77,11 +73,21 @@ function NewUserModal({ show, onClose, onCreate , objUser}) {
         let buildingName = activeUser.buildingName; 
         let buildingId = activeUser.buildingId; 
         let appNumber = appId;
-        let pswrd = pswd; 
 
-        onCreate( userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber);
+
+        if (objUser){ //existing user, just update the details
+            userId = objUser.userId; 
+            onUpdateUser(userId, name, email, img , pswrd, appNumber); 
+        }
+        else{ //create new user, full details
+            onCreate( userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber);
+        }
         onBeforeClose();
     }
+
+
+ 
+
 
 
     //image file upload , handles the insert and the update 

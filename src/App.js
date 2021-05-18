@@ -151,10 +151,26 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
   }
 
 
+  function updateUser(userId, name, email, img , pswrd, appNumber){
+       
+    let userPos = users.findIndex(user => user.userId === userId); //index in array 
+
+    const usersClone = [...users];
+  
+    usersClone[userPos].name=name; 
+    usersClone[userPos].email=email;
+    usersClone[userPos].img=img; 
+    usersClone[userPos].pswrd=pswrd;
+    usersClone[userPos].appNumber=appNumber;
+
+    setUsers(usersClone);
+  }
+
+
   //mark user as not active
   function deleteUser(userId){
     
-    console.log(userId); 
+    //console.log(userId); 
     //find the user in users array 
     
     let userPos = users.findIndex(user => user.userId === userId); //index in array 
@@ -166,6 +182,9 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
     setUsers(usersClone);
   }
 
+
+
+  
 
   /**************MESSAGES SECTION : INSERT, UPDATE, DELETE ***************** */
 
@@ -379,6 +398,7 @@ function closeVoteTicket (voteTicket){
                     users={users}
                     onNewUser={createNewUser}
                     onDeleteUser = {deleteUser}
+                    onUpdateUser = {updateUser}
                     />
               </Route>
               <Route exact path="/messages">

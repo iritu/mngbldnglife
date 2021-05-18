@@ -5,7 +5,7 @@ import { useState, useContext  } from "react";
 import { Button, Col, Container, Row , Image} from 'react-bootstrap';
 import NewUserModal from '../../components/NewUserModal';
 
-function TenantsPage({users , onNewUser , onDeleteUser}){
+function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
 
     const activeUser = useContext(ActiveUserContext);
     const [filterText, setFilterText] = useState("");
@@ -128,7 +128,7 @@ function TenantsPage({users , onNewUser , onDeleteUser}){
                 onClose={() => setNewUserModal(false)} 
                 onCreate={onNewUser}
                 objUser = {user}                    
-                
+                onUpdateUser = {onUpdateUser}
                 />
                               
 
