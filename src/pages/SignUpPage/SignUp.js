@@ -24,7 +24,9 @@ function SignUp({onNewUser}){
 
     function createNewUser() {
         //console.log("sign up - createNewUser "); 
-        onNewUser(true, name, email, img ? URL.createObjectURL(img) : "",  pswd, city, street, streetNu, buildingName,  appNu );
+        let isAdmin = true; 
+        
+        onNewUser(isAdmin, name, email, img ? URL.createObjectURL(img) : "",  pswd, city, street, streetNu, buildingName,  appNu );
     }
 
 

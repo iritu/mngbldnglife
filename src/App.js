@@ -1,4 +1,6 @@
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router';
+
 import { useState } from 'react';
 // components
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -124,6 +126,7 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
   
   }
 
+ 
 }
 
 
@@ -140,6 +143,7 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
     
     newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber);
     
+    return userId; 
   }
 
  
@@ -184,7 +188,7 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
 
 
 
-  
+
 
   /**************MESSAGES SECTION : INSERT, UPDATE, DELETE ***************** */
 
@@ -392,7 +396,9 @@ function closeVoteTicket (voteTicket){
                     users={users} 
                     onLogin={user => setActiveUser(user)}/>
               </Route>
-              <Route exact path="/signup"><SignUp onNewUser={addUser} /></Route>
+              <Route exact path="/signup">
+                  <SignUp onNewUser={addUser} />
+              </Route>
               <Route exact path="/tenants">
                   <TenantsPage 
                     users={users}
