@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useContext} from 'react';
 import { Button, Modal, Form, Col, Row, Image } from 'react-bootstrap';
+import ActiveUserContext from '../shared/activeUserContext';
 
-import SetCurrentDateTime from './utils';
+/*
+    only admin can create users so active user here is admin, 
+    since admin and tenant are in the 
+    same building, all the details of the building are 
+    taken from the activeUser object
+*/ 
 
-// if messageIndex is passed the it is an update process else it is an insert process
-
-function NewUserModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId, objMsg: objUser}) {
+function NewUserModal({ show, onClose, onCreate , objUser}) {
  
+    const activeUser = useContext(ActiveUserContext);
+
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [priority, setPriority] = useState("Info");
     const [img, setImg] = useState("");
     const [appId, setAppId] = useState("");
-
+    const [pswd, setPswd] =  useState("");
     const [objState, setObjState] = useState(null);
-
-    const [objMsgId , setMsgId] = useState(""); 
+    
 
     let modalTitle = "Create New User "
 
@@ -38,33 +43,43 @@ function NewUserModal({ show, onClose, onCreate , activeUserBuildingid, activeUs
         if (objUser){
             setName(objUser.name); 
             setEmail(objUser.email); 
+            setPswd(objUser.pswrd); 
             setImg(objUser.img); 
             setAppId(objUser.appNumber)
         }
       }, [objUser, objState]); 
     
   
-    let  dateCreated = SetCurrentDateTime();
-
+    
     //clear form data   
     function clearForm() {
         setName("");
         setEmail("");
-        setPriority("Info")
+        setPswd(""); 
         setImg(null);
-        setMsgId("");
+        setAppId("");
         setObjState(null); 
     }
 
 
-    function createMsg() {
-        //messageId; create new message id from last item of msg array
-        let buildingId = activeUserBuildingid; // get building id
-        let userId = activeUserId;             // get current user id ( isAdmin)
- 
-        let messageId = objMsgId;  //if messageId != null -> update, else -> insert 
+    function createUser() {
+      
+        let userId = 0;
 
-        onCreate(messageId, buildingId,userId,  dateCreated, name, email, priority, img , "");
+        if (objUser){
+            userId = objUser.userId; 
+        }
+       
+        let isAdmin="false"; 
+        let city = activeUser.city; 
+        let street = activeUser.street; 
+        let stNumber = activeUser.stNumber;
+        let buildingName = activeUser.buildingName; 
+        let buildingId = activeUser.buildingId; 
+        let appNumber = appId;
+        let pswrd = pswd; 
+
+        onCreate( userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber);
         onBeforeClose();
     }
 
@@ -108,6 +123,16 @@ function NewUserModal({ show, onClose, onCreate , activeUserBuildingid, activeUs
                         </Col>
                     </Form.Group>
 
+                    <Form.Group as={Row} controlId="UserPswd">
+                        <Form.Label column sm={3}>
+                            User Password
+                        </Form.Label>
+                        <Col sm={9}>
+                            <Form.Control type="text" placeholder="Password" 
+                                value={pswd} onChange={e => setPswd(e.target.value)}/>
+                        </Col>
+                    </Form.Group>
+
                     <Form.Group as={Row} controlId="UserAppartment">
                         <Form.Label column sm={3}>
                             Appartment Nu.
@@ -137,7 +162,7 @@ function NewUserModal({ show, onClose, onCreate , activeUserBuildingid, activeUs
                 <Button variant="secondary" onClick={onBeforeClose}>
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={createMsg}>
+                <Button variant="primary" onClick={createUser}>
                    Submit
                 </Button>
             </Modal.Footer>

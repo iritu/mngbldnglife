@@ -92,6 +92,37 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
 }
 
 
+function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber){
+  
+  const newUser = new UserModel({
+    userId,
+    isAdmin,
+    name,
+    email,
+    img,
+    pswrd, 
+    city, 
+    street,
+    stNumber,
+    buildingName,
+    buildingId,
+    appNumber
+  });
+  
+  //check if is in users array with this building name as admin
+  let ifExist = false; 
+
+  ifExist = checkUser(email, buildingName); 
+
+  if (ifExist === false){
+    //update users array
+    setUsers(users.concat(newUser));
+  
+  }
+
+}
+
+
   //ADD NEW : admin user
   function addUser(isAdmin, name, email, img, pswrd, city, street, stNumber, buildingName,  appNumber) {
    
@@ -99,41 +130,21 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
     let userId = ""; 
 
     userId =  users[users.length - 1].userId + 1; 
+
+     
     buildingId = addBuilding(userId, email, buildingName, city, street, stNumber); 
-   
-    const newUser = new UserModel({
-      userId,
-      isAdmin,
-      name,
-      email,
-      img,
-      pswrd, 
-      city, 
-      street,
-      stNumber,
-      buildingName,
-      buildingId,
-      appNumber
-    });
     
-    //check if is in users array with this building name as admin
-    let ifExist = false; 
-
-    ifExist = checkUser(email, buildingName); 
-
-    if (ifExist === false){
-      setUsers(users.concat(newUser));
-      console.log(users); //********NIR - 
-                          //How to update activeUser context to be the current new admin, 
-                          //and where  to send the user to login page
-      console.log(buildings);
-    }
+    newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber);
+    
   }
 
  
   /*********************USERS********************************* */
-  function createNewUser(){
+  function createNewUser( userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber){
+      console.log("app js - createNewUser"); 
 
+      newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber);
+       
   }
 
   function deleteUser(userId){

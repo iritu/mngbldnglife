@@ -30,7 +30,7 @@ function TenantsPage({users , onNewUser , onDeleteUser}){
             user.buildingId === activeUser.buildingId && (
             user.name.toLowerCase().includes(filterText.toLowerCase()) || 
             user.email.toLowerCase().includes(filterText.toLowerCase()) ||
-            user.appNumber.includes(filterText)
+            parseInt(user.appNumber) === parseInt(filterText)
             )
         );
     }
@@ -127,8 +127,6 @@ function TenantsPage({users , onNewUser , onDeleteUser}){
                 show={newUserModal} 
                 onClose={() => setNewUserModal(false)} 
                 onCreate={onNewUser}
-                activeUserBuildingid={activeUser.buildingId}
-                activeUserId = {activeUser.userId}
                 objUser = {user}                    
                 
                 />
