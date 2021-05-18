@@ -94,6 +94,10 @@ function addBuilding(userId, userEmail, buildingName, city, street, stNumber){
 
 function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber){
   
+  if (userId === 0){
+    userId =  users[users.length - 1].userId + 1; 
+  }
+
   const newUser = new UserModel({
     userId,
     isAdmin,
@@ -141,14 +145,25 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
  
   /*********************USERS********************************* */
   function createNewUser( userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber){
-      console.log("app js - createNewUser"); 
+      //console.log("app js - createNewUser"); 
 
       newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber);
-       
   }
 
-  function deleteUser(userId){
 
+  //mark user as not active
+  function deleteUser(userId){
+    
+    console.log(userId); 
+    //find the user in users array 
+    
+    let userPos = users.findIndex(user => user.userId === userId); //index in array 
+
+    const usersClone = [...users];
+  
+    usersClone[userPos].isActive = 0; 
+
+    setUsers(usersClone);
   }
 
 
@@ -249,12 +264,13 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
 
     let msgPos = messages.findIndex(msg => msg.messageId === msgId); //index in array 
    
+    const messagesClone = [...messages]; 
     
-    if (messages[msgPos].ArrayCommentsId){ //push new obj to exiting array 
-      messages[msgPos].ArrayCommentsId.push(comment); 
+    if (messagesClone[msgPos].ArrayCommentsId){ //push new obj to exiting array 
+      messagesClone[msgPos].ArrayCommentsId.push(comment); 
     }
     else{ //create new object , there is no array 
-      messages[msgPos].ArrayCommentsId = [{
+      messagesClone[msgPos].ArrayCommentsId = [{
                                               "dateCreated":comment.dateCreated, 
                                               "userId": comment.userId,
                                               "buildingId": comment.buildingId,
@@ -262,7 +278,7 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
                                            }] ; 
     }
   
-    setMessages(messages);
+    setMessages(messagesClone);
 
   }
 
@@ -317,17 +333,16 @@ function updateVoteOptionsArray (voteFor, voteTicket){
 
   let ticketPos = voteTickets.findIndex(vote => vote.VoteTicketId === ticketId); //index in array 
 
-  if (Array.isArray(voteTickets[ticketPos].votes)){
-    voteTickets[ticketPos].votes.push({"userid": activeUser.userId, "result":voteFor });
+  const voteTicketsClone  = [...voteTickets];
+
+  if (Array.isArray(voteTicketsClone[ticketPos].votes)){
+    voteTicketsClone[ticketPos].votes.push({"userid": activeUser.userId, "result":voteFor });
   }
   else{
-    voteTickets[ticketPos].votes = [ {"userid": activeUser.userId, "result":voteFor } ]; 
+    voteTicketsClone[ticketPos].votes = [ {"userid": activeUser.userId, "result":voteFor } ]; 
   }
 
-  console.log ("update vote options")
-  console.log (voteTickets[ticketPos].votes); 
-
-  setVoteTickets(voteTickets);
+  setVoteTickets(voteTicketsClone);
 }
 
 

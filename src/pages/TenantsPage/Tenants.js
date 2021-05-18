@@ -27,7 +27,7 @@ function TenantsPage({users , onNewUser , onDeleteUser}){
     let sortedUsers="";
     if (Array.isArray(users)){
         sortedUsers = users.filter(user => 
-            user.buildingId === activeUser.buildingId && (
+            user.buildingId === activeUser.buildingId && user.isActive === 1 && (
             user.name.toLowerCase().includes(filterText.toLowerCase()) || 
             user.email.toLowerCase().includes(filterText.toLowerCase()) ||
             parseInt(user.appNumber) === parseInt(filterText)

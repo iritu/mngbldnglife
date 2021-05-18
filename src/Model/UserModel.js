@@ -12,6 +12,14 @@ export default class UserModel {
         this.buildingName = SingleUser.buildingName;
         this.buildingId   = SingleUser.buildingId;  //FK   
         this.appNumber      = SingleUser.appNumber; //number
+
+        if ( !this.isActive ){
+            this.isActive = 1;  //1 = active user, 0 = deleted user
+        }
+        else
+        {
+            this.isActive =  SingleUser.isActive; 
+        }
     }
 
     

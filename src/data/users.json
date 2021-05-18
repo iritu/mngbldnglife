@@ -11,7 +11,8 @@
         "stNumber":3,
         "buildingName":"Shikma3",
         "buildingId":1,   
-        "appNumber":12
+        "appNumber":12,
+        "isActive":1
     },
     {
         "userId": 1002,
@@ -25,6 +26,7 @@
         "stNumber":3,
         "buildingName":"Shikma3",
         "buildingId":1,   
-        "appNumber":11
+        "appNumber":11,
+        "isActive":1
     }
 ]
