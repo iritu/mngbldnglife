@@ -16,18 +16,21 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
     //handle dynamic options fields
     const [arrOptions, setArrOptions] = useState([{ value: null }]);
     
+    //option field changed
     function handleChange(i, event) {
       const values = [...arrOptions];
       values[i].value = event.target.value;
       setArrOptions(values);
     }
   
+    //user clicked + button 
     function handleAdd() {
       const values = [...arrOptions];
       values.push({ value: null });
       setArrOptions(values);
     }
   
+    //user clicked X ( remove) button 
     function handleRemove(i) {
       const values = [...arrOptions];
       values.splice(i, 1);
@@ -116,43 +119,31 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
                         </Col>
                     </Form.Group>
 
-                    {/* <Form.Group as={Row} controlId="VoteOptions">
-                        <Form.Label column sm={3}>
-                            Options
-                        </Form.Label>
-                        <Col sm={9}>
-                            {/* <Form.Control type="text" placeholder="Enter new option" 
-                                value={option} onChange={e => setOption(e.target.value)}/> {inputs}  
-                             
-                            <br/> 
-                             <Button onClick={ ()=> setArrOptions(arrOptions.concat(" ")) } >+</Button>  
-                        </Col>
-                    </Form.Group>  
- */}
 
                     <Form.Group as={Row} controlId="VoteOptions"> 
                         <Form.Label column sm={3}>
                             Options
                         </Form.Label>
                         
-                        <Col sm={9}>
+                        <Col sm={4}>
                             {arrOptions.map((field, idx) => {
                                 return (
                                 <div key={`${field}-${idx}`}>
-                                    <input
+                                    <input  className="dynamicOptionsInput"
                                     type="text"
                                     placeholder="Enter option"
                                     onChange={e => handleChange(idx, e)}
                                     />
-                                    <button type="button" onClick={() => handleRemove(idx)}>
-                                    X
-                                    </button>
+                                     <Button variant="outline-danger" 
+                                        type="button" onClick={() => handleRemove(idx)}>x</Button>
                                 </div>
                                 );
                             })}
-                            <button type="button" onClick={() => handleAdd()}>
-                                +
-                            </button>
+
+                            <Button variant="outline-success" 
+                            type="button" onClick={() => handleAdd()}
+                            >+</Button>
+                         
                         </Col>
                     </Form.Group>      
 
