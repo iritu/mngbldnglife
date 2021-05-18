@@ -351,9 +351,11 @@ function closeVoteTicket (voteTicket){
 
   let ticketPos = voteTickets.findIndex(vote => vote.VoteTicketId === ticketId); //index in array 
 
-  voteTickets[ticketPos].status="close";
+  const voteTicketsClone = [...voteTickets]; 
 
-  setVoteTickets(voteTickets);
+  voteTicketsClone[ticketPos].status="close";
+
+  setVoteTickets(voteTicketsClone);
 }
 
 /*******************END VOTING SECTION*************************** */

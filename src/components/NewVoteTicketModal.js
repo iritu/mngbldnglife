@@ -4,20 +4,35 @@ import { Button, Modal, Form, Col, Row } from 'react-bootstrap';
 import SetCurrentDateTime from './utils';
 
 import DateTimePicker from 'react-datetime-picker';
-
-//string to html react parser (npm install)
-import parse from 'html-react-parser';
+ 
 
 function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId}) {
  
     const [title, setTitle] = useState("");
     const [details, setDetails] = useState("");
-    const [arrOptions, setArrOptions] = useState(); //array of options
     const [endDateState, setEndDateState] = useState(new Date());
-    const [option, setOption] = useState(""); //single inserted option 
-
  
-    let modalTitle = "Create New Voting "
+
+    //handle dynamic options fields
+    const [arrOptions, setArrOptions] = useState([{ value: null }]);
+    
+    function handleChange(i, event) {
+      const values = [...arrOptions];
+      values[i].value = event.target.value;
+      setArrOptions(values);
+    }
+  
+    function handleAdd() {
+      const values = [...arrOptions];
+      values.push({ value: null });
+      setArrOptions(values);
+    }
+  
+    function handleRemove(i) {
+      const values = [...arrOptions];
+      values.splice(i, 1);
+      setArrOptions(values);
+    }
 
   
     function onBeforeClose()
@@ -27,18 +42,12 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
 
     }
 
+    let modalTitle = "Create New Voting "
+
   
     let  dateCreated = SetCurrentDateTime();
  
  
-    // if (arrOptions){
-    //     setArrOptions(arrOptions.push(option)); 
-    // }
-    // else{
-    //    setArrOptions(option); 
-    // }
-
-
     //clear form data   
     function clearForm() {
         setTitle("");
@@ -48,11 +57,21 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
     //    "votes":[{"userid":1001, "result":"yes"  },{"userid":1002, "result":"no"  }, {"userid":1002, "result":"no"  } , {"userid":1002, "result":"no"  }  ], 
    
 
+
+
     function createVote() {
         let buildingId = activeUserBuildingid; // get building id
         let userId = activeUserId;             // get current user id ( isAdmin)
-        //let options = arrOptions; 
-        let options = option; 
+        let tempOptions = arrOptions; 
+
+        console.log(arrOptions); 
+        let tempArr=[];
+        tempOptions.forEach(element => {
+            tempArr.push(element.value); 
+        });
+
+        let options = tempArr; 
+
 
         //2021-5-16 14:58:46
 
@@ -68,24 +87,7 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
         onCreate(userId, buildingId, dateCreated, title, details , options , endDate );
         onBeforeClose();
     }
-
  
-    function addOptionRow(){
-        let OptionRow=""; 
-    //    OptionRow += "<input type='text' placeholder='Enter new option' value={details} onChange={e => setArrOptions(e.target.value)}/>"
-
-        OptionRow += "  <Form.Control type='text' placeholder='Enter new option' "; 
-        OptionRow+= "  value={details} onChange={e => setArrOptions(e.target.value)}/>"
-      
-        console.log(OptionRow); 
-
-        return OptionRow; 
-    }
-
-
-    function addOption (){
-        parse(addOptionRow()); 
-    }
 
     return (
         <Modal show={show} onHide={onBeforeClose} size="lg">
@@ -114,22 +116,45 @@ function NewTicketModal({ show, onClose, onCreate , activeUserBuildingid, active
                         </Col>
                     </Form.Group>
 
-
-
-                    <Form.Group as={Row} controlId="VoteOptions">
+                    {/* <Form.Group as={Row} controlId="VoteOptions">
                         <Form.Label column sm={3}>
                             Options
                         </Form.Label>
                         <Col sm={9}>
-                            <Form.Control type="text" placeholder="Enter new option" 
-                                value={option} onChange={e => setOption(e.target.value)}/>
- 
+                            {/* <Form.Control type="text" placeholder="Enter new option" 
+                                value={option} onChange={e => setOption(e.target.value)}/> {inputs}  
+                             
                             <br/> 
-                             {/* <Button onClick={addOption}>+</Button> */}
+                             <Button onClick={ ()=> setArrOptions(arrOptions.concat(" ")) } >+</Button>  
                         </Col>
-                    </Form.Group>
+                    </Form.Group>  
+ */}
 
-
+                    <Form.Group as={Row} controlId="VoteOptions"> 
+                        <Form.Label column sm={3}>
+                            Options
+                        </Form.Label>
+                        
+                        <Col sm={9}>
+                            {arrOptions.map((field, idx) => {
+                                return (
+                                <div key={`${field}-${idx}`}>
+                                    <input
+                                    type="text"
+                                    placeholder="Enter option"
+                                    onChange={e => handleChange(idx, e)}
+                                    />
+                                    <button type="button" onClick={() => handleRemove(idx)}>
+                                    X
+                                    </button>
+                                </div>
+                                );
+                            })}
+                            <button type="button" onClick={() => handleAdd()}>
+                                +
+                            </button>
+                        </Col>
+                    </Form.Group>      
 
                     <Form.Group as={Row} controlId="VoteOptions">
                         <Form.Label column sm={3}>
