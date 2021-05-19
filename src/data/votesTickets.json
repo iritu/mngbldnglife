@@ -19,10 +19,10 @@
         "dateCreated": "2021-05-14 16:30:00",
         "title": "New 'vaadat tarbut' members ", 
         "details": "Since Maayan is leaving this role we need to choose someone to replace her: ", 
-        "options": ["Shula" , "Yackov", "Hana", "Vered"], 
+        "options": ["Dikla" , "Shuly", "Romi", "Yael"], 
         "endDate": "2021-05-20 16:30:00",
-        "votes":[  {"userid":1001, "result":"Shula"  }, {"userid":1002, "result":"Yackov" } , {"userid":1003, "result":"Yackov" } ], 
-        "status":"close",
+        "votes":[  {"userid":1001, "result":"Dikla"  }, {"userid":1002, "result":"Shuly" } , {"userid":1003, "result":"Romi" } ], 
+        "status":"open",
         "voteSummary":0
     }
 ]

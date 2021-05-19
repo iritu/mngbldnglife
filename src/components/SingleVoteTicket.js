@@ -17,21 +17,9 @@ function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote, funcClose
     
     const activeUser = useContext(ActiveUserContext);
     const [endDateValue, endDateOnChange] = useState(new Date());
-
     
-    // function updateEndDate(endDate){
-    //     var newDate = prompt("Enter new date, the current end date is : " + endDate);
-    //     var returnedDate ="";
+    const [votedAlert, setVotedAlert] = useState(false); 
 
-    //     if (newDate == null || newDate === "") {
-    //             //canceled
-    //     } else {
-    //          returnedDate = newDate;
-    //     }
-
-    //     alert (returnedDate);
-
-    // }
 
 
     //send app.js notice to close the ticket by admin's click
@@ -41,10 +29,22 @@ function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote, funcClose
    
 
     //get selected vote from "SelectOptionsForVote" component
+    //prevent voting more then once per ticket
     function funcGetVote(voteFor){
-        console.log(voteFor); 
-        //call upper level code to update the value
-        funcUpdateVote(voteFor, voteTicket)
+  
+        let voted = false; 
+        if (Array.isArray(voteTicket.votes))
+        {
+            const found = voteTicket.votes.find(vote => vote.userid === activeUser.userId) ; 
+            if (found){
+                voted = true; 
+                setVotedAlert(true);
+            }
+        }
+        if (voted === false){
+             //call upper level code to update the value 
+            funcUpdateVote(voteFor, voteTicket);
+        }
     }
 
 
@@ -104,6 +104,7 @@ function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote, funcClose
 
                     
                       {/* present options to vote - for tenant   */}
+                      {votedAlert? <><br/><span className="text-danger">You voted for this issue, please prevent for voting twice, your vote will not be counted</span></> : null}
 
                       { voteTicket.status === "open" &&  Array.isArray(voteTicket.options)?   
                             <SelectOptionsForVote selectOptions={ voteTicket.options} 
