@@ -426,7 +426,8 @@ function closeVoteTicket (voteTicket){
               </Route>
               <Route exact path="/dashboard">
                 <Dashboard  
-                  voteTickets={voteTickets} />
+                  voteTickets={voteTickets} 
+                  />
               </Route>
           </Switch>
        </HashRouter>

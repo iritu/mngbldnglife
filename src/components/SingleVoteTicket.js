@@ -107,8 +107,10 @@ function SingleVoteTicket({voteTicket, funcUpdateDate, funcUpdateVote, funcClose
                       {votedAlert? <><br/><span className="text-danger">You voted for this issue, please prevent for voting twice, your vote will not be counted</span></> : null}
 
                       { voteTicket.status === "open" &&  Array.isArray(voteTicket.options)?   
-                            <SelectOptionsForVote selectOptions={ voteTicket.options} 
-                                            funcSetVoteFor= {funcGetVote}    
+                            <SelectOptionsForVote 
+                                    selectOptions={ voteTicket.options} 
+                                    funcSetVoteFor= {funcGetVote}    
+                                    
                              />
                             :
                             null

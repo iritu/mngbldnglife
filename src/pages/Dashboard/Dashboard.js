@@ -2,6 +2,7 @@ import { Container , Nav , Row, Col} from "react-bootstrap";
 import React , {useContext} from 'react';
 import { Redirect } from 'react-router';
 import PieChartData from '../../components/PieChartData'; 
+ 
 
 //context
 import ActiveUserContext from '../../shared/activeUserContext';
@@ -39,8 +40,7 @@ function Dashboard({voteTickets}){
         });
     }    
 
-
-    console.log( votesArray); 
+    
 
     return(
         <Container>
@@ -65,8 +65,6 @@ function Dashboard({voteTickets}){
                 })}
             </Row>
             </>
-          
-
         </Container>
         )
 }
