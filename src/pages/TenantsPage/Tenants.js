@@ -18,10 +18,11 @@ function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
     if (!activeUser) {
         return <Redirect to="/"/>
     }
-    if (!activeUser.isAdmin){
+    if (activeUser.isAdmin === false){
         return <Redirect to="/"/>
     }
 
+ 
 
     //filter users by name/email / appartment
     let sortedUsers="";

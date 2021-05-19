@@ -8,20 +8,12 @@ button{
 }
 .App {
   text-align: center;
-}
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+} 
+.btnLink{
+  border: 1px solid;
+  width: 180px;
+  border-radius: 50px;
+  margin-bottom:20px;
 }
 
 .imgAvatar{
@@ -218,6 +210,12 @@ footer{
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
 }
+
+
+.dashboardPieRow{
+  border-top:1px solid; 
+}
+
 
 @media only screen and (max-device-width: 480px){
    

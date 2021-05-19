@@ -424,7 +424,10 @@ function closeVoteTicket (voteTicket){
                   funcCloseTicket={closeVoteTicket}
                   />
               </Route>
-              <Route exact path="/dashboard"><Dashboard/></Route>
+              <Route exact path="/dashboard">
+                <Dashboard  
+                  voteTickets={voteTickets} />
+              </Route>
           </Switch>
        </HashRouter>
    

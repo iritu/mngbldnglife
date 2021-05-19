@@ -15,7 +15,7 @@ function SiteNavBar( {onLogout} ){
     {
         checkIfAdmin = activeUser.isAdmin; 
     }
-
+     
     return(
         <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#/"><img src={logo} alt="logo"/></Navbar.Brand>
@@ -25,7 +25,7 @@ function SiteNavBar( {onLogout} ){
             {/* show navigaion menu only for registered users admin/tenant */}
             {activeUser ? <Nav.Link href="#/dashboard">DashBoard</Nav.Link> : null}
             {/* Tenants pages is only for admins */}
-            {checkIfAdmin? <Nav.Link href="#/tenants">Tenants</Nav.Link> : null}
+            {checkIfAdmin === true? <Nav.Link href="#/tenants">Tenants</Nav.Link> : null}
             {activeUser? <Nav.Link href="#/messages">Messages</Nav.Link> : null}
             {activeUser? <Nav.Link href="#/votings">Voting</Nav.Link>: null}
         </Nav>
@@ -33,7 +33,7 @@ function SiteNavBar( {onLogout} ){
             {!activeUser ? <Nav.Link href="#/login">Login</Nav.Link> : null}
             {!activeUser ? <Nav.Link href="#/signup" className="signupBtn">Signup</Nav.Link> : null}
             {activeUser ? <Nav.Link href="#" onClick={() => onLogout()}>Logout</Nav.Link> : null}
-            {activeUser?  <Nav.Link href="#">{activeUser.name},  {activeUser.isAdmin ? "Admin" : "Tenant"}</Nav.Link> :null}
+            {activeUser?  <Nav.Link href="#">{activeUser.name},  {activeUser.isAdmin === true ? "Admin" : "Tenant"}</Nav.Link> :null}
         </Nav>
         </Navbar.Collapse>
         </Navbar>
