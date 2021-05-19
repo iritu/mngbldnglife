@@ -71,7 +71,7 @@ function SingleMessage({message, updateMessage}){
 
     return(
        <Row>
-           <Col xs={6} md={6} className="msgCardsCol">
+           <Col xs={12} md={6} className="msgCardsCol">
                  <h5>{message.title}</h5>
       
                 <Image src={img} rounded className="imgAvatar" />
@@ -81,7 +81,7 @@ function SingleMessage({message, updateMessage}){
                  <strong>Priority: </strong> {message.priority}
             </Col>
 
-           <Col xs={6} md={6}>
+           <Col xs={12} md={6}>
              <h5>Comments</h5>
               Message ID: {message.messageId}
                        

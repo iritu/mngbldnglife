@@ -147,7 +147,7 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
   }
 
  
-  /*********************USERS********************************* */
+  /*********************USERS (tenants) ********************************* */
   function createNewUser( userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber){
       //console.log("app js - createNewUser"); 
 
@@ -202,11 +202,6 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
         messageId =  messages[messages.length-1].messageId + 1;
       }
 
-      // alert (messageId);
-      // console.log("Insert new message - "+ messageId+ ","+buildingId + ", "+ userId + ", " +dateCreated+ ", "+  title + ", "+ details + ", "+ 
-      //  priority+", "+img); 
-    
-
       const addNewMsg = new MessageModel({
         messageId,
         buildingId,
@@ -220,9 +215,7 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
       });
     
       setMessages(messages.concat(addNewMsg));
-      // console.log("app js messages:")
-      // console.log(messages);
-
+  
   }
 
 
@@ -306,6 +299,8 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
   }
 
 /********************END MESSAGES SECTION*********************** */
+
+
 
 
 /********************VOTING SECTION ***************************** */

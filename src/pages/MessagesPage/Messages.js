@@ -77,7 +77,7 @@ function Messages({messages, onNewMessage, onDeleteMsg, onUpdateComment}){
             <h1>Messages </h1>
             <br/>
             <Row>
-                <Col md={8}>
+                <Col md={8} sm={12}>
                    <form className="d-flex">
                         <input type="text" className="msgPageInput"
                                 placeholder="Filter Messages by text in title and details" 
@@ -92,7 +92,7 @@ function Messages({messages, onNewMessage, onDeleteMsg, onUpdateComment}){
                                     
                     </form> 
                 </Col>
-                <Col md={2}>
+                <Col md={2} sm={12}>
                     {/* new msg btn */}
                       {activeUser.isAdmin ? <Button variant="outline-primary"
                                         onClick={() => setUpdate("")}>New Message

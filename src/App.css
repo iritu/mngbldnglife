@@ -32,7 +32,7 @@ button{
   color:#fff;
 }
 
-h1, h2{
+h1, h2, h3{
   color:#ebb325;
   margin: 2vh 0 2vh 0;
 }
@@ -82,10 +82,13 @@ footer{
   font-size: 24px;
 }
 
-.homePageRow, homePageRow2{
+.homePageRow, .homePageRow2{
   padding-top:5vh;
   padding-bottom: 3vh;
   flex-direction:row;
+  display: flex;
+  align-items: center;
+  margin:0; 
 }
  
 
@@ -241,5 +244,11 @@ footer{
   .singleVoteTicketHeader h3
   {
     font-size:4vh; 
+  }
+  .msgPageInput{
+    width:100%;
+  }
+  .msgCardsCol{
+    border-right:0; 
   }
 }
