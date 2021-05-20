@@ -20,7 +20,7 @@ export default class MessageModel {
             this.img        = singleMessage.img; 
         }
         else{
-            this.img  = "images/msgDefault.JPG";
+            this.img  = "images/msgDefault.jpg";
         }
         this.ArrayCommentsId = singleMessage.ArrayCommentsId; //array 
     }

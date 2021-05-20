@@ -17,10 +17,7 @@ function SingleMessage({message, updateMessage}){
     let img = ""; 
 
     img = message.img; 
-
-    // if (!img){
-    //     img = "images/msgDefault.JPG";
-    // }
+ 
    
     //const imgSrc = pathPre+ "/" + img; 
 
