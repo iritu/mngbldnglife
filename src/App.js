@@ -1,6 +1,4 @@
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router';
-
 import { useState } from 'react';
 // components
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -37,9 +35,6 @@ function App() {
 
  // const pathPre = process.env.PUBLIC_URL;
 
-  //check dummi user:
-  //const dummyUser= {userId:1, isAdmin:true, name:"irit", email:"iritstempler@gmail.com", pswrd:"123", adrs:"Beit Hashmonai", buildingName:"Elazar", buildingId:1, appNumber:5}
-
   //******** Define local memory arrays to use with JSON local files********
   // USERS
   const[users, setUsers] = useState(usersJSON.map(user => new UserModel(user)));
@@ -66,7 +61,7 @@ function App() {
         }
         else //ok, create new
         {
-            console.log("user ok");
+            //console.log("user ok");
             return false; 
         }
     }
@@ -126,7 +121,7 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
   
   }
 
- 
+  
 }
 
 
@@ -137,13 +132,13 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
     let userId = ""; 
 
     userId =  users[users.length - 1].userId + 1; 
-
      
     buildingId = addBuilding(userId, email, buildingName, city, street, stNumber); 
     
     newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNumber, buildingName, buildingId, appNumber);
-    
+   
     return userId; 
+
   }
 
  

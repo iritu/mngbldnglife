@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form ,  Button, Col, Row, Image } from "react-bootstrap";
-//import { Link, Redirect } from "react-router-dom";
+import { Redirect } from 'react-router';
 
 function SignUp({onNewUser}){
 
@@ -14,19 +14,29 @@ function SignUp({onNewUser}){
     const [streetNu, setStreetNu]         = useState("");
     const [appNu, setAppNu]               = useState("");
 
+    const [appNewUser, setAppNewUser]     = useState("");
      
-    function register(e) {
-        e.preventDefault();
-    
-        //console.log("register----"+email );
-        createNewUser();
-    }
+
+   if (appNewUser){
+    return <Redirect to="/login" />;
+   }
+
+    // function register(e) {
+    //     e.preventDefault();
+    //     console.log("register----"+email );
+    //     createNewUser();
+    // }
 
     function createNewUser() {
-        //console.log("sign up - createNewUser "); 
+        console.log("sign up - createNewUser "); 
         let isAdmin = true; 
-        
-        onNewUser(isAdmin, name, email, img ? URL.createObjectURL(img) : "",  pswd, city, street, streetNu, buildingName,  appNu );
+        let  testNewUser = ""; 
+
+        testNewUser = onNewUser(isAdmin, name, email, img ? URL.createObjectURL(img) : "",  pswd, city, street, streetNu, buildingName,  appNu );
+
+        if (testNewUser){
+            setAppNewUser(testNewUser); 
+        }
     }
 
 
@@ -42,8 +52,8 @@ function SignUp({onNewUser}){
         <div className="signUpPage">
             <h1 className="loginHeader">Create a Committee Member Account</h1>
            
-            <Form className="loginForm" onSubmit={register}>
-
+            {/* <Form className="loginForm" onSubmit={register}> */}
+            <Form className="loginForm" > 
                 <Form.Group as={Row} controlId="SignUpName">
                    <Form.Control type="text" placeholder="Full name:"
                    value={name} onChange={e=> setName(e.target.value)} />
