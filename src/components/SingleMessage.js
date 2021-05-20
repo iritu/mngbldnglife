@@ -1,19 +1,21 @@
-import { useState  } from "react";
+import { useState , useContext } from "react";
 import { Button, Row, Col, Image , Form} from "react-bootstrap"; 
-//const pathPre = process.env.PUBLIC_URL;
+
 
 import CommentModel from '../Model/CommentModel';
 import SetCurrentDateTime from '../components/utils';
 
 //string to html react parser (npm install)
 import parse from 'html-react-parser';
+import ActiveUserContext from '../shared/activeUserContext';
 
-function SingleMessage({message, updateMessage}){
+function SingleMessage({users, message, updateMessage}){
 
     //form, get new comment
     const [newComment, setNewComment] = useState("");
-    
-   
+    const pathPre = process.env.PUBLIC_URL;
+    const activeUser = useContext(ActiveUserContext);
+
     let img = ""; 
 
     img = message.img; 
@@ -26,7 +28,7 @@ function SingleMessage({message, updateMessage}){
         //alert(newComment);
 
         let dateCreated = SetCurrentDateTime(); 
-        let userId = message.userId; 
+        let userId = activeUser.userId; 
         let buildingId = message.buildingId; 
         let commentText = newComment; 
 
@@ -49,15 +51,33 @@ function SingleMessage({message, updateMessage}){
     //caller uses parse() to extract returned string to html
     function showCommentsForMessage(commentsArray){
         let returnStr = ""; 
+        let userName =""; 
+        let cmntDate = ""; 
+        let userImg = ""; 
 
+        console.log("commentsArray"); 
         console.log (commentsArray); 
         
         if(commentsArray){
             returnStr = "<ul>"; 
         
             commentsArray.forEach(cmnt => {
-                returnStr += "<li>" + cmnt.commentText + "</li>" ; 
-            });
+                cmntDate = cmnt.dateCreated; 
+
+                if (cmnt.userId){
+                    //find user
+                    let userPos = users.findIndex(user => user.userId === cmnt.userId); //index in array 
+                    userName = users[userPos].name; 
+                    userImg = users[userPos].img; 
+                    returnStr += "<li><img class='avatarIcon' src="+pathPre+"/"+userImg+" /><span class='cmntHeaderTxt'>"+ userName +"@"+cmntDate+"</span><br/>" + cmnt.commentText + "</li>" ; 
+                }
+                else
+                {
+                    returnStr += "<li><span class='cmntHeaderTxt'>"+ cmnt.userId +"@"+cmntDate+"</span><br/>" + cmnt.commentText + "</li>" ; 
+                }
+
+
+             });
 
             returnStr += "</ul>";
         }

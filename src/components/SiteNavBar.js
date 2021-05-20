@@ -4,6 +4,7 @@ import logo from '../assets/images/logo.png';
 
 //context
 import ActiveUserContext from '../shared/activeUserContext';
+ 
 
 function SiteNavBar( {onLogout} ){
 
@@ -16,12 +17,16 @@ function SiteNavBar( {onLogout} ){
         checkIfAdmin = activeUser.isAdmin; 
     }
      
+     
+
     return(
+      
         <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#/"><img src={logo} alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav  
+            className="mr-auto">
             {/* show navigaion menu only for registered users admin/tenant */}
             {activeUser ? <Nav.Link href="#/dashboard">DashBoard</Nav.Link> : null}
             {/* Tenants pages is only for admins */}
@@ -34,6 +39,7 @@ function SiteNavBar( {onLogout} ){
             {!activeUser ? <Nav.Link href="#/signup" className="signupBtn">Signup</Nav.Link> : null}
             {activeUser ? <Nav.Link href="#" onClick={() => onLogout()}>Logout</Nav.Link> : null}
             {activeUser?  <Nav.Link href="#">{activeUser.name},  {activeUser.isAdmin === true ? "Admin" : "Tenant"}</Nav.Link> :null}
+            
         </Nav>
         </Navbar.Collapse>
         </Navbar>

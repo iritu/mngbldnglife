@@ -405,6 +405,7 @@ function closeVoteTicket (voteTicket){
               <Route exact path="/messages">
                   <Messages 
                     messages={messages} 
+                    users={users} 
                     onNewMessage={addNewMsg}  
                     onDeleteMsg={deleteMsg} 
                     onUpdateComment={updateCommentsForMessage}

@@ -47,7 +47,7 @@ function Dashboard({voteTickets}){
             <h1>Dashboard</h1>
 
             {checkIfAdmin === true? <Nav.Link  className="btnLink" href="#/tenants">Add New Tenants</Nav.Link> : null}
-           
+        
             <>
             <Row className="dashboardPieRow">
                 <Col>   <h3>Open voting tickets results </h3> </Col>

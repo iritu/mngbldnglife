@@ -7,9 +7,10 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import ActiveUserContext from '../../shared/activeUserContext';
 import NewMsgModal from '../../components/NewMsgModal';
 
-function Messages({messages, onNewMessage, onDeleteMsg, onUpdateComment}){
+function Messages({messages, users, onNewMessage, onDeleteMsg, onUpdateComment}){
     
     const activeUser = useContext(ActiveUserContext);
+
     const [newMsgeModal, setNewMsgeModal] = useState(false);
     const [message, setMsgModal] = useState("");
     const [filterText, setFilterText] = useState("");
@@ -129,7 +130,10 @@ function Messages({messages, onNewMessage, onDeleteMsg, onUpdateComment}){
                             </Row>
 
                             {/* show single message with its comments */}           
-                            <SingleMessage message={message} updateMessage={funcUpdateMessage} />
+                            <SingleMessage 
+                                users={users}
+                                message={message} 
+                                updateMessage={funcUpdateMessage} />
 
 
                         </Col>

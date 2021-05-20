@@ -56,6 +56,10 @@ footer{
   position: relative;
 }
 
+footer > .container > a {
+  color:#fff;
+}
+
 .homePageMain{
   margin: 0;
   padding-bottom: 6vh;
@@ -153,6 +157,14 @@ footer{
   margin-right:10px;
 }
 
+.avatarIcon{
+  width:25px;
+  height:25px; 
+}
+.cmntHeaderTxt{
+  color:#2C9986;
+  margin-left:10px;
+}
 /**********VOTING*********************/
 .singleVoteTicket{
   border:1px solid #343A40;
