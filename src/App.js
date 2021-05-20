@@ -381,9 +381,10 @@ function closeVoteTicket (voteTicket){
 
   return (
     <ActiveUserContext.Provider value={activeUser}> 
-     <SiteNavBar   onLogout={() => setActiveUser(null)}/>
+    
       
        <HashRouter>
+       <SiteNavBar   onLogout={() => setActiveUser(null)}/>
           <Switch>
               <Route exact path="/"><HomePage/></Route>
               <Route exact path="/login">

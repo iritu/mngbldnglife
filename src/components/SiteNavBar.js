@@ -5,6 +5,8 @@ import logo from '../assets/images/logo.png';
 //context
 import ActiveUserContext from '../shared/activeUserContext';
  
+import { useLocation } from 'react-router-dom';
+ 
 
 function SiteNavBar( {onLogout} ){
 
@@ -16,8 +18,10 @@ function SiteNavBar( {onLogout} ){
     {
         checkIfAdmin = activeUser.isAdmin; 
     }
-     
-     
+   
+    const location = useLocation() //get current relative path, like /tenants
+    
+
 
     return(
       
