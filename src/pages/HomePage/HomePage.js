@@ -1,6 +1,9 @@
 import {Jumbotron, Container, Row, Col, Image} from 'react-bootstrap';
 
 function HomePage(){
+
+    const pathPre = process.env.PUBLIC_URL; //define server path
+
     return(
         <>
             <Jumbotron fluid className="Jumbotron">
@@ -35,13 +38,13 @@ function HomePage(){
                             Manage: Voting, Messages, Issues, Tenants
                         </Col>
                         <Col xs={12} md={4}>
-                            <Image src="images/city-homepage-project.png"  fluid  alt=""></Image>
+                            <Image src={pathPre + "/images/city-homepage-project.png"}  fluid  alt=""></Image>
                         </Col>
                     </Row>
 
                     <Row className="homePageRow2">
                         <Col xs={12} md={4}>
-                           <Image src="images/city-homepage-2.png" fluid  alt=""></Image>
+                           <Image src= {pathPre + "/images/city-homepage-2.png"} fluid  alt=""></Image>
                         </Col>
                         <Col xs={12} md={4}>
                             <h2>

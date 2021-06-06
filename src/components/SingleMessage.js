@@ -13,12 +13,13 @@ function SingleMessage({users, message, updateMessage}){
 
     //form, get new comment
     const [newComment, setNewComment] = useState("");
+    
     const pathPre = process.env.PUBLIC_URL;
     const activeUser = useContext(ActiveUserContext);
 
     let img = ""; 
 
-    img = message.img; 
+    img = pathPre + "/"+ message.img;  //default img for message
  
    
     //const imgSrc = pathPre+ "/" + img; 

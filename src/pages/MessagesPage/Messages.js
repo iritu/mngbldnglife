@@ -10,7 +10,7 @@ import NewMsgModal from '../../components/NewMsgModal';
 function Messages({messages, users, onNewMessage, onDeleteMsg, onUpdateComment}){
     
     const activeUser = useContext(ActiveUserContext);
-
+    
     const [newMsgeModal, setNewMsgeModal] = useState(false);
     const [message, setMsgModal] = useState("");
     const [filterText, setFilterText] = useState("");
