@@ -1,4 +1,4 @@
-import React , {useContext} from 'react';
+import React , {useContext, useEffect, useState } from 'react';
 import {Navbar, Nav} from 'react-bootstrap'; 
 import logo from '../assets/images/logo.png';
 
@@ -21,6 +21,22 @@ function SiteNavBar( {onLogout} ){
    
     const location = useLocation() //get current relative path, like /tenants
     
+ 
+   
+    function setActive(navLink){
+        let classActive = ""; 
+
+        if (location.pathname === navLink){
+            classActive=" active "; 
+        }
+        else
+        {
+            classActive="";
+        }
+        return classActive; 
+    }
+
+ 
 
 
     return(
@@ -29,14 +45,14 @@ function SiteNavBar( {onLogout} ){
         <Navbar.Brand href="#/"><img src={logo} alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav  
+        <Nav  activeKey={location.pathname}
             className="mr-auto">
             {/* show navigaion menu only for registered users admin/tenant */}
-            {activeUser ? <Nav.Link href="#/dashboard">DashBoard</Nav.Link> : null}
+            {activeUser ? <Nav.Link  className={ setActive( "/dashboard") }  href="#/dashboard">DashBoard</Nav.Link> : null}
             {/* Tenants pages is only for admins */}
-            {checkIfAdmin === true? <Nav.Link href="#/tenants">Tenants</Nav.Link> : null}
-            {activeUser? <Nav.Link href="#/messages">Messages</Nav.Link> : null}
-            {activeUser? <Nav.Link href="#/votings">Voting</Nav.Link>: null}
+            {checkIfAdmin === true? <Nav.Link   className={  setActive( "/tenants") } href="#/tenants">Tenants</Nav.Link> : null}
+            {activeUser? <Nav.Link  className={ setActive ("/messages" ) } href="#/messages">Messages</Nav.Link> : null}
+            {activeUser? <Nav.Link  className={  setActive ( "/votings" ) } href="#/votings">Voting</Nav.Link>: null}
         </Nav>
         <Nav>
             {!activeUser ? <Nav.Link href="#/login">Login</Nav.Link> : null}
