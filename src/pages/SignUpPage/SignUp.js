@@ -21,11 +21,6 @@ function SignUp({onNewUser}){
     return <Redirect to="/login" />;
    }
 
-    // function register(e) {
-    //     e.preventDefault();
-    //     console.log("register----"+email );
-    //     createNewUser();
-    // }
 
     function createNewUser() {
         console.log("sign up - createNewUser "); 
@@ -52,11 +47,17 @@ function SignUp({onNewUser}){
         <div className="signUpPage">
             <h1 className="loginHeader">Create a Committee Member Account</h1>
            
-            {/* <Form className="loginForm" onSubmit={register}> */}
+           
             <Form className="loginForm" > 
+                <h3>Personal details</h3>
                 <Form.Group as={Row} controlId="SignUpName">
                    <Form.Control type="text" placeholder="Full name:"
                    value={name} onChange={e=> setName(e.target.value)} />
+                </Form.Group>
+
+                <Form.Group as={Row}  controlId="SignUpPassword">
+                   <Form.Control type="password" placeholder="Password" 
+                   value={pswd} onChange={e=> setPswd(e.target.value)}/>
                 </Form.Group>
 
                <Form.Group as={Row} controlId="SignUpEmail">
@@ -64,48 +65,51 @@ function SignUp({onNewUser}){
                    value={email} onChange={e=> setEmail(e.target.value)} />
                </Form.Group>
 
-               <Form.Group as={Row}  controlId="SignUpPassword">
-                   <Form.Control type="password" placeholder="Password" 
-                   value={pswd} onChange={e=> setPswd(e.target.value)}/>
-               </Form.Group>
-              
+            
+               <h3>Building details</h3>
                 <Form.Group as={Row} controlId="SignUpBuildingName">
                    <Form.Control type="text" placeholder="Building name:"
                    value={buildingName} onChange={e=> setBuildingName(e.target.value)} />
                 </Form.Group>
 
-                <Form.Group as={Row} controlId="SignUpCity">
-                   <Form.Control type="text" placeholder="City:"
-                   value={city} onChange={e=> setCity(e.target.value)} />
-                </Form.Group>
 
-                <Form.Group as={Row} controlId="SignUpstreet">
-                   <Form.Control type="text" placeholder="street:"
-                   value={street} onChange={e=> setStreet(e.target.value)} />
-                </Form.Group>
+                <Row>
+                    <Col sm={12} md={4}>
+                        <Form.Group as={Row} controlId="SignUpCity">
+                            <Form.Control type="text" placeholder="City:"
+                            value={city} onChange={e=> setCity(e.target.value)} />
+                        </Form.Group>
+                    </Col>
+                    <Col sm={12}  md={4}>
+                        <Form.Group as={Row} controlId="SignUpstreet">
+                         <Form.Control type="text" placeholder="street:"
+                          value={street} onChange={e=> setStreet(e.target.value)} />
+                        </Form.Group>
+                    </Col>
+                    <Col sm={12}  md={4}>
+                        <Form.Group as={Row} controlId="SignUpstreetNu">
+                          <Form.Control type="number" placeholder="street Number:"
+                          value={streetNu} onChange={e=> setStreetNu(e.target.value)} />
+                        </Form.Group>
+                    </Col>
+                </Row>
 
-                <Form.Group as={Row} controlId="SignUpstreetNu">
-                   <Form.Control type="number" placeholder="street Number:"
-                   value={streetNu} onChange={e=> setStreetNu(e.target.value)} />
-                </Form.Group>
 
                 <Form.Group as={Row} controlId="SignUpAppNu">
                    <Form.Control type="number" placeholder="Appartment Number:"
                    value={appNu} onChange={e=> setAppNu(e.target.value)} />
                 </Form.Group>
 
+               
 
-                <Form.Group as={Row} controlId="formHorizontalImg">
-                        <Form.Label column sm={3}>
-                            Your Image
-                        </Form.Label>
-                        <Col sm={9}>
-                            <Form.Control type="file" accept="image/*" onChange={handleFileChange}/>
-                        </Col>
-                    </Form.Group>
-                    <Image src={img ? URL.createObjectURL(img) : ""}/>
+                <Form.Group as={Row} controlId="formFile" >
+                    <Form.Label  className="custom-file-upload">Upload your Image</Form.Label>
+                    <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
+                </Form.Group>
 
-                <Button variant="success" type="submit" onClick={createNewUser} block>
+                <Image src={img ? URL.createObjectURL(img) : ""}/>
+
+                <Button className="submitForm" type="submit" onClick={createNewUser} block>
                    Sign Up
                </Button>
             </Form>
