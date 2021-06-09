@@ -20,7 +20,7 @@ function SingleMessage({users, message, updateMessage}){
     const pathPre = useContext(pathPreContext);
 
 
-    
+
     let img = ""; 
     img =  message.img;  //default img for message
  
@@ -72,7 +72,7 @@ function SingleMessage({users, message, updateMessage}){
                     let userPos = users.findIndex(user => user.userId === cmnt.userId); //index in array 
                     userName = users[userPos].name; 
                     userImg = users[userPos].img; 
-                    returnStr += "<li><img class='avatarIcon' src="+pathPre+"/"+userImg+" /><span class='cmntHeaderTxt'>"+ userName +"@"+cmntDate+"</span><br/>" + cmnt.commentText + "</li>" ; 
+                    returnStr += "<li><img class='avatarIcon' src="+pathPre+userImg+" /><span class='cmntHeaderTxt'>"+ userName +"@"+cmntDate+"</span><br/>" + cmnt.commentText + "</li>" ; 
                 }
                 else
                 {
@@ -94,7 +94,7 @@ function SingleMessage({users, message, updateMessage}){
            <Col xs={12} md={6} className="msgCardsCol">
                  <h5>{message.title}</h5>
       
-                <Image src={pathPre+"/"+img} rounded className="imgAvatar" />
+                <Image src={pathPre+img} rounded className="imgAvatar" />
       
                  <strong>Details: </strong> {message.details}
                  <br/>
