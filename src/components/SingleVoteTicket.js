@@ -1,7 +1,5 @@
 import { useState , useContext, useEffect } from "react";
-import { Button, Row, Col, Form, Container} from "react-bootstrap"; 
-
-import VoteTicketModel from '../Model/VoteTicketModel'; 
+import { Button, Row, Col, Container} from "react-bootstrap"; 
 
 //https://www.npmjs.com/package/react-datetime-picker
 import DateTimePicker from 'react-datetime-picker';
