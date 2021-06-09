@@ -102,7 +102,7 @@ function SignUp({onNewUser}){
 
                
 
-                <Form.Group as={Row} controlId="formFile" >
+                <Form.Group as={Row} controlId="formFile" className="formInput">
                     <Form.Label  className="custom-file-upload">Upload your Image</Form.Label>
                     <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
                 </Form.Group>

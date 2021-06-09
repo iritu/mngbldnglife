@@ -4,11 +4,12 @@ import ActiveUserContext from '../../shared/activeUserContext';
 import { useState, useContext  } from "react";
 import { Button, Col, Container, Row , Image} from 'react-bootstrap';
 import NewUserModal from '../../components/NewUserModal';
+import pathPreContext from '../../shared/pathPreContext'; 
 
 function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
 
     const activeUser = useContext(ActiveUserContext);
-    const pathPre = process.env.PUBLIC_URL; //define server path
+    const pathPre = useContext(pathPreContext);
 
     const [filterText, setFilterText] = useState("");
 
@@ -91,7 +92,7 @@ function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
                                 <Col xs={6} md={2}>
                                         <h3>  {user.name} </h3>
                                         <br/>
-                                        <Image src={user.img} rounded className="imgAvatar" />
+                                        <Image src={pathPre+"/"+user.img} rounded className="imgAvatar" />
                                 </Col>
                                 <Col  xs={6} md={4}>
                                         Email: <a href={`mailto:${user.email}`}>{user.email}</a> 

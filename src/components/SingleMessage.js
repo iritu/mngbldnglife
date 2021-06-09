@@ -8,18 +8,21 @@ import SetCurrentDateTime from '../components/utils';
 //string to html react parser (npm install)
 import parse from 'html-react-parser';
 import ActiveUserContext from '../shared/activeUserContext';
+import pathPreContext from '../shared/pathPreContext'; 
 
 function SingleMessage({users, message, updateMessage}){
 
     //form, get new comment
     const [newComment, setNewComment] = useState("");
     
-    const pathPre = process.env.PUBLIC_URL;
+    //constants
     const activeUser = useContext(ActiveUserContext);
+    const pathPre = useContext(pathPreContext);
 
+
+    
     let img = ""; 
-
-    img = pathPre + "/"+ message.img;  //default img for message
+    img =  message.img;  //default img for message
  
    
     //const imgSrc = pathPre+ "/" + img; 
@@ -56,8 +59,7 @@ function SingleMessage({users, message, updateMessage}){
         let cmntDate = ""; 
         let userImg = ""; 
 
-        console.log("commentsArray"); 
-        console.log (commentsArray); 
+      
         
         if(commentsArray){
             returnStr = "<ul>"; 
@@ -92,7 +94,7 @@ function SingleMessage({users, message, updateMessage}){
            <Col xs={12} md={6} className="msgCardsCol">
                  <h5>{message.title}</h5>
       
-                <Image src={img} rounded className="imgAvatar" />
+                <Image src={pathPre+"/"+img} rounded className="imgAvatar" />
       
                  <strong>Details: </strong> {message.details}
                  <br/>

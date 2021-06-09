@@ -53,9 +53,9 @@ function Dashboard({voteTickets}){
                 <Col>   <h3>Open voting tickets results </h3> </Col>
             </Row>
             <Row >
-            {votesArray.map((voteTicket) => {
+            {votesArray.map((voteTicket, index) => {
                 return (
-                    <Col md={3} sm={6}>   
+                    <Col md={3} sm={6} key={index}>   
                       
                             <PieChartData entity={voteTicket} />  
                             

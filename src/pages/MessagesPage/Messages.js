@@ -103,13 +103,13 @@ function Messages({messages, users, onNewMessage, onDeleteMsg, onUpdateComment})
 
        
            
-            {sortedMessages.map((message)  => 
+            {sortedMessages.map((message, index)  => 
                 <>
                     <Row className="msgCards" key={message.messageId}  >
                         <Col>
                            
                            {/* Update & delete message buttons */}
-                            <Row>
+                            <Row >
                                     <Col xs={6} md={2}>
                                     {/* update msg btn  */}
                                     {activeUser.isAdmin ? 
@@ -134,7 +134,7 @@ function Messages({messages, users, onNewMessage, onDeleteMsg, onUpdateComment})
                                 users={users}
                                 message={message} 
                                 updateMessage={funcUpdateMessage} />
-
+                              
 
                         </Col>
                     </Row>

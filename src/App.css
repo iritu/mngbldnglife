@@ -131,7 +131,7 @@ footer > .container > a {
 }
 
 
-input[type="file"] {
+.formInput > input[type="file"] {
   display: none;
 }
 
@@ -162,6 +162,8 @@ input[type="file"] {
   outline: #2C9986;
 
 }
+
+
 /***********MSG*******************/
 .btnLineRight{
  float:right;

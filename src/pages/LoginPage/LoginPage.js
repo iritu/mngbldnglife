@@ -58,7 +58,7 @@ function LoginPage({users, onLogin}){
                         value={pswd} onChange={e=> setPswd(e.target.value)}/>
                     </Form.Group>
                    
-                    <Button variant="success" type="submit" block>
+                    <Button className="submitForm" type="submit" block>
                         Login
                     </Button>
             </Form>
