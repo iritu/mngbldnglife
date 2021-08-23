@@ -28,7 +28,7 @@ import VoteTicketModel from './Model/VoteTicketModel'
 //context
 import ActiveUserContext from './shared/activeUserContext';
 
-
+  
 
 
 function App() {
