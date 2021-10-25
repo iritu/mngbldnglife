@@ -3,5 +3,6 @@ The system should proide messages module, voting module and more.
 
 https://iritu.github.io/mngbldnglife/#/
 
-![‏‏לכידה1](https://user-images.githubusercontent.com/8612743/130962262-efebd945-2560-4713-9645-5ad550f80670.PNG)
+
+![מיזם חדש](https://user-images.githubusercontent.com/8612743/138683540-e0cf1bb5-82e2-4326-84d4-a9c474a8bce6.jpg)
 
