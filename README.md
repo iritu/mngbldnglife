@@ -1,5 +1,9 @@
 The aim of this project , as part of a REACT front end course, is to create an Homeowner Association management System with 2 roles - Admin (Committee member ) and user ( tenant ) . 
-The system should proide messages module, voting module and more.
+The system proides messages module, voting module, viewing tenants module and dashboard.
+
+It is based on create-react-app along with JSON files as data for this application.
+
+For the charts presented, there is a use of react-chartjs-2 that change dynamically according to the changes in the Votes module.
 
 https://iritu.github.io/mngbldnglife/#/
 
