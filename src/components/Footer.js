@@ -4,7 +4,7 @@ function Footer(){
     return(
         <footer>
             <Container>
-                <a href="mailto:iritstempler@gmail.com">Contact us</a>
+                <a href="#/contact">Contact</a>
             </Container>
              
         </footer>

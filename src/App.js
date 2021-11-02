@@ -10,6 +10,7 @@ import TenantsPage from './pages/TenantsPage/Tenants';
 import Votings from './pages/VotingsPage/Votings';
 import SiteNavBar from './components/SiteNavBar';
 import Footer from './components/Footer';
+import ContactPage from './pages/Contact/ContactPage';
 //css
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -28,12 +29,11 @@ import VoteTicketModel from './Model/VoteTicketModel'
 //context
 import ActiveUserContext from './shared/activeUserContext';
 
+
   
 
 
 function App() {
-
- // const pathPre = process.env.PUBLIC_URL;
 
   //******** Define local memory arrays to use with JSON local files********
   // USERS
@@ -420,6 +420,9 @@ function closeVoteTicket (voteTicket){
                 <Dashboard  
                   voteTickets={voteTickets} 
                   />
+              </Route>
+              <Route exact path="/contact">
+                  <ContactPage />
               </Route>
           </Switch>
        </HashRouter>

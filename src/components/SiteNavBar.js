@@ -53,6 +53,7 @@ function SiteNavBar( {onLogout} ){
             {checkIfAdmin === true? <Nav.Link   className={  setActive( "/tenants") } href="#/tenants">Tenants</Nav.Link> : null}
             {activeUser? <Nav.Link  className={ setActive ("/messages" ) } href="#/messages">Messages</Nav.Link> : null}
             {activeUser? <Nav.Link  className={  setActive ( "/votings" ) } href="#/votings">Voting</Nav.Link>: null}
+            <Nav.Link  className={  setActive ( "/contact" ) } href="#/contact">Contact</Nav.Link>
         </Nav>
         <Nav>
             {!activeUser ? <Nav.Link href="#/login">Login</Nav.Link> : null}

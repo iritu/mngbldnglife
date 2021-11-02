@@ -1,6 +1,7 @@
 body{
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 17px;
+ 
 }
 
 button{
@@ -160,10 +161,12 @@ footer > .container > a {
   background-color:#fff;
   color:#2C9986;
   outline: #2C9986;
-
+  border:1px solid #2C9986; 
 }
 
-
+/***********CONTACT**********/
+.rowSpace{margin-bottom:1.5%; }
+.contactForm{width:500px;  min-height:68vh;}
 /***********MSG*******************/
 .btnLineRight{
  float:right;
@@ -296,4 +299,5 @@ footer > .container > a {
   .msgCardsCol{
     border-right:0; 
   }
+  .contactForm{width:80%; margin:0 auto;}
 }
