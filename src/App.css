@@ -82,10 +82,9 @@ footer > .container > a {
   text-align: center;
 }
 
-.homePageSectionText
-{
-  font-size: 24px;
-}
+.homePageSectionText{ font-size: 26px; }
+
+.hpText{ font-size: 22px; }
 
 .homePageRow, .homePageRow2{
   padding-top:5vh;

@@ -34,8 +34,12 @@ function HomePage(){
                     <Row className="homePageRow">
                         <Col xs={12} md={4}>
                             <h2>Comitee member</h2>
-                            <br/>
-                            Manage: Voting, Messages, Issues, Tenants
+                            <span className="hpText">
+                                <br/>
+                                Committee member role is to add and remove tenant members, create votings, and remove/create message on the message board.
+                                <br/>
+                                There is only one committee member per building. 
+                            </span>
                         </Col>
                         <Col xs={12} md={4}>
                             <Image src={pathPre + "/images/city-homepage-project.png"}  fluid  alt=""></Image>
@@ -48,11 +52,13 @@ function HomePage(){
                         </Col>
                         <Col xs={12} md={4}>
                             <h2>
-                               Tenants
+                              Tenants
                             </h2>
-                            <br/>
-                            View and participate: Vote on issues you care, View messages of your building, 
-                            Report, manage and view issues.
+                            <span className="hpText">
+                                <br/>
+                                Can view and participate: Vote on issues you care, View messages of your building, 
+                                Report, manage and view issues.
+                            </span>
                         </Col>
                     </Row>
           </Container>
