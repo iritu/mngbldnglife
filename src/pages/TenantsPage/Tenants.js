@@ -6,18 +6,23 @@ import { Button, Col, Container, Row , Image} from 'react-bootstrap';
 import NewUserModal from '../../components/NewUserModal';
 import pathPreContext from '../../shared/pathPreContext'; 
 
+/**
+ * TenantsPage: display exisiting tenants, activates the new user ( tenant ) modal, send to app.js 
+ * the "onDeleteUser" , "onUpdateUser" to activate the correspondind delete/ update functions 
+ * as the arrays are handled in app.js and it goes up the hierarchy of files to the caller to handle the data.
+ * @param {*} users array,  onNewUser: function property ( activated in app.js) , onDeleteUser: function property, onUpdateUser: function property
+ */
+
 function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
 
-    const activeUser = useContext(ActiveUserContext);
-    const pathPre = useContext(pathPreContext);
+    const activeUser    = useContext(ActiveUserContext);
+    const pathPre       = useContext(pathPreContext);
 
     const [filterText, setFilterText] = useState("");
 
-    const [newUserModal, setNewUserModal] = useState(false);
+    const [showNewUserModal, setShowNewUserModal] = useState(false);
     const [user, setUserModal] = useState("");
   
-
-
     if (!activeUser) {
         return <Redirect to="/"/>
     }
@@ -40,22 +45,22 @@ function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
     }
 
 
+   
     function setUpdate(user){
-         setNewUserModal(true);
-         setUserModal(user); 
+         setShowNewUserModal(true); //open new modal 
+         setUserModal(user);  //null for new user, or obj user from user's list 
     }        
 
 
     /*  send the message id to app.js to delete it as the array is 
         held with state handeling in app.js
-        onDeleteMsg - is sent as a prop from app.js and this func pointer receives 
+        onDeleteUser - is sent as a prop from app.js and this func pointer receives 
         back the index sent to it
     */
     function onDeleteClick (userId){
          onDeleteUser(userId); 
     }
-
-    
+   
 
 
     return (
@@ -75,7 +80,7 @@ function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
                 <Col md={2}>
                     {/* new user btn */}
                       {activeUser.isAdmin ? <Button variant="outline-primary"
-                            onClick={() => setUpdate("")}>New User
+                            onClick={() => setUpdate("")}>New Tenant
                             </Button> : null}
                 </Col>
             </Row>
@@ -89,27 +94,24 @@ function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
                            {/* Update & delete message buttons */}
                             <Row>
                                 {/* user details */}
-                                <Col xs={6} md={2}>
-                                        <h3>  {user.name} </h3>
-                                        <br/>
+                                <Col xs={4} md={2} className="tenantsPageUserImg">
+                                        <h4 className="tenantsPageH4">  {user.name} </h4>
                                         <Image src={pathPre+user.img} rounded className="imgAvatar" />
                                 </Col>
-                                <Col  xs={6} md={4}>
+                                <Col  xs={8} md={4}>
                                         Email: <a href={`mailto:${user.email}`}>{user.email}</a> 
                                         <br/>
                                         Appartment Number: {user.appNumber}
                                 </Col>
 
                                 {/* update & delete  btn  */}
-                                <Col xs={6} md={2}>
+                                <Col xs={12} md={4} className="btnLine">
                                     {activeUser.isAdmin ? 
-                                        <Button className="btnUpdateMsg" variant="primary" size="sm"
+                                        <Button className="btnUpdateMsg" variant="primary" size="sm"  
                                             onClick={() => setUpdate(user) }>Update User
                                         </Button> : null
                                         }
-                                </Col>
-                            
-                                <Col xs={6} md={2}>
+                               
                                         {activeUser.isAdmin ? 
                                             <Button variant="danger" size="sm"
                                                 onClick={() => onDeleteClick(user.userId)}>Delete User
@@ -128,8 +130,8 @@ function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
           
             {/* activate message modal      */}
             <NewUserModal 
-                show={newUserModal} 
-                onClose={() => setNewUserModal(false)} 
+                show={showNewUserModal} 
+                onClose={() => setShowNewUserModal(false)} 
                 onCreate={onNewUser}
                 objUser = {user}                    
                 onUpdateUser = {onUpdateUser}

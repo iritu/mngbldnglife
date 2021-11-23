@@ -22,10 +22,10 @@ function NewUserModal({ show, onClose, onCreate , objUser , onUpdateUser}) {
     const [objState, setObjState] = useState(null);
     
 
-    let modalTitle = "Create New User "
+    let modalTitle = "Create New Tenant " //new user
 
     if (objUser){
-        modalTitle= "Update User"
+        modalTitle= "Update Tenant"
     }
      
 

@@ -29,17 +29,17 @@ function ContactComponent(){
             <form onSubmit={onSubmit}>
               <Row className="rowSpace">
                     <label htmlFor="name" />
-                    <input  type='text' className="form-control" name='name'  placeholder='from name'   value={toSend.name}  onChange={handleChange}  />
+                    <input  type='text' required className="form-control" name='name'  placeholder='Your name'   value={toSend.name}  onChange={handleChange}  />
                 </Row>
 
                 <Row className="rowSpace">
                     <label htmlFor="email" />  
-                    <input type="email" className="form-control" name="email" placeholder="E-Mail" value={toSend.email} onChange={handleChange} />
+                    <input type="email" required className="form-control" name="email" placeholder="E-Mail" value={toSend.email} onChange={handleChange} />
                 </Row>
 
                 <Row className="rowSpace">
                     <label htmlFor="message" />
-                    <input type='text' className="form-control" name='message'  placeholder='Your message' value={toSend.message}  onChange={handleChange} />
+                    <input type='text'  required className="form-control" name='message'  placeholder='Your message' value={toSend.message}  onChange={handleChange} />
                 </Row>
 
                 <Row>   

@@ -1,5 +1,5 @@
 body{
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:'Heebo', sans-serif;
   font-size: 17px;
  
 }
@@ -18,7 +18,7 @@ button{
 }
 
 .imgAvatar{
-  width:100px;
+  width:50px;
   margin-right:10px; 
   display: inline-block; 
 }
@@ -38,6 +38,21 @@ h1, h2, h3{
   margin: 2vh 0 2vh 0;
 }
  
+.tenantsPageH4{
+  color: #fff;
+  margin:5px 0 5px 0;
+  font-weight: 400;
+}
+
+.tenantsPageUserImg
+{
+  background-color: #dc3544c9;
+  display: block;
+  border-top-right-radius: 40px;
+}
+
+.btnLine{padding-left: 0;}
+
 .Jumbotron{
     background-color: #343A40;
     margin-bottom:0 ;
@@ -299,4 +314,6 @@ footer > .container > a {
     border-right:0; 
   }
   .contactForm{width:80%; margin:0 auto;}
+  .btnLine{margin-top:5px;}
+
 }
