@@ -21,12 +21,14 @@ import usersJSON from './data/users.json';
 import buildinsJSON from './data/buildings.json';
 import messagesJSON from './data/messages.json';
 import voteTicketsJSON from './data/votesTickets.json'
+import ticketsJSON from './data/tickets.json'
 
 //data model
 import UserModel from './Model/UserModel'; 
 import buildingModel from './Model/BuildingModel'; 
 import MessageModel from './Model/MessageModel';
 import VoteTicketModel from './Model/VoteTicketModel'
+import TicketModel from './Model/TicketsModel'
 
 //context
 import ActiveUserContext from './shared/activeUserContext';
@@ -46,7 +48,8 @@ function App() {
   const[messages, setMessages] = useState(messagesJSON.map (message => new  MessageModel(message)) ) ;
   //VOTE TICKETS JSON
   const[voteTickets, setVoteTickets]  = useState(voteTicketsJSON.map (voteTicket => new  VoteTicketModel(voteTicket)) ) ;
-
+  //TICKETS
+  const[ticketsArr, setTicketsArr] = useState(ticketsJSON.map (ticket => new TicketModel(ticket))); 
   //State 
   const [activeUser, setActiveUser] = useState(null);
 
@@ -424,7 +427,10 @@ function closeVoteTicket (voteTicket){
                   />
               </Route>
               <Route exact path="/tickets">
-                <Tickets />
+                <Tickets 
+                  issues={ticketsArr}
+                  users={users} 
+                />
               </Route> 
 
               <Route exact path="/contact">

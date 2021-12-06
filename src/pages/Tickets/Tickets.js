@@ -1,6 +1,6 @@
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
-function Tickets(){
+function Tickets({issues, users}){
     return (
         <Container>
             <h1>Tickets</h1>
