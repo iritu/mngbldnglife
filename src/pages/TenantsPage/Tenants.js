@@ -136,8 +136,6 @@ function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
                 objUser = {user}                    
                 onUpdateUser = {onUpdateUser}
                 />
-                              
-
         </Container>
     )
 }

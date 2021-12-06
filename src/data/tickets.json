@@ -1,0 +1,27 @@
+[
+    {
+        "ticketId":1,
+        "buildingId":1,
+        "userId": 1001,
+        "dateCreated": "2021-12-07 15:06:00",
+        "title": "First demo issue", 
+        "details": "Some txt goes here about the new issue", 
+        "priority":  "Regular",
+        "status": "Open",
+        "img":"images/issue-image.jpg",
+        "ArrayTicketCommentsId":[
+            {
+                "dateCreated": "2021-12-07 16:30:00",
+                "userId": 1001,
+                "buildingId":1,
+                "commentText": "This is comment no 1 for ticket no 1 "
+            }
+        
+        ]
+    }
+]
+
+
+
+ 
+  

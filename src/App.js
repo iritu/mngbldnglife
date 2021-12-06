@@ -1,6 +1,6 @@
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
-// components
+// components & pages
 import Dashboard from './pages/Dashboard/Dashboard';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -11,6 +11,8 @@ import Votings from './pages/VotingsPage/Votings';
 import SiteNavBar from './components/SiteNavBar';
 import Footer from './components/Footer';
 import ContactPage from './pages/Contact/ContactPage';
+import Tickets from './pages/Tickets/Tickets';
+
 //css
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -421,6 +423,10 @@ function closeVoteTicket (voteTicket){
                   voteTickets={voteTickets} 
                   />
               </Route>
+              <Route exact path="/tickets">
+                <Tickets />
+              </Route> 
+
               <Route exact path="/contact">
                   <ContactPage />
               </Route>
