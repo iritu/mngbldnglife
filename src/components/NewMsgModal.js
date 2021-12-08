@@ -5,7 +5,7 @@ import SetCurrentDateTime from './utils';
 
 // if messageIndex is passed the it is an update process else it is an insert process
 
-function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId, objMsg}) {
+function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId, objMsg, type=0}) {
  
     const [title, setTitle] = useState("");
     const [details, setDetails] = useState("");
@@ -16,10 +16,15 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
 
     const [objMsgId , setMsgId] = useState(""); 
 
-    let modalTitle = "Create New Message "
+    let  typeName ="Message";  //default 
+
+    if (type === 1 ){typeName = "Ticket";}
+   
+
+    let modalTitle = "Create New " + typeName;
 
     if (objMsg){
-        modalTitle= "Update Message"
+        modalTitle= "Update " + typeName;
     }
      
 
@@ -142,7 +147,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
 
                     <Form.Group as={Row} controlId="MsgImg">
                         <Form.Label column sm={3}>
-                            Message Image
+                            {typeName} Image
                         </Form.Label>
                         <Col sm={9}>
                             <Form.Control type="file" accept="image/*" onChange={handleFileChange}/>
