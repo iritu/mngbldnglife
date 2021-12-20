@@ -3,7 +3,8 @@ import { Button, Modal, Form, Col, Row, Image } from 'react-bootstrap';
 
 import SetCurrentDateTime from './utils';
 
-// if messageIndex is passed the it is an update process else it is an insert process
+// if messageIndex is passed then it is an update process else it is an insert process
+// change the component modal to suit messages and tickets issues. ( issue is very close to be a kind og message )
 
 function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId, objMsg, type=0}) {
  
@@ -34,8 +35,6 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
         onClose(); 
 
     }
-
-
 
     // get the message object data on load 
     useEffect(() => {

@@ -215,6 +215,10 @@ footer > .container > a {
   color:#2C9986;
   margin-left:10px;
 }
+
+/**********TICKETS*********************/
+.CardissueTitle{text-decoration: underline; color:#80bdff; cursor: pointer;}
+
 /**********VOTING*********************/
 .singleVoteTicket{
   border:1px solid #343A40;

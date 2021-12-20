@@ -430,6 +430,8 @@ function closeVoteTicket (voteTicket){
                 <Tickets 
                   issues={ticketsArr}
                   users={users} 
+                  onNewTicket={addNewMsg} //change for tickets
+                  onUpdateComment={updateCommentsForMessage} //change for tickets
                 />
               </Route> 
 

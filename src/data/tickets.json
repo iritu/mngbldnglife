@@ -18,6 +18,27 @@
             }
         
         ]
+    },
+
+    {
+        "ticketId":2,
+        "buildingId":1,
+        "userId": 1001,
+        "dateCreated": "2021-12-19 15:58:00",
+        "title": "Second demo issue", 
+        "details": "Water are leacking in the stairs", 
+        "priority":  "Urgent",
+        "status": "Open",
+        "img":"images/issue-image.jpg",
+        "ArrayTicketCommentsId":[
+            {
+                "dateCreated": "2021-12-19 16:30:00",
+                "userId": 1001,
+                "buildingId":1,
+                "commentText": "This is comment no 1 for ticket no 2 "
+            }
+        
+        ]
     }
 ]
 
