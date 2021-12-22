@@ -1,4 +1,4 @@
-import { Container, Button , Row, Col } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { useState, useContext  } from "react";
@@ -69,7 +69,7 @@ function Tickets({issues, users, onNewTicket, onUpdateCommentIssue}){
                   Array.isArray(issuesArr)  ?  issuesArr.map((issue, i) =>
           
                     <Accordion>
-                      <Card>
+                      <Card key={i}>
                         <Card.Header>
                           <Accordion.Toggle as={Card.Title} variant="link" eventKey="0">
                               #{issue.ticketId} --   <span className="CardissueTitle"> {issue.title}</span>
