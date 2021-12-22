@@ -237,6 +237,20 @@ footer > .container > a {
 
 /**********TICKETS*********************/
 .CardissueTitle{text-decoration: underline; color:#80bdff; cursor: pointer;}
+.CardissueTitle{color: #fff;}
+.CardissueTitle:hover {text-decoration: none;}
+.accordion>.card>.card-header {
+  /* border-radius: 0; */
+  margin-bottom: -1px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  cursor: pointer;
+  background: #343A40;
+  color: #fff;
+}
+.card{ border:none; margin-bottom:1%; }
+.card-body{border:1px solid #343A40;}
+
 
 /**********VOTING*********************/
 .singleVoteTicket{
