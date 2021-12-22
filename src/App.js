@@ -379,6 +379,38 @@ function closeVoteTicket (voteTicket){
 /*******************END VOTING SECTION*************************** */
 
 
+/******************ISSUE TICETS SECTION*************************** */
+
+
+  //update single message with new comment 
+  function updateCommentsForIssue(comment, issue){
+  
+    let msgId = issue.ticketId; //issue id
+
+    let issuePos = ticketsArr.findIndex(tck => tck.ticketId === msgId); //index in array 
+   
+    const issueClone = [...ticketsArr]; 
+    
+    if (issueClone[issuePos].ArrayCommentsId){ //push new obj to exiting array 
+      issueClone[issuePos].ArrayCommentsId.push(comment); 
+    }
+    else{ //create new object , there is no array 
+      issueClone[issuePos].ArrayCommentsId = [{
+                                              "dateCreated":comment.dateCreated, 
+                                              "userId": comment.userId,
+                                              "buildingId": comment.buildingId,
+                                              "commentText": comment.commentText
+                                           }] ; 
+    }
+  
+    setTicketsArr(issueClone);
+
+  }
+
+/******************END ISSUE TICKETS SECTION********************** */
+
+
+
   return (
     <ActiveUserContext.Provider value={activeUser}> 
     
@@ -431,7 +463,7 @@ function closeVoteTicket (voteTicket){
                   issues={ticketsArr}
                   users={users} 
                   onNewTicket={addNewMsg} //change for tickets
-                  onUpdateComment={updateCommentsForMessage} //change for tickets
+                  onUpdateCommentIssue={updateCommentsForIssue} //change for tickets
                 />
               </Route> 
 

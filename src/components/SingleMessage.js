@@ -10,7 +10,7 @@ import parse from 'html-react-parser';
 import ActiveUserContext from '../shared/activeUserContext';
 import pathPreContext from '../shared/pathPreContext'; 
 
-function SingleMessage({users, message, updateMessage}){
+function SingleMessage({users, message, updateMessage, type=0}){
 
     //form, get new comment
     const [newComment, setNewComment] = useState("");
@@ -58,8 +58,6 @@ function SingleMessage({users, message, updateMessage}){
         let userName =""; 
         let cmntDate = ""; 
         let userImg = ""; 
-
-      
         
         if(commentsArray){
             returnStr = "<ul>"; 
@@ -78,8 +76,6 @@ function SingleMessage({users, message, updateMessage}){
                 {
                     returnStr += "<li><span class='cmntHeaderTxt'>"+ cmnt.userId +"@"+cmntDate+"</span><br/>" + cmnt.commentText + "</li>" ; 
                 }
-
-
              });
 
             returnStr += "</ul>";
@@ -93,12 +89,19 @@ function SingleMessage({users, message, updateMessage}){
        <Row>
            <Col xs={12} md={6} className="msgCardsCol">
                  <h5>{message.title}</h5>
-      
-                <Image src={pathPre+img} rounded className="imgAvatar" />
-      
-                 <strong>Details: </strong> {message.details}
-                 <br/>
+                 
                  <strong>Priority: </strong> {message.priority}
+                 &nbsp; 
+                 {type === 1? <><br/> <b>Status: </b>{message.status} </> : null }
+                 <br/>
+
+                {type === 0? 
+                    <Image src={pathPre+img} rounded className="imgAvatar" alt={message.title} />   //message
+                    :
+                    <><Image src={pathPre+img} width="300" height="300" alt={message.title} /> <br/>  </>     //ticket
+                }
+                 <strong>Details: </strong> {message.details}
+                   
             </Col>
 
            <Col xs={12} md={6}>

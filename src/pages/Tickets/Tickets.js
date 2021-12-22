@@ -3,20 +3,21 @@ import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { useState, useContext  } from "react";
 import NewMsgModal from '../../components/NewMsgModal';
+import SingleMessage from '../../components/SingleMessage';
 import { Redirect } from 'react-router';
  
 //context
 import ActiveUserContext from '../../shared/activeUserContext';
-import pathPreContext from '../../shared/pathPreContext'; 
+//import pathPreContext from '../../shared/pathPreContext'; 
 
-function Tickets({issues, users, onNewTicket, onUpdateComment}){
+function Tickets({issues, users, onNewTicket, onUpdateCommentIssue}){
     const activeUser = useContext(ActiveUserContext);
 
     const [openModal, setOpenModal] = useState(false);
   
     const [issue, setIssueModal] = useState("");
     
-    const pathPre = useContext(pathPreContext);
+  //  const pathPre = useContext(pathPreContext);
 
 
     if (!activeUser) {
@@ -26,7 +27,14 @@ function Tickets({issues, users, onNewTicket, onUpdateComment}){
     function setUpdate(issue){
         setOpenModal(true);
         setIssueModal(issue); 
-    }        
+    }     
+    
+    
+    //pass caller (app.js ) by local func , update comment
+    function funcUpdateMessage(comment, issue){
+      onUpdateCommentIssue(comment, issue); 
+    }
+
 
     //All open tickets
     let issuesArr = issues.filter(issueItem => issueItem.buildingId === activeUser.buildingId && issueItem.status === "Open"); 
@@ -69,18 +77,13 @@ function Tickets({issues, users, onNewTicket, onUpdateComment}){
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
-                              <Row>
-                                <Col>
-                                  On: {issue.dateCreated} 
-                                  <br/>
-                                  Status: {issue.status}
-                                  <br/>
-                                  {issue.img? <img src={pathPre+issue.img} alt={issue.title} />  : ""}
-                                </Col>
-                                <Col>
-                                  {issue.details}
-                                </Col>
-                              </Row>
+                            {/* show single message with its comments */}           
+                            <SingleMessage 
+                                users={users}
+                                message={issue} 
+                                updateMessage={funcUpdateMessage}
+                                type={1}
+                                />
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
