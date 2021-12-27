@@ -88,11 +88,9 @@ function SingleMessage({users, message, updateMessage, type=0}){
     return(
        <Row>
            <Col xs={12} md={6} className="msgCardsCol">
-                 <h5>{message.title}</h5>
+                 <h5>{message.title}    {type === 1? <>--- <b>Status: </b>{message.status} </> : null }</h5>
                  
                  <strong>Priority: </strong> {message.priority}
-                 &nbsp; 
-                 {type === 1? <><br/> <b>Status: </b>{message.status} </> : null }
                  <br/>
 
                 {type === 0? 

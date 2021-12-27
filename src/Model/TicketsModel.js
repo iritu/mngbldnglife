@@ -22,7 +22,7 @@ export default class TicketModel {
         else {  this.priority   = singleTicket.priority;   }  // Important / Info ( default) 
        
         if (singleTicket.status === null){ this.status = "Open"; }
-        else { this.status = singleTicket.status;  } // "Open" / "Close" / "In progress" 
+        else { this.status = singleTicket.status;  } // "Open" / "Close" 
                
 
         if  (singleTicket.img ){ //we have img 

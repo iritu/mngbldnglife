@@ -407,6 +407,18 @@ function closeVoteTicket (voteTicket){
 
   }
 
+
+  //Update status of a single ticket 
+  function appUpdateIssueStatus(ticketId, strStatus){
+     //find ticket 
+     let issuePos = ticketsArr.findIndex(tck => tck.ticketId === ticketId); //index in array 
+     //update field
+     const issueClone = [...ticketsArr]; 
+     issueClone[issuePos].status = strStatus;
+     //update array of tickets
+     setTicketsArr(issueClone);
+  }
+
 /******************END ISSUE TICKETS SECTION********************** */
 
 
@@ -464,6 +476,7 @@ function closeVoteTicket (voteTicket){
                   users={users} 
                   onNewTicket={addNewMsg} //change for tickets
                   onUpdateCommentIssue={updateCommentsForIssue} //change for tickets
+                  updateIssueStatus={appUpdateIssueStatus} //update ticket status
                 />
               </Route> 
 

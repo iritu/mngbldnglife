@@ -251,6 +251,7 @@ footer > .container > a {
 .card{ border:none; margin-bottom:1%; }
 .card-body{border:1px solid #343A40;}
 
+.ticketsNavBtns{width:150px; padding-right:10px;}
 
 /**********VOTING*********************/
 .singleVoteTicket{

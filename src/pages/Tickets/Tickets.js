@@ -1,4 +1,4 @@
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Row, Col} from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { useState, useContext  } from "react";
@@ -10,12 +10,11 @@ import { Redirect } from 'react-router';
 import ActiveUserContext from '../../shared/activeUserContext';
 //import pathPreContext from '../../shared/pathPreContext'; 
 
-function Tickets({issues, users, onNewTicket, onUpdateCommentIssue}){
+function Tickets({issues, users, onNewTicket, onUpdateCommentIssue, updateIssueStatus}){
     const activeUser = useContext(ActiveUserContext);
-
     const [openModal, setOpenModal] = useState(false);
-  
     const [issue, setIssueModal] = useState("");
+    const [status, setStatus] = useState("Open");
     
   //  const pathPre = useContext(pathPreContext);
 
@@ -37,18 +36,52 @@ function Tickets({issues, users, onNewTicket, onUpdateCommentIssue}){
 
 
     //All open tickets
-    let issuesArr = issues.filter(issueItem => issueItem.buildingId === activeUser.buildingId && issueItem.status === "Open"); 
+    let issuesArr = issues.filter(issueItem => issueItem.buildingId === activeUser.buildingId && issueItem.status === status); 
     //sort issues by date       
     issuesArr.sort((a,b)=> b.dateCreated - a.dateCreated);         
 
  
+    function closeTicket(ticketId)
+    {
+      var retVal = window.confirm("Issue will be marked as deleted, are you sure ?");
+      if( retVal === true ) { //delete ticket
+        updateIssueStatus (ticketId , "Close"); //call app.js to activate the actual delete from array
+      }
+    }
+    
+    function openTicket(ticketId){
+      var retVal = window.confirm("This will reopen the issue, are you sure ?");
+      if( retVal === true ) { //open ticket
+        updateIssueStatus (ticketId , "Open"); //call app.js to activate the actual open from array
+      }
+    }
+
 
     return (
         <Container>
             <h1>Tickets</h1>
 
             {/* open new ticket  */}
-            {activeUser ? <> <Button variant="outline-primary"  onClick={() => setUpdate("")}>New Ticket   </Button> 
+            {activeUser ? <> 
+                <Row style={{ paddingBottom:10 }}> 
+                    <Col xs={4} md={2}>
+                        <Button className="ticketsNavBtns" variant="outline-primary"  onClick={() => setUpdate("")}>
+                           New Ticket   
+                        </Button> 
+                    </Col>
+                    <Col  xs={4} md={2}>
+                        <Button className="ticketsNavBtns" variant="outline-primary" onClick={() => setStatus("Close")}>
+                          Closed Tickets
+                        </Button>
+                    </Col>
+                    <Col  xs={4} md={2}>
+                        <Button className="ticketsNavBtns" variant="outline-primary" onClick={() => setStatus("Open")}>
+                          Open Tickets
+                        </Button>
+                    </Col>
+                </Row>
+
+
               {/* modal window, as it should receive building id there is no point of it without active user it will thow an err */}
                <NewMsgModal 
                     show={openModal} 
@@ -72,7 +105,19 @@ function Tickets({issues, users, onNewTicket, onUpdateCommentIssue}){
                       <Card key={i}>
                         <Card.Header>
                           <Accordion.Toggle as={Card.Title} variant="link" eventKey="0">
-                              #{issue.ticketId} --   <span className="CardissueTitle"> {issue.title}</span>
+                                  <Row>
+                                      <Col md={10} sm={6}>
+                                             #{issue.ticketId} --   <span className="CardissueTitle"> {issue.title}</span>  
+                                      </Col>
+                                      <Col md={2} sm={6}>
+                                           {activeUser.isAdmin === true && status === "Open"? 
+                                                 <Button variant="danger" size="sm" onClick={() => closeTicket(issue.ticketId)} >Close Ticket</Button> 
+                                            :null  }
+                                            {activeUser.isAdmin === true && status === "Close"? 
+                                                 <Button variant="danger" size="sm" onClick={() => openTicket(issue.ticketId)} >Reopen Ticket</Button>   
+                                            :null}
+                                      </Col>
+                                  </Row>
                           </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
