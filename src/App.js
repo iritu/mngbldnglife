@@ -248,7 +248,6 @@ function newUser(userId, isAdmin, name, email, img , pswrd,  city, street,  stNu
       }
       else{
         console.log("update message ==> "); 
-
         updateMessage(messageId, title, details, priority, img); 
       }
   }
@@ -419,6 +418,69 @@ function closeVoteTicket (voteTicket){
      setTicketsArr(issueClone);
   }
 
+
+  
+  //INSERT NEW TICKET
+  function insertNewTicket(buildingId,userId, dateCreated, title, details, priority, img){
+    
+    let ticketId = 10001;
+    let status="Open";
+    
+    if(ticketsArr){
+      ticketId =  ticketsArr[ticketsArr.length-1].ticketId + 1;
+    }
+
+    const addNewTicket = new TicketModel({
+      ticketId,
+      buildingId,
+      userId, 
+      dateCreated, 
+      title,
+      details, 
+      priority,
+      status,
+      img
+      
+    });
+
+    setTicketsArr(ticketsArr.concat(addNewTicket));
+}
+
+
+//UPDATE
+function updateTicket(ticketId, title, details, priority, img){
+  //1. find ticket id in the array of tickets
+  let index = ticketsArr.findIndex(tck => tck.ticketId === ticketId);
+  //console.log("result==> "+ index);
+
+  //2. update existing obj with new data from user 
+  if (index){
+    ticketsArr[index].title = title; 
+    ticketsArr[index].details = details; 
+    ticketsArr[index].priority = priority; 
+    ticketsArr[index].img = img; 
+
+    setTicketsArr(ticketsArr); 
+  }
+
+}
+
+
+
+//add or update a message
+function addUpdateTicket(ticketId, buildingId,userId,  dateCreated, title, details, priority, img){
+    if (!ticketId){
+      insertNewTicket(buildingId,userId,  dateCreated, title, details, priority, img); 
+    }
+    else{
+      console.log("update message ==> "); 
+      updateTicket(ticketId, title, details, priority, img); 
+    }
+}
+
+
+
+
 /******************END ISSUE TICKETS SECTION********************** */
 
 
@@ -428,7 +490,7 @@ function closeVoteTicket (voteTicket){
     
       
        <HashRouter>
-       <SiteNavBar   onLogout={() => setActiveUser(null)}/>
+       <SiteNavBar  onLogout={() => setActiveUser(null)}/>
           <Switch>
               <Route exact path="/"><HomePage/></Route>
               <Route exact path="/login">
@@ -474,8 +536,8 @@ function closeVoteTicket (voteTicket){
                 <Tickets 
                   issues={ticketsArr}
                   users={users} 
-                  onNewTicket={addNewMsg} //change for tickets
-                  onUpdateCommentIssue={updateCommentsForIssue} //change for tickets
+                  onNewTicket={addUpdateTicket} //add or update tickets array
+                  onUpdateCommentIssue={updateCommentsForIssue}  
                   updateIssueStatus={appUpdateIssueStatus} //update ticket status
                 />
               </Route> 

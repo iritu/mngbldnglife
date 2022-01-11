@@ -18,10 +18,11 @@ export default class TicketModel {
         this.title      = singleTicket.title; 
         this.details    = singleTicket.details;
 
-        if (singleTicket.priority === null) { this.priority  = "Open"; }
+        if (singleTicket.priority === null) { this.priority  = "Info"; }
         else {  this.priority   = singleTicket.priority;   }  // Important / Info ( default) 
        
-        if (singleTicket.status === null){ this.status = "Open"; }
+       
+        if (!singleTicket.status){ this.status = "Open"; }
         else { this.status = singleTicket.status;  } // "Open" / "Close" 
                
 

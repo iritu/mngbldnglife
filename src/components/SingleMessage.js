@@ -19,11 +19,11 @@ function SingleMessage({users, message, updateMessage, type=0}){
     const activeUser = useContext(ActiveUserContext);
     const pathPre = useContext(pathPreContext);
 
-
-
     let img = ""; 
     img =  message.img;  //default img for message
  
+    let imgPath = "";
+    if (img.includes('blob')){ imgPath = img }else{ imgPath=pathPre+img }
    
     //const imgSrc = pathPre+ "/" + img; 
 
@@ -89,14 +89,14 @@ function SingleMessage({users, message, updateMessage, type=0}){
        <Row>
            <Col xs={12} md={6} className="msgCardsCol">
                  <h5>{message.title}    {type === 1? <>--- <b>Status: </b>{message.status} </> : null }</h5>
-                 
+              
                  <strong>Priority: </strong> {message.priority}
                  <br/>
-
+              
                 {type === 0? 
-                    <Image src={pathPre+img} rounded className="imgAvatar" alt={message.title} />   //message
+                    <Image src={imgPath} rounded className="imgAvatar" alt={message.title} />   //message
                     :
-                    <><Image src={pathPre+img} width="300" height="300" alt={message.title} /> <br/>  </>     //ticket
+                    <><Image src={imgPath} width="300" height="300" alt={message.title} /> <br/>  </>     //ticket ( uploaded: {img},  preloaded {pathPre+img})
                 }
                  <strong>Details: </strong> {message.details}
                    
@@ -108,19 +108,19 @@ function SingleMessage({users, message, updateMessage, type=0}){
                        
               {message.ArrayCommentsId?  parse(showCommentsForMessage(message.ArrayCommentsId))   : ""} 
  
-            
-            <Form onSubmit={saveComment}>
-                <Form.Group controlId={`commentMsg${message.messageId}`}>
-                   <Form.Control as="textarea" rows={3}
-                        value={newComment}
-                        onChange={e => setNewComment(e.target.value)}
-                        placeholder= "Add new comment"
-                      />
-                </Form.Group>
-           
-                <Button variant="secondary" size="sm" type="submit">Add Comment</Button>
-            </Form>  
-
+               {/* in tickets,  only admin can add a comment, messages - all.     */}
+               { activeUser.isAdmin || type === 0 ? 
+                    <Form onSubmit={saveComment}>
+                        <Form.Group controlId={`commentMsg${message.messageId}`}>
+                        <Form.Control as="textarea" rows={3}
+                                value={newComment}
+                                onChange={e => setNewComment(e.target.value)}
+                                placeholder= "Add new comment"
+                            />
+                        </Form.Group>
+                        <Button variant="secondary" size="sm" type="submit">Add Comment</Button>
+                    </Form>  
+                : null}
 
             </Col>
 

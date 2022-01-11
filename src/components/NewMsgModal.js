@@ -3,8 +3,8 @@ import { Button, Modal, Form, Col, Row, Image } from 'react-bootstrap';
 
 import SetCurrentDateTime from './utils';
 
-// if messageIndex is passed then it is an update process else it is an insert process
-// change the component modal to suit messages and tickets issues. ( issue is very close to be a kind og message )
+// if objMsg is passed than it is an update process, else it is an insert process
+// Component modal to works with messages and tickets (issues). ( issue is a type of message )
 
 function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUserId, objMsg, type=0}) {
  
@@ -14,12 +14,13 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
     const [img, setImg] = useState("");
 
     const [objState, setObjState] = useState(null);
-
     const [objMsgId , setMsgId] = useState(""); 
 
     let  typeName ="Message";  //default 
 
-    if (type === 1 ){typeName = "Ticket";}
+    if (type === 1 ){
+            typeName = "Ticket";
+    }
    
 
     let modalTitle = "Create New " + typeName;
@@ -27,13 +28,11 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
     if (objMsg){
         modalTitle= "Update " + typeName;
     }
-     
 
     function onBeforeClose()
     {
         clearForm(); 
-        onClose(); 
-
+        onClose(); //don't show
     }
 
     // get the message object data on load 
@@ -74,13 +73,21 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
 
 
     function createMsg() {
-        //messageId; create new message id from last item of msg array
         let buildingId = activeUserBuildingid; // get building id
         let userId = activeUserId;             // get current user id ( isAdmin)
- 
-        let messageId = objMsgId;  //if messageId != null -> update, else -> insert 
 
-        onCreate(messageId, buildingId,userId,  dateCreated, title, details, priority, img , "");
+        let messageId = objMsgId;  //if messageId != null -> update, else -> insert 
+        let ticketId = messageId;             
+
+        if (type === 1 ){
+            //new ticket
+            onCreate(ticketId, buildingId, userId,  dateCreated, title, details, priority, img , "");
+        }
+        else{
+            //messageId; create new message id from last item of msg array
+            onCreate(messageId, buildingId,userId,  dateCreated, title, details, priority, img , "");
+        }
+     
         onBeforeClose();
     }
 
@@ -109,7 +116,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
                             Title
                         </Form.Label>
                         <Col sm={9}>
-                            <Form.Control type="text" placeholder="Message title" 
+                            <Form.Control type="text" placeholder="Issue title" 
                                 value={title} onChange={e => setTitle(e.target.value)}/>
                         </Col>
                     </Form.Group>
@@ -119,12 +126,10 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
                             Details
                         </Form.Label>
                         <Col sm={9}>
-                            <Form.Control type="text" placeholder="Message details" 
+                            <Form.Control type="text" placeholder="Issue details" 
                                 value={details} onChange={e => setDetails(e.target.value)}/>
                         </Col>
                     </Form.Group>
-
-
 
                     <Form.Group as={Row} controlId="MsgPriority">
                         <Form.Label column sm={3}>

@@ -64,17 +64,17 @@ function Tickets({issues, users, onNewTicket, onUpdateCommentIssue, updateIssueS
             {/* open new ticket  */}
             {activeUser ? <> 
                 <Row style={{ paddingBottom:10 }}> 
-                    <Col xs={4} md={2}>
+                    <Col xs={12} md={2}>
                         <Button className="ticketsNavBtns" variant="outline-primary"  onClick={() => setUpdate("")}>
                            New Ticket   
                         </Button> 
                     </Col>
-                    <Col  xs={4} md={2}>
+                    <Col  xs={12} md={2}>
                         <Button className="ticketsNavBtns" variant="outline-primary" onClick={() => setStatus("Close")}>
                           Closed Tickets
                         </Button>
                     </Col>
-                    <Col  xs={4} md={2}>
+                    <Col  xs={12} md={2}>
                         <Button className="ticketsNavBtns" variant="outline-primary" onClick={() => setStatus("Open")}>
                           Open Tickets
                         </Button>
@@ -106,7 +106,7 @@ function Tickets({issues, users, onNewTicket, onUpdateCommentIssue, updateIssueS
                         <Card.Header>
                           <Accordion.Toggle as={Card.Title} variant="link" eventKey="0">
                                   <Row>
-                                      <Col md={10} sm={6}>
+                                      <Col md={8} sm={6}>
                                              #{issue.ticketId} --   <span className="CardissueTitle"> {issue.title}</span>  
                                       </Col>
                                       <Col md={2} sm={6}>
@@ -117,6 +117,7 @@ function Tickets({issues, users, onNewTicket, onUpdateCommentIssue, updateIssueS
                                                  <Button variant="danger" size="sm" onClick={() => openTicket(issue.ticketId)} >Reopen Ticket</Button>   
                                             :null}
                                       </Col>
+                                      { issue.userId === activeUser.userId?  <Col md={2}><Button size="sm"  onClick={() => setUpdate(issue)}>Update Ticket</Button></Col> :null}
                                   </Row>
                           </Accordion.Toggle>
                         </Card.Header>
