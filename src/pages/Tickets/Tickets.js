@@ -117,7 +117,9 @@ function Tickets({issues, users, onNewTicket, onUpdateCommentIssue, updateIssueS
                                                  <Button variant="danger" size="sm" onClick={() => openTicket(issue.ticketId)} >Reopen Ticket</Button>   
                                             :null}
                                       </Col>
-                                      { issue.userId === activeUser.userId?  <Col md={2}><Button size="sm"  onClick={() => setUpdate(issue)}>Update Ticket</Button></Col> :null}
+                                      { issue.userId === activeUser.userId && status === "Open"?  
+                                                <Col md={2}><Button size="sm"  onClick={() => setUpdate(issue)}>Update Ticket</Button></Col> 
+                                            :null}
                                   </Row>
                           </Accordion.Toggle>
                         </Card.Header>

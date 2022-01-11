@@ -77,7 +77,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
         let userId = activeUserId;             // get current user id ( isAdmin)
 
         let messageId = objMsgId;  //if messageId != null -> update, else -> insert 
-        let ticketId = messageId;             
+        let ticketId = objMsg.ticketId;             
 
         if (type === 1 ){
             //new ticket
@@ -88,7 +88,7 @@ function NewMsgModal({ show, onClose, onCreate , activeUserBuildingid, activeUse
             onCreate(messageId, buildingId,userId,  dateCreated, title, details, priority, img , "");
         }
      
-        onBeforeClose();
+        onClose(); 
     }
 
 

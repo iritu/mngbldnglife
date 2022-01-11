@@ -449,18 +449,20 @@ function closeVoteTicket (voteTicket){
 
 //UPDATE
 function updateTicket(ticketId, title, details, priority, img){
-  //1. find ticket id in the array of tickets
+   //1. find ticket id in the array of tickets
   let index = ticketsArr.findIndex(tck => tck.ticketId === ticketId);
   //console.log("result==> "+ index);
-
+ 
   //2. update existing obj with new data from user 
   if (index){
-    ticketsArr[index].title = title; 
-    ticketsArr[index].details = details; 
-    ticketsArr[index].priority = priority; 
-    ticketsArr[index].img = img; 
+    const TicketsClone = [...ticketsArr]; 
 
-    setTicketsArr(ticketsArr); 
+    TicketsClone[index].title = title; 
+    TicketsClone[index].details = details; 
+    TicketsClone[index].priority = priority; 
+    TicketsClone[index].img = img; 
+
+    setTicketsArr(TicketsClone); 
   }
 
 }
@@ -473,7 +475,7 @@ function addUpdateTicket(ticketId, buildingId,userId,  dateCreated, title, detai
       insertNewTicket(buildingId,userId,  dateCreated, title, details, priority, img); 
     }
     else{
-      console.log("update message ==> "); 
+      console.log("update ticket ==> "); 
       updateTicket(ticketId, title, details, priority, img); 
     }
 }
