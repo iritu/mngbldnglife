@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Form ,  Button, Alert} from "react-bootstrap";
+import { Form ,  Button, Alert, Row, Col} from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 
 
@@ -39,29 +39,40 @@ function LoginPage({users, onLogin}){
 
 
      return (
-        <div>
+        <div style={{marginTop:20}}>
+      
             <h1 className="loginHeader">Login to HOA system </h1>
-            <h2 className="loginHeader">  <Link to="/signup">Create a new account</Link>  &nbsp; if you are not registered</h2>
-           
-               
-                <Form className="loginForm" onSubmit={login}>
-               
-                    {nonUser? <Alert variant="danger">Invalid credentials</Alert> : null}
+      
+            <Row>
+                <Col sm={12} md={6} className="divCenter">
+                    <h2 className="loginHeader">  New? &nbsp; <Link to="/signup">Create a new account</Link></h2>
+                </Col>
+            </Row>
+      
+            <Row>
+                <Col sm={12} md={8} className="divCenter" style={{marginTop:10, maxWidth:650}}>
+                        <Form className="loginForm" onSubmit={login}>
+                    
+                            {nonUser? <Alert variant="danger">Invalid credentials</Alert> : null}
 
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Enter email"
-                        value={email} onChange={e=> setEmail(e.target.value)} />
-                    </Form.Group>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Control type="email" placeholder="Enter email"
+                                value={email} onChange={e=> setEmail(e.target.value)} />
+                            </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Control type="password" placeholder="Password" 
-                        value={pswd} onChange={e=> setPswd(e.target.value)}/>
-                    </Form.Group>
-                   
-                    <Button className="submitForm" type="submit" block>
-                        Login
-                    </Button>
-            </Form>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Control type="password" placeholder="Password" 
+                                value={pswd} onChange={e=> setPswd(e.target.value)}/>
+                            </Form.Group>
+                            
+                            <Button className="submitForm" type="submit" block>
+                                Login
+                            </Button>
+                    </Form>
+                </Col>
+            </Row>
+               
+               
         </div>
     )
 }

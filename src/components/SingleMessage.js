@@ -23,7 +23,7 @@ function SingleMessage({users, message, updateMessage, type=0}){
     img =  message.img;  //default img for message
  
     let imgPath = "";
-    if (img.includes('blob')){ imgPath = img }else{ imgPath=pathPre+img }
+    if (img.includes('blob')){ imgPath = img }else{ imgPath=pathPre+img } //handle live/localhost path 
    
     //const imgSrc = pathPre+ "/" + img; 
 
@@ -45,11 +45,8 @@ function SingleMessage({users, message, updateMessage, type=0}){
 
         //re - render message obj
         updateMessage(newCommentObj , message);
-
    }
 
-
-   
     //get array of comments and return string combined from 
     //<ul> text (comments) items 
     //caller uses parse() to extract returned string to html
@@ -121,10 +118,7 @@ function SingleMessage({users, message, updateMessage, type=0}){
                         <Button variant="secondary" size="sm" type="submit">Add Comment</Button>
                     </Form>  
                 : null}
-
             </Col>
-
-
        </Row>
 
    

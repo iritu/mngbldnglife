@@ -95,7 +95,10 @@ function TenantsPage({users , onNewUser , onDeleteUser, onUpdateUser}){
                             <Row>
                                 {/* user details */}
                                 <Col xs={4} md={2} className="tenantsPageUserImg">
-                                        <h4 className="tenantsPageH4">  {user.name} </h4>
+                                        <h4 className="tenantsPageH4">  
+                                            {user.name} 
+                                            {activeUser.isAdmin ? " is Admin":null}
+                                        </h4>
                                         <Image src={pathPre+user.img} rounded className="imgAvatar" />
                                 </Col>
                                 <Col  xs={8} md={4}>

@@ -22,6 +22,11 @@ body{
   font-size: 17px;
 }
 
+.divCenter{
+  margin-left: auto; 
+  margin-right: auto
+}
+
 button{
   margin-bottom:1%;
 }
@@ -143,16 +148,15 @@ footer > .container > a {
 
 /*****Login Form*********/
 .loginForm{
-  width:50%;
   margin:0 auto;
-  padding-bottom: 10vh;
+  padding:0 10px 0 10px;
 }
 .loginHeader{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin:4vh 0 4vh 0;
+  margin: 2px 0 2px 0;
 }
 
 /*****Sign UP(register) *********/
@@ -163,7 +167,6 @@ footer > .container > a {
   justify-content: center;
   margin:4vh 0 4vh 0;
 }
-
 
 .formInput > input[type="file"] {
   display: none;

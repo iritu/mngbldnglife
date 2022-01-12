@@ -45,7 +45,7 @@ function SignUp({onNewUser}){
 
     return(
         <div className="signUpPage">
-            <h1 className="loginHeader">Create a Committee Member Account</h1>
+            <h1 className="loginHeader divCenter">Create a Committee Member Account (Admin) </h1>
            
            
             <Form className="loginForm" > 
@@ -68,7 +68,7 @@ function SignUp({onNewUser}){
             
                <h3>Building details</h3>
                 <Form.Group as={Row} controlId="SignUpBuildingName">
-                   <Form.Control type="text" placeholder="Building name:"
+                   <Form.Control type="text" placeholder="Building identifier name:"
                    value={buildingName} onChange={e=> setBuildingName(e.target.value)} />
                 </Form.Group>
 
