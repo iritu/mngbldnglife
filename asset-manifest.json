@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/mngbldnglife/static/css/main.6430391a.chunk.css",
-    "main.js": "/mngbldnglife/static/js/main.d686b08d.chunk.js",
-    "main.js.map": "/mngbldnglife/static/js/main.d686b08d.chunk.js.map",
-    "runtime-main.js": "/mngbldnglife/static/js/runtime-main.29947637.js",
-    "runtime-main.js.map": "/mngbldnglife/static/js/runtime-main.29947637.js.map",
+    "main.css": "/mngbldnglife/static/css/main.af9c308b.chunk.css",
+    "main.js": "/mngbldnglife/static/js/main.2c5dd958.chunk.js",
+    "main.js.map": "/mngbldnglife/static/js/main.2c5dd958.chunk.js.map",
+    "runtime-main.js": "/mngbldnglife/static/js/runtime-main.42475462.js",
+    "runtime-main.js.map": "/mngbldnglife/static/js/runtime-main.42475462.js.map",
     "static/css/2.12735314.chunk.css": "/mngbldnglife/static/css/2.12735314.chunk.css",
-    "static/js/2.c111302d.chunk.js": "/mngbldnglife/static/js/2.c111302d.chunk.js",
-    "static/js/2.c111302d.chunk.js.map": "/mngbldnglife/static/js/2.c111302d.chunk.js.map",
-    "static/js/3.8a6f9402.chunk.js": "/mngbldnglife/static/js/3.8a6f9402.chunk.js",
-    "static/js/3.8a6f9402.chunk.js.map": "/mngbldnglife/static/js/3.8a6f9402.chunk.js.map",
+    "static/js/2.8c8e6254.chunk.js": "/mngbldnglife/static/js/2.8c8e6254.chunk.js",
+    "static/js/2.8c8e6254.chunk.js.map": "/mngbldnglife/static/js/2.8c8e6254.chunk.js.map",
+    "static/js/3.5cfb3075.chunk.js": "/mngbldnglife/static/js/3.5cfb3075.chunk.js",
+    "static/js/3.5cfb3075.chunk.js.map": "/mngbldnglife/static/js/3.5cfb3075.chunk.js.map",
     "index.html": "/mngbldnglife/index.html",
     "static/css/2.12735314.chunk.css.map": "/mngbldnglife/static/css/2.12735314.chunk.css.map",
-    "static/css/main.6430391a.chunk.css.map": "/mngbldnglife/static/css/main.6430391a.chunk.css.map",
-    "static/js/2.c111302d.chunk.js.LICENSE.txt": "/mngbldnglife/static/js/2.c111302d.chunk.js.LICENSE.txt"
+    "static/css/main.af9c308b.chunk.css.map": "/mngbldnglife/static/css/main.af9c308b.chunk.css.map",
+    "static/js/2.8c8e6254.chunk.js.LICENSE.txt": "/mngbldnglife/static/js/2.8c8e6254.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.29947637.js",
+    "static/js/runtime-main.42475462.js",
     "static/css/2.12735314.chunk.css",
-    "static/js/2.c111302d.chunk.js",
-    "static/css/main.6430391a.chunk.css",
-    "static/js/main.d686b08d.chunk.js"
+    "static/js/2.8c8e6254.chunk.js",
+    "static/css/main.af9c308b.chunk.css",
+    "static/js/main.2c5dd958.chunk.js"
   ]
 }
